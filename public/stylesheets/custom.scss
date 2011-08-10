@@ -1,0 +1,40 @@
+.clear
+{
+  clear: both;
+}
+
+.menu
+{
+  background-color: white;
+  padding: 5px 15px;
+  
+  span
+  {
+    padding: 5px;
+    font-weight: bold;
+  }
+}
+
+/* BUTTONS */
+.base_button
+{
+  margin-top: -10px;
+  font-size: 1.25em;
+  
+  a
+  {
+    color: #ccc;
+    text-decoration: none;
+  }
+  
+  a:hover
+  {
+    color: #666;
+  }
+}
+
+.delete_button
+{
+  @extend .base_button
+}
+/* BUTTONS */

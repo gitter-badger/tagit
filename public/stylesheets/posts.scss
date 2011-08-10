@@ -1,0 +1,47 @@
+.posts
+{
+  .post_item
+  {
+    border-top: 1px solid #ccc;
+    padding-top: 5px;
+    margin-right: 15px;
+    margin-bottom: 10px;
+  }
+
+  img.gravatar
+  {
+    float: left;
+    width: 50px;
+  }
+
+  .buttons
+  {
+    float: right;
+  }
+
+  .post
+  {
+    margin-left: 55px;
+    margin-right: 15px;
+
+    .timestamp
+    {
+      color: #666;
+    }
+  }
+}
+
+form.new_post
+{
+  margin-bottom: 5px;
+
+  .field, .actions
+  {
+    margin-bottom: 0px;
+  }
+
+  textarea
+  {
+    height: 4em;
+  }
+}
