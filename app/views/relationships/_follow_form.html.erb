@@ -1,9 +1,11 @@
 <% if signed_in? && !current_user?(user) %>
   <div id="follow_form">
     <% if current_user.following?(user) %>
-      <%= render 'relationships/unfollow' %>
+      <!-- TODO: Implement the user local variable -->
+      <%= render 'relationships/unfollow', :user => user %>
     <% else %>
-      <%= render 'relationships/follow' %>
+      <!-- TODO: Implement the user local variable -->
+      <%= render 'relationships/follow', :user => user %>
     <% end %>
   </div>
 <% end %>
