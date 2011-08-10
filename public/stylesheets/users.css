@@ -1,0 +1,37 @@
+/* USER PROFILE */
+.main_bar {
+  float: left;
+  width: 70%; }
+
+.info_bar {
+  float: right;
+  width: 30%;
+  margin: -5px;
+  padding: 5px;
+  background: #ffc; }
+
+/* USER PROFILE */
+/* EDIT USER */
+.edit_user img.gravatar {
+  float: left;
+  margin-right: 5px; }
+.edit_user .user_data {
+  float: left; }
+
+/* EDIT USER */
+/* USER INFO */
+.user_info img.gravatar {
+  margin-right: 5px; }
+
+/* USER INFO */
+/* USERS INDEX */
+.users .user {
+  border-top: 1px solid #ccc;
+  padding-top: 5px;
+  margin-bottom: 15px; }
+.users .user_info .user_base img.gravatar {
+  float: left; }
+.users .buttons {
+  float: right; }
+
+/* USERS INDEX */

@@ -1,0 +1,8 @@
+.user_relationships {
+  float: left;
+  width: 70%; }
+  .user_relationships .users .user {
+    border-top: 1px solid #ccc;
+    padding-top: 5px;
+    margin-bottom: 15px;
+    margin-right: 15px; }

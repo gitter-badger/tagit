@@ -1,0 +1,54 @@
+body
+{
+  background: #eee;
+  font-family: Segoe UI;
+}
+
+header 
+{
+  img
+  {
+    padding: 10px;
+    background: #fff;
+  }
+
+  .menu
+  {
+    float: right;
+  }
+}
+
+#container
+{
+  width: 710px;
+  margin: 0px auto;
+}
+
+#section
+{
+  margin-top: 5px;
+  padding: 20px;
+  background: #fff;
+}
+
+footer
+{
+  text-align: center;
+  margin-top: 10px;
+}
+
+a
+{
+  color: #09c;
+  text-decoration: none;
+}
+
+a:hover
+{
+  color: #069;
+}
+
+img /* IE */
+{
+  border: 0px;
+}

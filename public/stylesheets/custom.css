@@ -1,0 +1,21 @@
+.clear {
+  clear: both; }
+
+.menu {
+  background-color: white;
+  padding: 5px 15px; }
+  .menu span {
+    padding: 5px;
+    font-weight: bold; }
+
+/* BUTTONS */
+.base_button, .delete_button {
+  margin-top: -10px;
+  font-size: 1.25em; }
+  .base_button a, .delete_button a {
+    color: #ccc;
+    text-decoration: none; }
+  .base_button a:hover, .delete_button a:hover {
+    color: #666; }
+
+/* BUTTONS */
