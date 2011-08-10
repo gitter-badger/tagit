@@ -1,0 +1,24 @@
+<h1><%= t(:sign_in) %></h1>
+
+<%= form_for(:session, :url => sessions_path) do |f| %>
+  <div class="field">
+    <%= f.label t(:email) %>
+    <br />
+    <%= f.text_field :email %>
+  </div>
+  
+  <div class="field">
+    <%= f.label t(:password) %>
+    <br />
+    <%= f.password_field :password %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit t(:sign_in) %>
+  </div>
+<% end %>
+
+<p>
+  <%= t(:not_registered_message) %>
+  <%= link_to t(:sign_up), signup_path %>
+</p>

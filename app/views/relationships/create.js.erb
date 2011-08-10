@@ -1,0 +1,3 @@
+alert("create");
+$("#follow_form").html("<%= escape_javascript(render('relationships/unfollow')) %>");
+$("#followers").html("<%= pluralize(@user.followers.count, t(:_follower)) %>");

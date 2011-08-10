@@ -1,0 +1,19 @@
+<h1><%= t(:edit_profile) %></h1>
+
+<div class="edit_user">
+  <div>
+    <a href="http://gravatar.com/emails" target="_blank"><%= gravatar_for @user %></a>
+  </div>
+
+  <div class="user_data">
+    <%= form_for(@user) do |f| %>
+      <%= render 'fields', :f => f %>
+      
+      <div class="actions">
+        <%= f.submit t(:update_verb) %>
+      </div>
+    <% end %>
+  </div>
+  
+  <div class="clear" />
+</div>

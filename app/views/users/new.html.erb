@@ -1,0 +1,9 @@
+<h1><%= t(:sign_up) %></h1>
+
+<%= form_for(@user) do |f| %>
+  <%= render 'fields', :f => f %>
+  
+  <div class="actions">
+    <%= f.submit t(:sign_up) %>
+  </div>
+<% end %>

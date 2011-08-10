@@ -1,0 +1,15 @@
+<div class="followers">
+  <a href="<%= followers_user_path(user) %>">
+    <span id="followers" class="user_relationship">
+      <%= pluralize(user.followers.count, t(:_follower)) %>
+    </span>
+  </a>
+
+  <br />
+  
+  <% if user.followers.count > 0 %>
+    <% user.followers.last(5).each do |user| %>
+      <%= link_to gravatar_for(user, :size => 30), user %>
+    <% end %>
+  <% end %>
+</div>

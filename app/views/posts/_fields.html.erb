@@ -1,0 +1,13 @@
+<%= form_for @post do |f| %>
+  <%= render 'shared/error_messages', :object => f.object %>
+  
+  <h1 class="post"><%= t(:new_post_message) %></h1>
+  
+  <div class="field">
+    <%= f.text_area :content %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit t(:post_verb) %>
+  </div>
+<% end %>

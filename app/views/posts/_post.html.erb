@@ -1,0 +1,19 @@
+<div class="post_item">
+  <%= link_to gravatar_for(post.user), post.user %>
+  
+  <div class="buttons">
+    <% if current_user?(post.user) %>
+    <div class="delete_button">
+      <%= link_to "×", post, :method => :delete, :confirm => t(:confirm_delete_message) %>
+    </div>
+    <% end %>
+  </div>
+  
+  <div class="post">
+    <span class="user"><%= link_to post.user.name, post.user %></span>
+    <span class="timestamp"><%= t(:posted_message) % { :time => time_ago_in_words(post.created_at) } %></span>
+    <div class="content"><%= wrap_and_trunc(post.content) %></div>
+  </div>
+  
+  <div class="clear"></div>
+</div>

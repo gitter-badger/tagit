@@ -1,0 +1,7 @@
+<% if stream.length > 0 %>
+  <div class="posts">
+    <%= render :partial => 'posts/post', :collection => stream %>
+  </div>
+  
+  <%= will_paginate stream %>
+<% end %>

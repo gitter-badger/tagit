@@ -1,0 +1,12 @@
+<div>
+  <div class="main_bar">
+    <%= render 'posts/fields' %>
+    <%= render 'posts/stream', :stream => stream %>
+  </div>
+  
+  <div class="info_bar">
+    <%= render 'users/info', :user => current_user %>
+  </div>
+  
+  <div class="clear"></div>
+</div>

@@ -1,0 +1,3 @@
+alert("destroy");
+$("#follow_form").update("<%= escape_javascript(render('relationships/follow')) %>");
+$("#followers").update("<%= pluralize(@user.followers.count, t(:_follower)) %>");
