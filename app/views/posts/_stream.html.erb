@@ -1,7 +1,8 @@
 <% if stream.length > 0 %>
-  <div class="posts">
+  <div id="stream" class="posts">
     <%= render :partial => 'posts/post', :collection => stream %>
-  </div>
+  </div> 
   
-  <%= will_paginate stream %>
+  <%= javascript_include_tag "jquery.pageless.min" %>
+  <%= pageless(stream.total_pages, root_path, 'stream') %>
 <% end %>
