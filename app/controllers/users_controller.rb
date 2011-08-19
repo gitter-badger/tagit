@@ -30,7 +30,7 @@ class UsersController < ApplicationController
       @title = t(:sign_up)
       @user.password = ""
       @user.password_confirmation = ""
-      render 'new'
+      render 'users/new'
     end
   end
   
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
       redirect_to @user
     else
       @title = t(:edit_profile)
-      render 'edit'
+      render 'users/edit'
     end
   end
   
@@ -61,16 +61,19 @@ class UsersController < ApplicationController
   
   def following
     @title = t(:following)
-    @user = User.find(params[:id])
-    @users = @user.following.paginate(:page => params[:page])
-    render 'show_relationships'
+    show_follow(:following)
   end
 
   def followers
     @title = t(:follower).pluralize
+    show_follow(:followers)
+  end
+
+  def show_follow(action)
+    @title = action.to_s.capitalize
     @user = User.find(params[:id])
-    @users = @user.followers.paginate(:page => params[:page])
-    render 'show_relationships', :users => @users, :user => @user
+    @users = @user.send(action).paginate(:page => params[:page])
+    render 'users/show_relationships'
   end
   
   private

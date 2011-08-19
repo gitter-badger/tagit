@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     if user.nil?
       flash.now[:error] = t(:invalid_login_message)
       @title = t(:sign_in)
-      render 'new'
+      render 'sessions/new'
     else
       sign_in user
       redirect_back_or user
