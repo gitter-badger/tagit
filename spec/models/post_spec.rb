@@ -38,4 +38,33 @@ describe Post do
       @user.posts.build(:content => "a" * 1001).should_not be_valid
     end
   end
+  
+  describe "from_users_followed_by" do
+    before(:each) do
+      @other_user = Factory(:user, :email => Factory.next(:email))
+      @third_user = Factory(:user, :email => Factory.next(:email))
+
+      @user_post  = @user.posts.create!(:content => "foo")
+      @other_post = @other_user.posts.create!(:content => "bar")
+      @third_post = @third_user.posts.create!(:content => "baz")
+
+      @user.follow!(@other_user)
+    end
+
+    it "should have a from_users_followed_by class method" do
+      Post.should respond_to(:from_users_followed_by)
+    end
+
+    it "should include the followed user's posts" do
+      Post.from_users_followed_by(@user).should include(@other_post)
+    end
+
+    it "should include the user's own posts" do
+      Post.from_users_followed_by(@user).should include(@user_post)
+    end
+
+    it "should not include an unfollowed user's posts" do
+      Post.from_users_followed_by(@user).should_not include(@third_post)
+    end
+  end
 end

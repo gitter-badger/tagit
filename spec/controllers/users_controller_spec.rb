@@ -123,12 +123,9 @@ describe UsersController do
         end
       end
     
-      it "should create paging links" do
+      it "should create paging" do
         get :show, :id => @user
-        response.should have_selector("div.pagination")
-        response.should have_selector("span.disabled", :content => "Previous")
-        response.should have_selector("a", :href => "/users/#{@user.id}?page=2", :content => "2")
-        response.should have_selector("a", :href => "/users/#{@user.id}?page=2", :content => "Next")
+        response.should have_selector("script", :content => %(jQuery('#stream').pageless({"totalPages":2,"url":"/users/1","loader":"#stream"});))
       end
       
       it "should show the user's posts on other pages" do

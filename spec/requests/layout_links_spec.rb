@@ -100,7 +100,7 @@ describe "LayoutLinks" do
           @users << Factory(:user, :email => Factory.next(:email))
         end
       visit users_path
-      response.should have_selector("div.delete")
+      response.should have_selector("div.delete_button")
     end
   end
 end

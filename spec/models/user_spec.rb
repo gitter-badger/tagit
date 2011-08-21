@@ -195,6 +195,23 @@ describe User do
         mp3 = Factory(:post, :user => Factory(:user, :email => Factory.next(:email)))
         @user.stream.should_not include(mp3)
       end
+
+      it "should include the user's posts" do
+        @user.stream.should include(@p1)
+        @user.stream.should include(@p2)
+      end
+
+      it "should not include a different user's posts" do
+        p3 = Factory(:post, :user => Factory(:user, :email => Factory.next(:email)))
+        @user.stream.should_not include(p3)
+      end
+
+      it "should include the posts of followed users" do
+        followed = Factory(:user, :email => Factory.next(:email))
+        p3 = Factory(:post, :user => followed)
+        @user.follow!(followed)
+        @user.stream.should include(p3)
+      end
     end
   end
   
