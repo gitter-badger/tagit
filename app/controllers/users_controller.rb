@@ -11,8 +11,11 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.paginate(:page => params[:page])
     @title = @user.name
+    @posts = @user.posts.paginate(:page => params[:page])
+    if request.xhr?
+      render :partial => 'posts/post', :collection => @posts
+    end
   end
   
 	def new

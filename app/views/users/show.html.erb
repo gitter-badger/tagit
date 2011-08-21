@@ -1,5 +1,5 @@
 <div class="main_bar">
-  <%= render 'posts/stream', :stream => @posts %>
+  <%= render 'posts/stream', :stream => @posts, :path => user_path(@user) %>
 </div>
 
 <div class="info_bar">
