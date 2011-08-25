@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_filter :authorized_user, :only => :destroy
   
   def create
-    @post  = current_user.posts.build(params[:post])
+    @post = current_user.posts.build(params[:post])
     if @post.save
       # flash[:success] = t(:post_created_message)
       redirect_to root_path
