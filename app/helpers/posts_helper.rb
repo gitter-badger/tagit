@@ -3,11 +3,11 @@ gem 'sanitize'
 module PostsHelper
   TRUNC_POST_LENGTH = 200
   MAX_WORD_WIDTH = 43
-  ZERO_WIDTH_SPACE = "&#8203;"
+  ZERO_WIDTH_SPACE = '&#8203;'
 
   def wrap_and_trunc(content)
-    truncated_content = truncate(raw(content.split.map{ |s| wrap_long_string(s) }.join(' ')), :length => TRUNC_POST_LENGTH)
-    sanitized_content = Sanitize.clean(truncated_content)
+    truncated_content = truncate(raw(content.gsub(/\n/, '<br>').split.map{ |s| wrap_long_string(s) }.join(' ')), :length => TRUNC_POST_LENGTH)
+    sanitized_content = Sanitize.clean(truncated_content, :elements => ['br'])
   end
   
   private
