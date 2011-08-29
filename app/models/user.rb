@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
+  # extend FriendlyId
+  # friendly_id :username, :use => :slugged
+  
   attr_accessor :password
-	attr_accessible :name, :email, :password, :password_confirmation
+	attr_accessible :name, :username, :email, :password, :password_confirmation
   
   has_many :posts,
     :dependent => :destroy
@@ -17,23 +20,26 @@ class User < ActiveRecord::Base
   has_many :followers,
     :through => :reverse_relationships,
     :source => :follower
-    
-	email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 	
-	validates :name,
+  validates :name,
+    :length => { :maximum => 60 }
+  validates :username,
     :presence => true,
-		:length => { :maximum => 50 }
-	validates :email,
+		:length => { :within => 3..30 },
+    :format => { :with => USERNAME_REGEX },
+    :uniqueness => { :case_sensitive => false }
+  validates :email,
 		:presence	=> true,
-		:format => { :with => email_regex },
+    :length => { :maximum => 254 },
+		:format => { :with => EMAIL_REGEX },
 		:uniqueness => { :case_sensitive => false }
   validates :password,
     :presence => true,
     :confirmation => true,
     :length => { :within => 6..40 }
-    
-   before_save :encrypt_password
-   
+  
+  before_save :encrypt_password
+  
   # Return true if the user's password matches the submitted password.
   def has_password?(submitted_password)
     encrypted_password == encrypt(submitted_password)
@@ -71,15 +77,15 @@ class User < ActiveRecord::Base
       self.encrypted_password = encrypt(password)
     end
 
-    def encrypt(string)
-      secure_hash("#{salt}--#{string}")
-    end
-
     def make_salt
       secure_hash("#{Time.now.utc}--#{password}")
     end
-
+    
     def secure_hash(string)
       Digest::SHA2.hexdigest(string)
+    end
+    
+    def encrypt(string)
+      secure_hash("#{salt}--#{string}")
     end
 end
