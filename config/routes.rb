@@ -1,5 +1,5 @@
 Mishmash::Application.routes.draw do
-  get "sessions/new"
+  get 'sessions/new'
 
 	resources :users do
     member do
@@ -10,17 +10,22 @@ Mishmash::Application.routes.draw do
   resources :posts, :only => [:create, :destroy]
   resources :relationships, :only => [:create, :destroy]
   
-	match '/signup',  :to => 'users#new'
-  match '/signin',  :to => 'sessions#new'
-  match '/signout',  :to => 'sessions#destroy'
+	root :to => 'pages#home'
+  
+  # match ':id' => "users#show", :as => :short_user
+  # match ':id/edit' => "users#edit", :as => :short_edit_user
+  # match ':id/following' => "users#following", :as => :short_following_user
+  # match ':id/followers' => "users#followers", :as => :short_followers_user
+  
+	match '/signup' => 'users#new'
+  match '/signin' => 'sessions#new'
+  match '/signout' => 'sessions#destroy'
 
-	match '/contact', :to => 'pages#contact'
-	match '/about', :to => 'pages#about'
-	match '/help', :to => 'pages#help'
-  match '/news', :to => 'pages#news'
-
-	root :to => "pages#home"
-
+	match '/contact' => 'pages#contact'
+	match '/about' => 'pages#about'
+	match '/help' => 'pages#help'
+  match '/news' => 'pages#news'
+  
 	# The priority is based upon order of creation:
 	# first created -> highest priority.
 

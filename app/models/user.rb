@@ -1,8 +1,6 @@
-# gem 'friendly_id'
-
 class User < ActiveRecord::Base
-  # extend FriendlyId
-  # friendly_id :username, :use => :slugged
+  extend FriendlyId
+  friendly_id :username
   
   attr_accessor :password
 	attr_accessible :name, :username, :email, :password, :password_confirmation
