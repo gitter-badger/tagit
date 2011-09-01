@@ -1,2 +1,3 @@
-$("follow_form").update("<%= escape_javascript(render('relationships/unfollow')) %>")
-$("followers").update("<%= pluralize(@user.followers.count, t(:_follower)) %>")
+$("follow_form_<%= @user.username %>").update("<%= escape_javascript(render 'relationships/unfollow', :user => @user) %>")
+$("following_<%= @user.username %>").update("<%= #{@user.following.count} #{t(:_following)} %>")
+$(element).select(".followers_<%= @user.username %>").update("<%= pluralize(@user.followers.count, t(:_follower)) %>")

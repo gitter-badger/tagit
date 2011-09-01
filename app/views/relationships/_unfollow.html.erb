@@ -1,6 +1,3 @@
-<!-- TODO: Remove -->
-<% unless @user.nil? %>
-  <%= form_for current_user.relationships.find_by_followed_id(@user), :html => { :method => :delete }, :remote => true do |f| %>
-    <div class="actions"><%= f.submit t(:unfollow) %></div>
-  <% end %>
+<%= form_for current_user.relationships.find_by_followed_id(user), :html => { :method => :delete }, :remote => true do |f| %>
+  <div class="actions"><%= f.submit t(:unfollow) %></div>
 <% end %>

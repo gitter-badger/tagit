@@ -1,6 +1,6 @@
 <div class="following">
   <a href="<%= following_user_path(user) %>">
-    <span id="following" class="user_relationship">
+    <span id="following_<%= user.username %>" class="user_relationship">
       <%= "#{user.following.count} #{t(:_following)}" %>
     </span>
   </a>
