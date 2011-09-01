@@ -4,6 +4,14 @@
   <h1 class="post"><%= t(:new_post_message) %></h1>
   
   <div class="field">
+    <%= f.label t(:title) %>
+    <br />
+    <%= f.text_field :title %>
+  </div>
+  
+  <div class="field">
+    <%= f.label t(:description) %>
+    <br />
     <%= f.text_area :content %>
   </div>
   

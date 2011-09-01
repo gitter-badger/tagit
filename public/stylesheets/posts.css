@@ -13,6 +13,8 @@
   margin-right: 15px; }
   .posts .post .timestamp {
     color: #666; }
+  .posts .post .title {
+    font-weight: bold; }
 
 form.new_post {
   margin-bottom: 5px; }

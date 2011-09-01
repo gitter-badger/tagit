@@ -52,3 +52,5 @@ en:
   _follower: "follower"
   follow: "Follow"
   unfollow: "Unfollow"
+  description: "Description"
+  title: "Title"

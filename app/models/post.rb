@@ -1,7 +1,10 @@
 class Post < ActiveRecord::Base
-  attr_accessible :content
+  attr_accessible :title, :content
 
   belongs_to :user
+  
+  validates :title,
+    :length => { :maximum => 100 }
   
   validates :content,
     :presence => true,

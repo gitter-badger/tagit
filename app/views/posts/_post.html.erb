@@ -12,6 +12,9 @@
   <div class="post">
     <span class="user"><%= link_to post.user.name, post.user %></span>
     <span class="timestamp"><%= t(:posted_message) % { :time => time_ago_in_words(post.created_at) } %></span>
+    <% unless post.title.blank? %>
+      <div class="title"><%= post.title %></div>
+    <% end %>
     <div class="content"><%= wrap_and_trunc(post.content) %></div>
   </div>
   
