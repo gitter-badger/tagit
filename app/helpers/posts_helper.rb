@@ -1,5 +1,3 @@
-gem 'sanitize'
-
 module PostsHelper
   TRUNC_POST_LENGTH = 200
   MAX_WORD_WIDTH = 43
@@ -9,8 +7,7 @@ module PostsHelper
     raw_content = content.gsub(/\n/, '<br>').gsub(/@(\w+)/, link_to('@\\1', users_path + '/\\1'))
     split_content = raw_content.split.map{ |s| wrap_long_string(s) }.join(' ')
     truncated_content = truncate(raw(split_content), :length => TRUNC_POST_LENGTH)
-    sanitized_content = Sanitize.clean(truncated_content, Sanitize::Config::RELAXED)
-    formatted_content = simple_format(sanitized_content)
+    formatted_content = simple_format(truncated_content)
   end
   
   private
