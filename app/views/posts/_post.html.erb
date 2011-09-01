@@ -15,7 +15,7 @@
     <% unless post.title.blank? %>
       <div class="title"><%= post.title %></div>
     <% end %>
-    <div class="content"><%= wrap_and_trunc(post.content) %></div>
+    <div class="content"><%= format_post(post.content) %></div>
   </div>
   
   <div class="clear"></div>
