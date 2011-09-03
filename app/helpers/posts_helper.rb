@@ -6,8 +6,7 @@ module PostsHelper
   def format_post(content)
     raw_content = content.gsub(/\n/, '<br>').gsub(/@(\w+)/, link_to('@\\1', users_path + '/\\1'))
     split_content = raw_content.split.map{ |s| wrap_long_string(s) }.join(' ')
-    truncated_content = truncate(raw(split_content), :length => TRUNC_POST_LENGTH)
-    formatted_content = simple_format(truncated_content)
+    formatted_content = simple_format(split_content)
   end
   
   private
