@@ -1,4 +1,6 @@
-Mishmash::Application.routes.draw do
+TagIt::Application.routes.draw do
+  get 'tags/new'
+
   get 'sessions/new'
 
 	resources :users do
@@ -9,6 +11,7 @@ Mishmash::Application.routes.draw do
   resources :sessions, :only => [:new, :create, :destroy]
   resources :posts, :only => [:create, :destroy]
   resources :relationships, :only => [:create, :destroy]
+  resources :tags#, :only => [:new, :edit, :create, :destroy]
   
 	root :to => 'pages#home'
   

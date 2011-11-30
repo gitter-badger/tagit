@@ -5,4 +5,4 @@ require File.expand_path('../config/application', __FILE__)
 require 'rake/dsl_definition'
 require 'rake'
 
-Mishmash::Application.load_tasks
+TagIt::Application.load_tasks
