@@ -18,6 +18,8 @@ TagIt::Application.routes.draw do
   # match ':id/following' => "users#following", :as => :short_following_user
   # match ':id/followers' => "users#followers", :as => :short_followers_user
   
+  match '/tags/:id' => "tags#show", :as => :short_tag
+  
 	match '/signup' => 'users#new'
   match '/signin' => 'sessions#new'
   match '/signout' => 'sessions#destroy'

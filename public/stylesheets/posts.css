@@ -12,11 +12,13 @@
   margin-left: 55px; }
   .posts .post .timestamp {
     color: #666; }
-  .posts .post .title_and_tags .title {
-    font-weight: bold;
-    float: left; }
-  .posts .post .title_and_tags .tags {
-    float: right; }
+  .posts .post .title_and_tags {
+    margin-top: 8px; }
+    .posts .post .title_and_tags .title {
+      font-weight: bold;
+      float: left; }
+    .posts .post .title_and_tags .tags {
+      float: right; }
   .posts .post .content {
     margin-left: -55px;
     margin-top: 5px; }

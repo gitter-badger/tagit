@@ -5,7 +5,7 @@ gem 'sqlite3', '1.3.3'
 gem 'gravatar_image_tag', '1.0.0'
 gem 'will_paginate', '3.0.0'
 gem 'admin_data'
-gem 'friendly_id', '4.0.0.beta8'
+gem 'friendly_id', '4.0.0.beta14'
 
 group :development do
   gem 'rspec-rails', '2.6.1'
