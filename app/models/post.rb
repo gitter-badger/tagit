@@ -1,6 +1,6 @@
 class Post < ActiveRecord::Base
-  attr_accessible :title, :content
-
+  attr_accessible :title, :content, :tag_list
+  
   belongs_to :user
   has_and_belongs_to_many :tags
   
@@ -31,7 +31,7 @@ class Post < ActiveRecord::Base
     # Return an SQL condition for users followed by the given user.
     # We include the user's own id as well.
     def self.followed_by(user)
-      following_ids = "SELECT followed_id FROM relationships WHERE follower_id = :user_id"
+      following_ids = 'SELECT followed_id FROM relationships WHERE follower_id = :user_id'
       where("user_id IN (#{following_ids}) OR user_id = :user_id", { :user_id => user })
     end
 end

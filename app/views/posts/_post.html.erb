@@ -15,6 +15,9 @@
     <% unless post.title.blank? %>
       <div class="title"><%= post.title %></div>
     <% end %>
+    <% unless post.tag_list.blank? %>
+      <div class="tag_list"><%= post.tag_list %></div>
+    <% end %>
     <div id="post_<%= post.id %>" class="content"><%= format_post(post.content) %></div>
     <!--
     if $('post_< %= post.id %>').html().length > TRUNC_POST_LENGTH (or @TRUNC_POST_LENGTH)
