@@ -5,10 +5,6 @@ TagIt::Application.configure do
   # Code is not reloaded between requests
   config.cache_classes = true
   
-  # TODO: Figure out how to merge everything into all.css
-  # See http://stackoverflow.com/questions/1778083/why-does-a-rails-app-on-heroku-serve-assets-via-all-css-and-locally-via-individu
-  config.serve_static_assets = true
-  
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
