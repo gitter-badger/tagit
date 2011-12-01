@@ -9,12 +9,17 @@
 .posts .buttons {
   float: right; }
 .posts .post {
-  margin-left: 55px;
-  margin-right: 15px; }
+  margin-left: 55px; }
   .posts .post .timestamp {
     color: #666; }
-  .posts .post .title {
-    font-weight: bold; }
+  .posts .post .title_and_tags .title {
+    font-weight: bold;
+    float: left; }
+  .posts .post .title_and_tags .tags {
+    float: right; }
+  .posts .post .content {
+    margin-left: -55px;
+    margin-top: 5px; }
 
 form.new_post {
   margin-bottom: 5px; }

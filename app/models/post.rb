@@ -23,8 +23,8 @@ class Post < ActiveRecord::Base
   end
 
   def tag_list=(new_value)
-    tag_names = new_value.split(/,\s+/)
-    self.tags = tag_names.map { |name| Tag.where('name = ?', name).first or Tag.create(:name => name) }
+    tag_names = new_value.split(/,\s*/)
+    self.tags = tag_names.map { |name| Tag.called(name).first or Tag.create(:name => name) }
   end
   
   private

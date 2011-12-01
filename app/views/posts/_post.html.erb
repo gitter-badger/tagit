@@ -12,12 +12,16 @@
   <div class="post">
     <span class="user"><%= link_to post.user.name, post.user %></span>
     <span class="timestamp"><%= t(:posted_message) % { :time => time_ago_in_words(post.created_at) } %></span>
+    <div class="title_and_tags">
     <% unless post.title.blank? %>
       <div class="title"><%= post.title %></div>
     <% end %>
-    <% unless post.tag_list.blank? %>
-      <div class="tag_list"><%= post.tag_list %></div>
+    <% unless post.tags.blank? %>
+      <%= render 'tags/tags', :tags => post.tags %>
     <% end %>
+    
+      <div class="clear"></div>
+    </div>
     <div id="post_<%= post.id %>" class="content"><%= format_post(post.content) %></div>
     <!--
     if $('post_< %= post.id %>').html().length > TRUNC_POST_LENGTH (or @TRUNC_POST_LENGTH)
