@@ -16,7 +16,7 @@ class PostsController < ApplicationController
     @post.destroy
     redirect_back_or root_path
   end
-
+  
   private
     def authorized_user
       @post = current_user.posts.find(params[:id])

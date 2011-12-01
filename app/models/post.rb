@@ -18,6 +18,15 @@ class Post < ActiveRecord::Base
   # Return posts from the users being followed by the given user.
   scope :from_users_followed_by, lambda { |user| followed_by(user) }
   
+  def tag_list
+    self.tags.map { |t| t.name }.join(', ')
+  end
+
+  def tag_list=(new_value)
+    tag_names = new_value.split(/,\s+/)
+    self.tags = tag_names.map { |name| Tag.where('name = ?', name).first or Tag.create(:name => name) }
+  end
+  
   private
     # Return an SQL condition for users followed by the given user.
     # We include the user's own id as well.
