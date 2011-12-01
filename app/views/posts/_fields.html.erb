@@ -10,7 +10,13 @@
   </div>
   
   <div class="field">
-    <%= f.label t(:description) %>
+    <%= f.label t(:tag).pluralize %>
+    <br />
+    <%= f.text_field :title %>
+  </div>
+  
+  <div class="field">
+    <%= f.label t(:text) %>
     <br />
     <%= f.text_area :content %>
   </div>

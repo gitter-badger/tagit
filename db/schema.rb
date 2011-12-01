@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111129145834) do
+ActiveRecord::Schema.define(:version => 20111201150105) do
 
   create_table "posts", :force => true do |t|
     t.text     "content",    :limit => 255
@@ -22,6 +22,15 @@ ActiveRecord::Schema.define(:version => 20111129145834) do
 
   add_index "posts", ["created_at"], :name => "index_posts_on_created_at"
   add_index "posts", ["user_id"], :name => "index_posts_on_user_id"
+
+  create_table "posts_tags", :id => false, :force => true do |t|
+    t.integer "post_id"
+    t.integer "tag_id"
+  end
+
+  add_index "posts_tags", ["post_id", "tag_id"], :name => "index_posts_tags_on_post_id_and_tag_id", :unique => true
+  add_index "posts_tags", ["post_id"], :name => "index_posts_tags_on_post_id"
+  add_index "posts_tags", ["tag_id"], :name => "index_posts_tags_on_tag_id"
 
   create_table "relationships", :force => true do |t|
     t.integer  "follower_id"
@@ -36,14 +45,9 @@ ActiveRecord::Schema.define(:version => 20111129145834) do
 
   create_table "tags", :force => true do |t|
     t.string   "name"
-    t.integer  "user_id"
-    t.integer  "parent_tag_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "tags", ["parent_tag_id"], :name => "index_tags_on_parent_tag_id"
-  add_index "tags", ["user_id"], :name => "index_tags_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"

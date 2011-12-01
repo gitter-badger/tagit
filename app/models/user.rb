@@ -20,8 +20,9 @@ class User < ActiveRecord::Base
   has_many :followers,
     :through => :reverse_relationships,
     :source => :follower
-	has_many :tags,
-    :dependent => :destroy
+	# TODO: has_many :tags,
+    # :through => :user.posts.tags,
+    # :source => ...
   
   validates :name,
     :length => { :maximum => 60 }

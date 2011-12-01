@@ -44,7 +44,7 @@ en:
   post_verb: "Post"
   posted_message: "%{time} ago"
   post_created_message: "Post successfully created"
-  new_post_message: "What's cooking?"
+  new_post_message: "What's up?"
   work_in_progress_message: "Work in progress"
   following: "Following"
   _following: "following"
@@ -56,3 +56,5 @@ en:
   title: "Title"
   more: "More"
   tag: "Tag"
+  text: "Text"
+  

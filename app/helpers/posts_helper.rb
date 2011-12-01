@@ -11,7 +11,8 @@ module PostsHelper
   
   private
     def wrap_long_string(text, max_width = MAX_WORD_WIDTH)
-      regex = /.{1,#{max_width}}/
-      (text.length < max_width) ? text : text.scan(regex).join(ZERO_WIDTH_SPACE)
+      text
+      # regex = /.{1,#{max_width}}/
+      # (text.length < max_width) ? text : text.scan(regex).join(ZERO_WIDTH_SPACE)
     end
 end
