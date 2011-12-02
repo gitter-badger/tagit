@@ -1,9 +1,9 @@
 <span class="tag">
   <%= link_to tag.name, tag %>
-  <% if @show_untag_all %>
-    <%= link_to "×", tag, :method => :delete, :confirm => t(:confirm_untag_all_message) % { :tag => tag.name } %>
+  <% if show_untag_all %>
+    <%= link_to "×", tag_path(:id => tag.name, :untag => "all"), :method => :delete, :confirm => t(:confirm_untag_all_message) % { :tag => tag.name } %>
   <% end %>
-  <% if @show_untag %>
-    <%= link_to "×", tag, :method => :delete %>
+  <% if show_untag %>
+    <%= link_to "×", tag_path(:id => tag.name, :untag => "post", :post_id => post_id), :method => :delete, :post_id => post_id %>
   <% end %>
 </span>

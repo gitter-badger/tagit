@@ -1,8 +1,7 @@
 <div id="tag">
-  <%= render 'tags/tag', :tag => @tag %>
+  <%= render 'tags/tag', :tag => @tag, :show_untag_all => true, :show_untag => false, :post_id => nil %>
 </div>
 
 <div class="posts">
-  <!-- TODO: Maybe remove the ability of the user to delete posts, and only enable them to untag posts -->
   <%= render :partial => 'posts/post', :collection => @tag.posts %>
 </div>
