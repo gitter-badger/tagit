@@ -13,6 +13,7 @@ class TagsController < ApplicationController
   def show
     @tag = Tag.find(params[:id])
     @posts = @tag.posts
+    @show_untag_all = true
   end
   
   def destroy # unused tags remain for now; they could actually be periodically destroyed at some point

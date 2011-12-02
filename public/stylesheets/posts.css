@@ -26,8 +26,19 @@
       max-width: 455px; }
 
 form.new_post {
+  margin-right: 10px;
   margin-bottom: 5px; }
-  form.new_post .field, form.new_post .actions {
-    margin-bottom: 0px; }
-  form.new_post textarea {
-    height: 4em; }
+  form.new_post .title, form.new_post .tags {
+    float: left;
+    width: 50%;
+    margin-bottom: 3px; }
+    form.new_post .title input, form.new_post .tags input {
+      margin: 0px;
+      width: 96.67%; }
+  form.new_post .content textarea {
+    width: 448px;
+    height: 4em;
+    font-family: Segoe UI; }
+  form.new_post .actions input {
+    float: right;
+    margin: -2px 4px; }

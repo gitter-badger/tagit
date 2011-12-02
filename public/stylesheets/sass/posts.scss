@@ -60,15 +60,38 @@
 
 form.new_post
 {
+  margin-right: 10px;
   margin-bottom: 5px;
-
-  .field, .actions
+  
+  .title, .tags
   {
-    margin-bottom: 0px;
+    float: left;
+    width: 50%;
+    margin-bottom: 3px;
+    
+    input
+    {
+      margin: 0px;
+      width: 96.67%;
+    }
   }
-
-  textarea
+  
+  .content
   {
-    height: 4em;
+    textarea
+    {
+      width: 448px;
+      height: 4em;
+      font-family: Segoe UI;
+    }
+  }
+  
+  .actions
+  {
+    input
+    {
+      float: right;
+      margin: -2px 4px;
+    }
   }
 }

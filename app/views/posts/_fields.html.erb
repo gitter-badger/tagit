@@ -1,27 +1,23 @@
 <%= form_for @post do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
   
-  <h1 class="post"><%= t(:new_post_message) %></h1>
-  
-  <div class="field">
-    <%= f.label t(:title) %>
-    <br />
-    <%= f.text_field :title %>
+  <div class="title">
+    <%= f.text_field(:title, :placeholder => t(:title)) %>
   </div>
   
-  <div class="field">
-    <%= f.label t(:tag).pluralize %>
-    <br />
-    <%= f.text_field :tag_list %>
+  <div class="tags">
+    <%= f.text_field(:tag_list, :placeholder => t(:tag).pluralize) %>
   </div>
   
-  <div class="field">
-    <%= f.label t(:text) %>
-    <br />
-    <%= f.text_area :content %>
+  <div class="clear"></div>
+  
+  <div class="content">
+    <%= f.text_area(:content, :placeholder => t(:new_post_message)) %>
   </div>
   
   <div class="actions">
     <%= f.submit t(:post_verb) %>
   </div>
+  
+  <div class="clear"></div>
 <% end %>
