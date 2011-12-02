@@ -19,12 +19,12 @@ class Post < ActiveRecord::Base
   scope :from_users_followed_by, lambda { |user| followed_by(user) }
   
   def tag_list
-    self.tags.map { |tag| tag.name }.join(', ')
+    self.tags.map{ |tag| tag.name }.join(', ')
   end
 
   def tag_list=(new_value)
     tag_names = new_value.split(/,\s*/)
-    self.tags = tag_names.map { |name| Tag.called(name).first or Tag.create(:name => name) }
+    self.tags = tag_names.map{ |name| Tag.called(name).first or Tag.create(:name => name) }
   end
   
   private

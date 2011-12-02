@@ -1,7 +1,7 @@
 class TagsController < ApplicationController
 	def index
     @title = t(:tag).pluralize
-    @tags = current_user.posts.map { |post| post.tags }.flatten.uniq
+    @tags = current_user.posts.map{ |post| post.tags }.flatten.uniq
     @show_untag_all = true
   end
   
