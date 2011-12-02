@@ -7,7 +7,7 @@ module PostsHelper
   def format_post(content)
     raw_content = content.gsub(/\n/, '<br>').gsub(/@(\w+)/, link_to('@\\1', users_path + '/\\1'))
     split_content = raw_content.split.map{ |s| wrap_long_string(s) }.join(' ')
-    insert_image = split_content.gsub(IMAGE_URL_REGEX, '<img src="\\0" width="455" />')
+    insert_image = split_content.gsub(IMAGE_URL_REGEX, '<img src="\\0" />')
     formatted_content = simple_format(insert_image)
   end
   

@@ -22,6 +22,8 @@
   .posts .post .content {
     margin-left: -55px;
     margin-top: 5px; }
+    .posts .post .content img {
+      max-width: 455px; }
 
 form.new_post {
   margin-bottom: 5px; }
