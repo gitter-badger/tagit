@@ -17,8 +17,14 @@ class TagsController < ApplicationController
   end
   
   def destroy # unused tags remain for now; they could actually be periodically destroyed at some point
-    tag = Tag.find(params[:id])
-    tag.posts.delete_all # this only deletes the posts_tags relations, not the actual posts
-    redirect_back_or tags_path
+    if @show_untag_all
+      tag = Tag.find(params[:id])
+      tag.posts.delete_all # this only deletes the posts_tags relations, not the actual posts
+      redirect_back_or tags_path
+    elsif @show_untag
+      tag = Tag.find(params[:id])
+      tag.destroy
+      redirect_to root_path
+    end
   end
 end

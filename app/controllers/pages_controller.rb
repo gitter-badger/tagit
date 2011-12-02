@@ -5,6 +5,7 @@ class PagesController < ApplicationController
     if signed_in?
       @post = Post.new
       @stream = current_user.stream.paginate(:page => params[:page])
+      @show_untag = true
       if request.xhr?
         render :partial => 'posts/post', :collection => @stream
       end

@@ -3,4 +3,7 @@
   <% if @show_untag_all %>
     <%= link_to "×", tag, :method => :delete, :confirm => t(:confirm_untag_all_message) % { :tag => tag.name } %>
   <% end %>
+  <% if @show_untag %>
+    <%= link_to "×", tag, :method => :delete %>
+  <% end %>
 </span>
