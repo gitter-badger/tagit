@@ -1,6 +1,6 @@
 <span class="tag">
   <%= link_to tag.name, tag %>
   <% if @show_untag_all %>
-    <%= link_to "×", tags_path, :action => :untag_all, :confirm => t(:confirm_untag_all_message) % { :tag => tag.name } %>
+    <%= link_to "×", tag, :method => :delete, :confirm => t(:confirm_untag_all_message) % { :tag => tag.name } %>
   <% end %>
 </span>
