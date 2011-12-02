@@ -9,7 +9,7 @@ TagIt::Application.routes.draw do
   resources :sessions, :only => [:new, :create, :destroy]
   resources :posts, :only => [:create, :destroy]
   resources :relationships, :only => [:create, :destroy]
-  resources :tags, :only => [:index, :show]
+  resources :tags, :only => [:index, :show, :destroy, :untag_all]
   
 	root :to => 'pages#home'
   
@@ -17,8 +17,6 @@ TagIt::Application.routes.draw do
   # match ':id/edit' => "users#edit", :as => :short_edit_user
   # match ':id/following' => "users#following", :as => :short_following_user
   # match ':id/followers' => "users#followers", :as => :short_followers_user
-  
-  match '/tags/:id' => "tags#show", :as => :short_tag
   
 	match '/signup' => 'users#new'
   match '/signin' => 'sessions#new'

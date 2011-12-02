@@ -1,4 +1,7 @@
 class Tag < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :name, :use => :slugged
+  
   attr_accessible :name
   
   has_and_belongs_to_many :posts
@@ -8,6 +11,6 @@ class Tag < ActiveRecord::Base
     :length => { :maximum => 30 },
     :uniqueness => { :case_sensitive => false }
     
-  # called e.g. named
-  scope :called, lambda { |n| where('tags.name = ?', n) }
+  # called / named
+  scope :called, lambda { |name| where('tags.name = ?', name) }
 end

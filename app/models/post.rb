@@ -19,7 +19,7 @@ class Post < ActiveRecord::Base
   scope :from_users_followed_by, lambda { |user| followed_by(user) }
   
   def tag_list
-    self.tags.map { |t| t.name }.join(', ')
+    self.tags.map { |tag| tag.name }.join(', ')
   end
 
   def tag_list=(new_value)
