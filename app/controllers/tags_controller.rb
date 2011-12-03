@@ -4,7 +4,7 @@ class TagsController < ApplicationController
     if current_user.nil?
       @tags = Tag.all
     else
-      @tags = current_user.posts.map{ |post| post.tags }.flatten.uniq
+      @tags = current_user.tags
     end
   end
   
@@ -15,13 +15,18 @@ class TagsController < ApplicationController
   
   def destroy
     tag = Tag.find(params[:id])
-    if params[:untag] == 'all'
-      tag.posts.delete_all # this only deletes the posts_tags relations, not the actual posts
-      redirect_back_or tags_path
-    elsif params[:untag] == 'post'
-      post = Post.find(params[:post_id])
-      tag.posts.delete(post) # this only deletes the posts_tags relation, not the actual post
-      redirect_back_or root_path
+    
+    if current_user.tags.include?(tag) # prevent a user from deleting foreign posts-tags
+      if params[:untag] == 'all'
+        current_user.posts.each do |post|
+          post.tags.delete(tag) # this only deletes the posts-tags relations, not the actual posts
+        end
+        redirect_back_or tags_path
+      elsif params[:untag] == 'post'
+        post = current_user.posts.find(params[:post_id])
+        tag.posts.delete(post) # this only deletes the posts-tags relation, not the actual post
+        redirect_back_or root_path
+      end
     end
     
     if tag.posts.empty? # destroy unused tags to keep the database neat

@@ -20,9 +20,6 @@ class User < ActiveRecord::Base
   has_many :followers,
     :through => :reverse_relationships,
     :source => :follower
-	# TODO: has_many :tags,
-    # :through => :user.posts.tags,
-    # :source => ...
   
   validates :name,
     :length => { :maximum => 60 }
@@ -72,6 +69,10 @@ class User < ActiveRecord::Base
   
   def stream
     Post.from_users_followed_by(self)
+  end
+  
+  def tags
+    self.posts.map{ |post| post.tags }.flatten.uniq
   end
   
   private
