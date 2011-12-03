@@ -6,7 +6,8 @@ class UsersController < ApplicationController
   
 	def index
     @title = t(:user).pluralize
-    @users = User.paginate(:page => params[:page])
+    query = "%#{params[:search]}%"
+    @users = User.where("name LIKE ? OR username LIKE ?", query, query).paginate(:page => params[:page])
   end
   
   def show
@@ -14,13 +15,13 @@ class UsersController < ApplicationController
     @title = @user.name
     @posts = @user.posts.paginate(:page => params[:page])
     if request.xhr?
-      render :partial => 'posts/post', :collection => @posts
+      render :partial => "posts/post", :collection => @posts
     end
   end
   
 	def new
-    @user = User.new
 		@title = t(:sign_up)
+    @user = User.new
 	end
   
   def create
@@ -33,7 +34,7 @@ class UsersController < ApplicationController
       @title = t(:sign_up)
       @user.password = ""
       @user.password_confirmation = ""
-      render 'users/new'
+      render "users/new"
     end
   end
   
@@ -47,7 +48,7 @@ class UsersController < ApplicationController
       redirect_to @user
     else
       @title = t(:edit_profile)
-      render 'users/edit'
+      render "users/edit"
     end
   end
   
@@ -76,7 +77,7 @@ class UsersController < ApplicationController
     @title = action.to_s.capitalize
     @user = User.find(params[:id])
     @users = @user.send(action).paginate(:page => params[:page])
-    render 'users/show_relationships'
+    render "users/show_relationships"
   end
   
   private
