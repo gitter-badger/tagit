@@ -1,8 +1,8 @@
 <header>
-  <%= link_to logo, root_path %>
+  <!--<%= link_to logo, root_path %>-->
   
   <div class="menu">
-    <!--<span><%= link_to t(:home), root_path %></span>-->
+    <span><%= link_to t(:home), root_path %></span>
     <% if signed_in? %>
       <span><%= link_to t(:user).pluralize, users_path %></span>
       <span><%= link_to t(:tag).pluralize, tags_path %></span>
@@ -18,4 +18,6 @@
       <% end %>
     </span>
   </div>
+  
+  <div class="clear"></div>
 </header>

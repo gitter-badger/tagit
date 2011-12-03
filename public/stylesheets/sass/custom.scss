@@ -1,6 +1,32 @@
+.left
+{
+  float: left;
+}
+.right
+{
+  float: right;
+}
 .clear
 {
   clear: both;
+}
+
+$margin: 5px;
+.margin-top
+{
+  margin-top: $margin;
+}
+.margin-right
+{
+  margin-right: $margin;
+}
+.margin-bottom
+{
+  margin-bottom: $margin;
+}
+.margin-left
+{
+  margin-left: $margin;
 }
 
 .menu
@@ -18,7 +44,6 @@
 /* BUTTONS */
 .base_button
 {
-  margin-top: -10px;
   font-size: 1.25em;
   
   a
@@ -33,8 +58,15 @@
   }
 }
 
+.edit_button
+{
+  @extend .base_button;
+  font-family: Wingdings;
+}
+
 .delete_button
 {
-  @extend .base_button
+  @extend .base_button;
+  margin-top: -7px;
 }
 /* BUTTONS */

@@ -3,9 +3,13 @@
   
   <div class="buttons">
     <% if current_user?(post.user) %>
-    <div class="delete_button">
-      <%= link_to "×", post, :method => :delete, :confirm => t(:confirm_delete_message) %>
-    </div>
+      <div class="edit_button left margin-right">
+        <!-- That's actually a pencil in Wingdings -->
+        <%= link_to "!", edit_post_path(post) %>
+      </div>
+      <div class="delete_button left">
+        <%= link_to "×", post, :method => :delete, :confirm => t(:confirm_delete_message) %>
+      </div>
     <% end %>
   </div>
   

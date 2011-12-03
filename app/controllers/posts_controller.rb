@@ -12,6 +12,19 @@ class PostsController < ApplicationController
     end
   end
   
+  def edit
+    @post = Post.find(params[:id])
+  end
+  
+  def update
+    post = Post.find(params[:id])
+    if post.update_attributes(params[:post])
+      redirect_to root_path
+    else
+      render 'post/edit'
+    end
+  end
+  
   def destroy
     @post.destroy
     redirect_back_or root_path
