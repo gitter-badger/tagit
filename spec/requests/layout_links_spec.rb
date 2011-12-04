@@ -61,7 +61,7 @@ describe "LayoutLinks" do
   
   describe "when signed in" do
     before(:each) do
-      @user = Factory.create(:valid_user)
+      @user = Factory(:user)
       integration_sign_in(@user)
     end
     
@@ -85,11 +85,10 @@ describe "LayoutLinks" do
       response.should have_selector("a", :href => signout_path, :content => "Sign out")
     end
     
-    it "should not have an edit button for other users' posts" do
-    end
+    pending "should not have an edit button for other users' posts"
     
     it "should not have a delete button for other users' posts" do
-      other_user = Factory(:user, :username => Factory.next(:username), :email => Factory.next(:email))
+      other_user = Factory(:random_user)
       visit user_path(other_user)
       response.should_not have_selector("div.delete")
     end
@@ -104,23 +103,23 @@ describe "LayoutLinks" do
   
   describe "when admin" do
     before(:each) do
-      @user = Factory.create(:admin_user)
+      @user = Factory(:admin)
       integration_sign_in(@user)
     end
     
-    it "should not have a delete button for themselves"
+    it "should not have a delete button for themselves" do
       @users = [@user]
       visit users_path
       response.should_not have_selector("div.delete_button")
     end
     
-    # it "should have a delete button for users" do
-      # @users = [@user]
-      # 5.times do
-        # @users << Factory(:user, :username => Factory.next(:username), :email => Factory.next(:email))
-      # end
-      # visit users_path
-      # response.should have_selector("div.delete_button")
-    # end
+    it "should have a delete button for users" do
+      @users = [@user]
+      5.times do
+        @users << Factory(:random_user)
+      end
+      visit users_path
+      response.should have_selector("div.delete_button")
+    end
   end
 end

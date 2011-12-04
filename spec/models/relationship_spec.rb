@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Relationship do
   before(:each) do
     @follower = Factory(:user)
-    @followed = Factory(:user, :email => Factory.next(:email))
+    @followed = Factory(:random_user)
     @relationship = @follower.relationships.build(:followed_id => @followed.id)
   end
 

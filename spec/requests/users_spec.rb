@@ -46,7 +46,7 @@ describe "Users" do
     
     describe "success" do
       it "should sign a user in and out" do
-        @user = Factory.create(:valid_user)
+        @user = Factory(:user)
         integration_sign_in(@user)
         controller.should be_signed_in
         

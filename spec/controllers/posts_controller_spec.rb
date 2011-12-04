@@ -64,7 +64,7 @@ describe PostsController do
     describe "for an unauthorized user" do
       before(:each) do
         @user = Factory(:user)
-        wrong_user = Factory(:user, :email => Factory.next(:email))
+        wrong_user = Factory(:random_user)
         test_sign_in(wrong_user)
         @post = Factory(:post, :user => @user)
       end

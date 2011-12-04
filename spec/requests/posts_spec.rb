@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe "Posts" do
   before(:each) do
-    user = Factory.create(:valid_user)
+    user = Factory(:user)
     integration_sign_in(user)
   end
   

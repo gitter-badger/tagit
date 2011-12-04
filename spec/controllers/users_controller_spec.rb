@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe UsersController do
   render_views
@@ -15,12 +15,9 @@ describe UsersController do
     describe "for signed-in users" do
       before(:each) do
         @user = test_sign_in(Factory(:user))
-        second = Factory(:user, :name => "Bob", :email => "another@example.com")
-        third  = Factory(:user, :name => "Ben", :email => "another@example.net")
-
-        @users = [@user, second, third]
-        30.times do
-          @users << Factory(:user, :email => Factory.next(:email))
+        @users = [@user]
+        33.times do
+          @users << Factory(:random_user)
         end
       end
       
@@ -297,16 +294,16 @@ describe UsersController do
     
     describe "for signed-in users" do
       before(:each) do
-        wrong_user = Factory(:user, :email => "user@example.net")
-        test_sign_in(wrong_user)
+        random_user = Factory(:random_user)
+        test_sign_in(random_user)
       end
       
-      it "should require matching users for 'edit'" do
+      it "should deny editing of other users' information" do
         get :edit, :id => @user
         response.should redirect_to(root_path)
       end
       
-      it "should require matching users for 'update'" do
+      it "should deny updating of other users' information" do
         put :update, :id => @user, :user => {}
         response.should redirect_to(root_path)
       end
@@ -335,7 +332,7 @@ describe UsersController do
     
     describe "as an admin user" do
       before(:each) do
-        @admin = Factory(:user, :email => "admin@example.com", :admin => true)
+        @admin = Factory(:admin)
         test_sign_in(@admin)
       end
       
@@ -374,7 +371,7 @@ describe UsersController do
     describe "when signed in" do
       before(:each) do
         @user = test_sign_in(Factory(:user))
-        @other_user = Factory(:user, :email => Factory.next(:email))
+        @other_user = Factory(:random_user)
         @user.follow!(@other_user)
       end
 
