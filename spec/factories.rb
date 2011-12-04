@@ -16,9 +16,9 @@ Factory.define :user do |user|
 end
 
 Factory.define :admin, :class => User do |user|
-  user.name "Foo Bar"
-  user.username "foobar"
-  user.email "foo@bar.com"
+  user.name "Admin"
+  user.username "admin"
+  user.email "a@min.com"
   user.password "foobar"
   user.password_confirmation "foobar"
   user.admin true

@@ -119,10 +119,10 @@ describe UsersController do
           @posts << Factory(:post, :user => @user, :content => "Foo bar")
         end
       end
-    
+      
       it "should create paging" do
         get :show, :id => @user
-        response.should have_selector("script", :content => %(jQuery('#stream').pageless({"totalPages":2,"url":"/users/1","loader":"#stream"});))
+        response.should have_selector("script", :content => %(jQuery('#stream').pageless({"totalPages":2,"url":"/users/foobar","loader":"#stream"});))
       end
       
       it "should show the user's posts on other pages" do
@@ -165,9 +165,16 @@ describe UsersController do
   describe "POST 'create'" do
     describe "failure" do
       before(:each) do
-        @attr = { :name => "", :email => "", :password => "",  :password_confirmation => "" }
+        @attr =
+        {
+          :name => "",
+          :username => "",
+          :email => "",
+          :password => "",
+          :password_confirmation => ""
+        }
       end
-      
+    
       it "should not create a user" do
         lambda do
           post :create, :user => @attr
@@ -187,9 +194,16 @@ describe UsersController do
     
     describe "success" do
       before(:each) do
-        @attr = { :name => "New User", :email => "user@example.com",  :password => "foobar", :password_confirmation => "foobar" }
+        @attr =
+        {
+          :name => "Foo Bar",
+          :username => "foobar",
+          :email => "foo@bar.com",
+          :password => "foobar",
+          :password_confirmation => "foobar"
+        }
       end
-      
+    
       it "should create a user" do
         lambda do
           post :create, :user => @attr
@@ -237,9 +251,16 @@ describe UsersController do
     
     describe "failure" do
       before(:each) do
-        @attr = { :email => "", :name => "", :password => "", :password_confirmation => "" }
+        @attr =
+        {
+          :name => "",
+          :username => "",
+          :email => "",
+          :password => "",
+          :password_confirmation => ""
+        }
       end
-      
+    
       it "should render the 'edit' page" do
         put :update, :id => @user, :user => @attr
         response.should render_template('edit')
@@ -253,9 +274,16 @@ describe UsersController do
     
     describe "success" do
       before(:each) do
-        @attr = { :name => "New Name", :email => "user@example.org", :password => "barbaz", :password_confirmation => "barbaz" }
+        @attr =
+        {
+          :name => "Foo Bar",
+          :username => "foobar",
+          :email => "foo@bar.com",
+          :password => "foobar",
+          :password_confirmation => "foobar"
+        }
       end
-      
+    
       it "should change the user's attributes" do
         put :update, :id => @user, :user => @attr
         @user.reload
@@ -361,25 +389,25 @@ describe UsersController do
         get :following, :id => 1
         response.should redirect_to(signin_path)
       end
-
+      
       it "should protect 'followers'" do
         get :followers, :id => 1
         response.should redirect_to(signin_path)
       end
     end
-
+    
     describe "when signed in" do
       before(:each) do
         @user = test_sign_in(Factory(:user))
         @other_user = Factory(:random_user)
         @user.follow!(@other_user)
       end
-
+      
       it "should show user following" do
         get :following, :id => @user
         response.should have_selector("a", :href => user_path(@other_user), :content => @other_user.name)
       end
-
+      
       it "should show user followers" do
         get :followers, :id => @other_user
         response.should have_selector("a", :href => user_path(@user), :content => @user.name)
