@@ -8,14 +8,14 @@ gem 'admin_data'
 gem 'friendly_id', '4.0.0.beta14'
 
 group :development do
-  gem 'rspec-rails', '2.6.1'
+  gem 'rspec-rails', '2.7.0'
   gem 'annotate', '2.4.0'
   gem 'faker', '0.3.1'
 end
 
 group :test do
-  gem 'rspec-rails', '2.6.1'
+  gem 'rspec-rails', '2.7.0'
   gem 'webrat', '0.7.3'
   gem 'spork', '0.9.0.rc8'
-  gem 'factory_girl_rails', '1.0'
+  gem 'factory_girl_rails', '1.4.0'
 end

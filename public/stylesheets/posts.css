@@ -37,6 +37,7 @@ form.new_post {
       width: 96.67%; }
   form.new_post .content textarea {
     width: 448px;
+    max-width: 448px;
     height: 4em;
     font-family: Segoe UI; }
   form.new_post .actions input {

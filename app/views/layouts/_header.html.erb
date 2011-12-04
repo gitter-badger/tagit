@@ -2,10 +2,10 @@
   <!--<%= link_to logo, root_path %>-->
   
   <div class="menu">
-    <span><%= link_to t(:stream), root_path %></span>
+    <span><%= link_to t(:home), root_path %></span>
+    <span><%= link_to t(:tag).pluralize, tags_path %></span>
     <% if signed_in? %>
       <span><%= link_to t(:user).pluralize, users_path %></span>
-      <span><%= link_to t(:tag).pluralize, tags_path %></span>
       <span><%= link_to t(:profile), current_user %></span>
       <span><%= link_to t(:setting).pluralize, edit_user_path(current_user) %></span>
     <% end %>

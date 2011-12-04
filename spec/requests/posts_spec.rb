@@ -1,8 +1,8 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe "Posts" do
   before(:each) do
-    user = Factory(:user)
+    user = Factory.create(:valid_user)
     integration_sign_in(user)
   end
   
@@ -13,7 +13,7 @@ describe "Posts" do
           visit root_path
           fill_in :post_content, :with => ""
           click_button
-          response.should render_template('pages/home')
+          response.should render_template("pages/home")
           response.should have_selector("div#error_explanation")
         end.should_not change(Post, :count)
       end

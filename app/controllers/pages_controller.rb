@@ -6,7 +6,7 @@ class PagesController < ApplicationController
       @post = Post.new
       @stream = current_user.stream.paginate(:page => params[:page])
       if request.xhr?
-        render :partial => 'posts/post', :collection => @stream
+        render :partial => "posts/post", :collection => @stream
       end
     end
   end
