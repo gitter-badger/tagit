@@ -3,5 +3,5 @@
 </div>
 
 <div class="posts">
-  <%= render :partial => 'posts/post', :collection => @tag.posts %>
+  <%= render 'posts/stream', :stream => @tag.posts.paginate(:page => params[:page]), :path => tag_path(@tag) %>
 </div>
