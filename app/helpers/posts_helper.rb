@@ -2,8 +2,8 @@ module PostsHelper
   TRUNC_POST_LENGTH = 200
   MAX_WORD_WIDTH = 43
   ZERO_WIDTH_SPACE = '&#8203;'
-  URL_REGEX = /^(http|ftp|https):\/\/(.*)$/i
-  IMAGE_URL_REGEX = /(>{1})((http|ftp|https):\/\/(.*)\.(?:jpg|jpeg|gif|png))(<\/a>){1}/i
+  URL_REGEX = /(http|ftp|https):\/\/(\S*)/i
+  IMAGE_URL_REGEX = /(>{1})((http|ftp|https):\/\/(\S*)\.(?:jpg|jpeg|gif|png))(<\/a>){1}/i
   # IMAGE_URL_REGEX = /(?:([^:\/?#]+):)?(?:\/\/([^\/?#]*))?([^?#]*\.(?:jpg|gif|png))(?:\?([^#]*))?(?:#(.*))?/
   
   def format_post(content)
