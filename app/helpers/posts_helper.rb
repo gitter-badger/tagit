@@ -3,9 +3,7 @@ module PostsHelper
   MAX_WORD_WIDTH = 43
   ZERO_WIDTH_SPACE = '&#8203;'
   URL_REGEX = /(http|ftp|https):\/\/(\S*)/i
-  IMAGE_URL_REGEX = /(>{1})((http|ftp|https):\/\/(\S*)\.(jpg|jpeg|png)(\?[^\\\/\s]+)?)(<\/a>){1}/i
-  # IMAGE_URL_REGEX = /(>{1})((http|ftp|https):\/\/(\S*)\.(?:jpg|jpeg|gif|png))(<\/a>){1}/i
-  # IMAGE_URL_REGEX = /(?:([^:\/?#]+):)?(?:\/\/([^\/?#]*))?([^?#]*\.(?:jpg|gif|png))(?:\?([^#]*))?(?:#(.*))?/
+  IMAGE_URL_REGEX = /(>{1})((http|ftp|https):\/\/(\S*)\.(jpg|jpeg|gif|png)(\?[^\\\/\s]+)?)(<\/a>){1}/i
   
   def format_post(content)
     raw_content = content.gsub(/\n/, '<br>').gsub(/@(\w+)/, link_to('@\\1', users_path + '/\\1'))

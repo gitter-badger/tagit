@@ -27,7 +27,6 @@ class TagsController < ApplicationController
       elsif params[:untag] == 'post'
         post = current_user.posts.find(params[:post_id])
         tag.posts.delete(post) # this only deletes the posts-tags relation, not the actual post
-        # TODO: Make sure the relation was deleted, or notify the user
       end
     end
     
