@@ -5,8 +5,7 @@
 # The _verb suffix represents an English word that is a verb, but at the same time a noun. This is usually not the case in other languages.
 
 en:
-  app_name: "TagIt"
-  base_title: "TagIt"
+  base_title: "Tag It"
   home: "Home"
   profile: "Profile"
   setting: "Setting"
@@ -37,9 +36,9 @@ en:
   delete: "Delete"
   _delete: "delete"
   confirm_delete_message: "Are you sure you want to delete this item?"
-  confirm_untag_all_message: "Are you sure you want to remove the '%{tag}' tag? This will not delete the tagged posts - to do that, click on a tag and edit it."
-  user_deleted_message: "User deleted"
-  user_not_deleted_message: "User not deleted"
+  confirm_untag_all_message: "Are you sure you want to remove the '%{tag}' tag from all posts? This will not delete the tagged posts."
+  user_deleted_message: "User deleted successfully"
+  user_not_deleted_message: "There was an error while trying to delete the user"
   _post: "post"
   post: "Post"
   post_verb: "Post"
