@@ -19,14 +19,18 @@ class TagsController < ApplicationController
     tag = Tag.find(params[:id])
     
     if current_user.tags.include?(tag) # prevent a user from deleting foreign posts-tags
-      if params[:untag] == 'all'
+      if params[:untag] == "all"
         current_user.posts.each do |post|
           post.tags.delete(tag) # this only deletes the posts-tags relations, not the actual posts
         end
         redirect_back_or tags_path
-      elsif params[:untag] == 'post'
+      elsif params[:untag] == "post"
         post = current_user.posts.find(params[:post_id])
         tag.posts.delete(post) # this only deletes the posts-tags relation, not the actual post
+        if tag.posts.include?(post) # check if delete was successfull
+          flash[:error] = t(:post_untag_failed_message) % { :tag => tag.name }
+          respond_with @post
+        end
       end
     end
     

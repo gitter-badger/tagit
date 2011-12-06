@@ -60,4 +60,5 @@ en:
   text: "Text"
   stream: "Stream"
   search: "Search"
+  post_untag_failed_message: "The tag '%{tag}' was not removed successfully from your post. Please try again."
   
