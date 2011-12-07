@@ -13,11 +13,6 @@ TagIt::Application.routes.draw do
   
 	root :to => 'pages#home'
   
-  # match ':id' => "users#show", :as => :short_user
-  # match ':id/edit' => "users#edit", :as => :short_edit_user
-  # match ':id/following' => "users#following", :as => :short_following_user
-  # match ':id/followers' => "users#followers", :as => :short_followers_user
-  
 	match '/signup' => 'users#new'
   match '/signin' => 'sessions#new'
   match '/signout' => 'sessions#destroy'
