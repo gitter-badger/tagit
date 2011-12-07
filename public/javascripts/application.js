@@ -1,6 +1,6 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
-$().ajaxComplete(function(event, request) {
+$(document).ajaxComplete(function(event, request) {
   var error = request.getResponseHeader('X-Error-Message');
   if (error) alert(error);
 
