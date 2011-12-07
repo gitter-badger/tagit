@@ -1,29 +1,50 @@
+/* CLIENT FLASH */
+#client_flash {
+  padding: 2px;
+  margin-bottom: 10px; }
+
+#client_flash.error {
+  color: #fff;
+  background: #c00; }
+
+#client_flash.warning {
+  background: #cc0; }
+
+#client_flash.notice {
+  background: #ffc; }
+
+#close_client_flash {
+  float: right;
+  cursor: pointer; }
+
+/* CLIENT FLASH */
 /* ERRORS */
 .field_with_errors {
-  margin-top: 5px;
+  margin: 5px 0px;
   padding: 2px;
-  background-color: red;
+  background: red;
   display: table; }
   .field_with_errors label {
     color: #fff; }
 
 #error_explanation {
-  width: 400px;
   border: 2px solid red;
-  padding: 7px;
-  padding-bottom: 12px;
-  margin-bottom: 20px;
-  background-color: #ffc; }
+  margin-bottom: 8px;
+  padding: 7px 7px 12px 7px;
+  background: #ffc; }
   #error_explanation h2 {
     text-align: left;
     font-weight: bold;
+    margin: -7px -7px 7px -7px;
     padding: 5px 5px 5px 15px;
     font-size: 12px;
-    margin: -7px -7px 7px -7px;
-    background-color: #c00;
+    background: #c00;
     color: #fff; }
-  #error_explanation ul li {
-    font-size: 12px;
-    list-style: square; }
+  #error_explanation ul {
+    margin: 0px;
+    padding-left: 20px; }
+    #error_explanation ul li {
+      font-size: 12px;
+      list-style: square; }
 
 /* ERRORS */
