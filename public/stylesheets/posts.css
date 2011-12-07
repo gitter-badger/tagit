@@ -21,7 +21,8 @@
       float: right; }
   .posts .post .content {
     margin-left: -55px;
-    margin-top: 5px; }
+    margin-top: 5px;
+    word-wrap: break-word; }
     .posts .post .content img {
       max-width: 455px; }
 
