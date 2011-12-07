@@ -13,7 +13,8 @@
   .posts .post .timestamp {
     color: #666; }
   .posts .post .title_and_tags {
-    margin-top: 8px; }
+    margin-top: 8px;
+    width: 400px; }
     .posts .post .title_and_tags .title {
       font-weight: bold;
       float: left; }
