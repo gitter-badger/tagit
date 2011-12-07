@@ -4,6 +4,6 @@
     <%= link_to "×", tag_path(:id => tag.name, :untag => "all"), :method => :delete, :confirm => t(:confirm_untag_all_message) % { :tag => tag.name } %>
   <% end %>
   <% if show_untag %>
-    <%= link_to "×", tag_path(:id => tag.name, :untag => "post", :post_id => post_id), :method => :delete, :post_id => post_id, :onclick => "jQuery('#post_#{post_id}_tag_#{tag.id}').remove();", :remote => true %>
+    <%= link_to "×", tag_path(:id => tag.name, :untag => "post", :post_id => post_id), :method => :delete, :post_id => post_id, :onclick => "$('#post_#{post_id}_tag_#{tag.id}').remove();", :remote => true %>
   <% end %>
 </span>
