@@ -1,24 +1,28 @@
+$light_green: #cfc;
+$light_yellow: #ffc;
+$dark_red: #c00;
+
+.error
+{
+  color: white;
+  background: red;
+}
+
+.warning
+{
+  background: $light_yellow;
+}
+
+.notice
+{
+  background: $light_green;
+}
+
 /* CLIENT FLASH */
 #client_flash
 {
   padding: 2px;
   margin-bottom: 10px;
-}
-
-#client_flash.error
-{
-  color: #fff;
-  background: #c00;
-}
-
-#client_flash.warning
-{
-  background: #cc0;
-}
-
-#client_flash.notice
-{
-  background: #ffc;
 }
 
 #close_client_flash
@@ -47,7 +51,7 @@
   border: 2px solid red;
   margin-bottom: 8px;
   padding: 7px 7px 12px 7px;
-  background: #ffc;
+  background: $light_yellow;
   
   h2
   {
@@ -56,8 +60,8 @@
     margin: -7px -7px 7px -7px;
     padding: 5px 5px 5px 15px;
     font-size: 12px;
-    background: #c00;
-    color: #fff;
+    color: white;
+    background: $dark_red;
   }
   
   ul

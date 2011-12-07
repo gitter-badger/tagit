@@ -1,14 +1,12 @@
-// Place your application-specific JavaScript functions and classes here
-// This file is automatically included by javascript_include_tag :defaults
 $(document).ajaxComplete(function(event, request) {
-  var error = request.getResponseHeader('X-Error-Message');
+  var error = request.getResponseHeader('Flash-Error-Message');
   if (error) showFlash(error, 'error');
   
-  var warning = request.getResponseHeader('X-Warning-Message');
-  if (warning) alert(warning, 'warning');
+  var warning = request.getResponseHeader('Flash-Warning-Message');
+  if (warning) showFlash(warning, 'warning');
   
-  var notice = request.getResponseHeader('X-Notice-Message');
-  if (notice) alert(notice, 'notice');
+  var notice = request.getResponseHeader('Flash-Notice-Message');
+  if (notice) showFlash(notice, 'notice');
 });
 
 function showFlash(message, type) {

@@ -6,9 +6,9 @@ class ApplicationController < ActionController::Base
   
   def flash_to_headers
     return unless request.xhr?
-    response.headers["X-Error-Message"] = flash[:error] unless flash[:error].blank?
-    response.headers["X-Warning-Message"] = flash[:warning] unless flash[:warning].blank?
-    response.headers["X-Notice-Message"] = flash[:notice] unless flash[:notice].blank?
+    response.headers["Flash-Error-Message"] = flash[:error] unless flash[:error].blank?
+    response.headers["Flash-Warning-Message"] = flash[:warning] unless flash[:warning].blank?
+    response.headers["Flash-Notice-Message"] = flash[:notice] unless flash[:notice].blank?
     
     flash.discard  # we don't want the flash to appear when we reload the page
   end

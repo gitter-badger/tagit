@@ -26,7 +26,7 @@ class TagsController < ApplicationController
         redirect_back_or tags_path
       elsif params[:untag] == "post"
         post = current_user.posts.find(params[:post_id])
-        # tag.posts.delete(post) # this only deletes the posts-tags relation, not the actual post
+        tag.posts.delete(post) # this only deletes the posts-tags relation, not the actual post
         if tag.posts.include?(post) # check if delete was successfull
           flash[:error] = t(:post_untag_failed_message) % { :tag => tag.name }
           respond_with @post
