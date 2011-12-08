@@ -12,5 +12,5 @@ class Tag < ActiveRecord::Base
     :uniqueness => { :case_sensitive => false }
     
   # called / named
-  scope :called, lambda { |name| where('tags.name = ?', name) }
+  scope :called, lambda{ |name| where('tags.name = ?', name) }
 end

@@ -30,7 +30,7 @@ class PostsController < ApplicationController
   end
   
   def destroy
-    tag_ids = @post.tags.map{ |tag| tag.id } # save tag ids for a destroy check later
+    tag_ids = @post.tag_ids # save tag ids for a destroy check later
     @post.destroy
     
     tags = Tag.find(tag_ids)
