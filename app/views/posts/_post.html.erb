@@ -21,14 +21,14 @@
     <span class="user"><%= link_to post.user.name, post.user %></span>
     <span class="timestamp"><%= t(:posted_message) % { :time => time_ago_in_words(post.created_at) } %></span>
     <div class="title_and_tags">
-    <% unless post.title.blank? %>
-      <div class="title"><%= post.title %></div>
-    <% end %>
-    <% unless post.tags.blank? %>
-      <div id="tags_<%= post.id %>" class="tags">
-        <%= render 'tags/tags', :tags => post.tags, :show_untag_all => false, :show_untag => true, :post => post %>
-      </div>
-    <% end %>
+      <% unless post.title.blank? %>
+        <div class="title"><%= post.title %></div>
+      <% end %>
+      <% unless post.tags.blank? %>
+        <div id="post_<%= post.id %>_tags" class="tags">
+          <%= render 'tags/tags', :tags => post.tags, :show_untag_all => false, :show_untag => true, :post => post %>
+        </div>
+      <% end %>
     
       <div class="clear"></div>
     </div>

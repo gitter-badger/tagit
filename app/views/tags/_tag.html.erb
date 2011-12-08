@@ -1,5 +1,5 @@
 <% unless tag.nil? %>
-  <span id="<%= "post_#{post.id}_" unless post.nil? %>tag_<%= tag.id %>" class="tag">
+  <div id="<%= "post_#{post.id}_" unless post.nil? %>tag_<%= tag.id %>" class="tag">
     <%= link_to tag.name, tag %>
     <% if !current_user.nil? and (post.nil? or current_user.posts.include?(post)) %>
       <% if show_untag_all %>
@@ -9,5 +9,5 @@
         <%= link_to "×", tag_path(:id => tag.name, :untag => "post", :post_id => post.id), :method => :delete, :post_id => post.id, :onclick => "$('#post_#{post.id}_tag_#{tag.id}').remove();", :remote => true %>
       <% end %>
     <% end %>
-  </span>
+  </div>
 <% end %>

@@ -18,7 +18,8 @@
         font-weight: bold;
         float: left; }
       .post_item .post .title_and_tags .tags {
-        float: right; }
+        float: right;
+        margin: -3px -2px -3px 0px; }
     .post_item .post .content {
       margin-left: -55px;
       margin-top: 5px;
