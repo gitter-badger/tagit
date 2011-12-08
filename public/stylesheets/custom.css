@@ -27,16 +27,19 @@
     font-weight: bold; }
 
 /* BUTTONS */
-.base_button, .edit_button, .delete_button {
+.base_button, .show_post_button, .edit_button, .delete_button {
   font-size: 1.25em; }
-  .base_button a, .edit_button a, .delete_button a {
+  .base_button a, .show_post_button a, .edit_button a, .delete_button a {
     color: #ccc;
     text-decoration: none; }
-  .base_button a:hover, .edit_button a:hover, .delete_button a:hover {
+  .base_button a:hover, .show_post_button a:hover, .edit_button a:hover, .delete_button a:hover {
     color: #666; }
 
+.show_post_button {
+  margin-top: -7px; }
+
 .edit_button {
-  font-family: Wingdings; }
+  margin-top: -5px; }
 
 .delete_button {
   margin-top: -7px; }

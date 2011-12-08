@@ -7,7 +7,7 @@ TagIt::Application.routes.draw do
     end
   end
   resources :sessions, :only => [:new, :create, :destroy]
-  resources :posts, :only => [:create, :edit, :update, :destroy]
+  resources :posts, :only => [:create, :show, :edit, :update, :destroy]
   resources :relationships, :only => [:create, :destroy]
   resources :tags, :only => [:index, :show, :destroy]
   

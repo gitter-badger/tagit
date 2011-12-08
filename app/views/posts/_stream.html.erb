@@ -1,11 +1,4 @@
 <%= javascript_include_tag "stream" %>
-<script type="text/javascript">
-  $(function() {
-    setPostAnchorTarget('_blank');
-    embedVideo();
-  });
-</script>
-
 <% if stream.length > 0 %>
   <div id="stream" class="posts">
     <%= render :partial => 'posts/post', :collection => stream %>

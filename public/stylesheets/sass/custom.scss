@@ -58,10 +58,16 @@ $margin: 5px;
   }
 }
 
+.show_post_button
+{
+  @extend .base_button;
+  margin-top: -7px;
+}
+
 .edit_button
 {
   @extend .base_button;
-  font-family: Wingdings;
+  margin-top: -5px;
 }
 
 .delete_button

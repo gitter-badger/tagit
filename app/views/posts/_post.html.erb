@@ -2,10 +2,14 @@
   <%= link_to gravatar_for(post.user, :size => 50), post.user %>
   
   <div class="buttons">
+    <% if params[:action] != "show" %>
+      <div class="show_post_button left margin-right">
+        <%= link_to "◱", post_path(post) %>
+      </div>
+    <% end %>
     <% if current_user?(post.user) %>
       <div class="edit_button left margin-right">
-        <!-- That's actually a pencil in Wingdings -->
-        <%= link_to "!", edit_post_path(post) %>
+        <%= link_to "✎", edit_post_path(post) %>
       </div>
       <div class="delete_button left">
         <%= link_to "×", post, :method => :delete, :confirm => t(:confirm_delete_message) %>

@@ -1,13 +1,10 @@
-.posts
+.post_item
 {
-  .post_item
-  {
-    border-top: 1px solid #ccc;
-    padding-top: 5px;
-    margin-right: 15px;
-    margin-bottom: 10px;
-  }
-  
+  border-top: 1px solid #ccc;
+  padding-top: 5px;
+  margin-right: 15px;
+  margin-bottom: 10px;
+
   img.gravatar
   {
     float: left;
@@ -32,7 +29,6 @@
     .title_and_tags
     {
       margin-top: 8px;
-      width: 400px;
       
       .title
       {
@@ -59,6 +55,7 @@
       
       .video
       {
+        width: 455px;
         position: relative;
         
         .play_video
