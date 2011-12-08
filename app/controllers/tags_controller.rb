@@ -30,7 +30,7 @@ class TagsController < ApplicationController
       redirect_back_or tags_path
     elsif params[:untag] == "post"
       raise PostForbidden if !current_user.tags.include?(tag)
-      # tag.posts.delete(@post) # this only deletes the posts-tags relation, not the actual post
+      tag.posts.delete(@post) # this only deletes the posts-tags relation, not the actual post
       raise TagNotDeleted if tag.posts.include?(@post) # check if delete was successfull
     end
     
@@ -41,8 +41,6 @@ class TagsController < ApplicationController
     flash[:error] = t(:no_access_message)
   rescue TagNotDeleted
     flash[:error] = t(:post_untag_failed_message) % { :tag => tag.name }
-    flash[:warning] = t(:post_untag_failed_message) % { :tag => tag.name }
-    flash[:notice] = t(:post_untag_failed_message) % { :tag => tag.name }
   rescue
     respond_with @post
   end
