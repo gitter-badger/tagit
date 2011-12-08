@@ -36,7 +36,8 @@
     color: #666; }
 
 .show_post_button {
-  margin-top: -7px; }
+  margin-top: -7px;
+  font-family: Segoe UI Symbol; }
 
 .edit_button {
   margin-top: -5px; }
