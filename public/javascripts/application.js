@@ -2,8 +2,9 @@ var closeButton = '<span class="close_client_flash delete_button">×</span>';
 
 $(function() {
   $('.flash').each(function() {
-    $(this).append(closeButton);
-    $(this).children('.close_client_flash').on('click.flash', function() { $(this).parent().remove(); });
+    var flash = $(this);
+    flash.append(closeButton);
+    flash.children('.close_client_flash').on('click.flash', function() { flash.remove(); });
   });
 });
 
