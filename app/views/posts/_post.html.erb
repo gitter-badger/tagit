@@ -26,7 +26,7 @@
     <% end %>
     <% unless post.tags.blank? %>
       <div id="tags_<%= post.id %>" class="tags">
-        <%= render 'tags/tags', :tags => post.tags, :show_untag_all => false, :show_untag => true, :post_id => post.id %>
+        <%= render 'tags/tags', :tags => post.tags, :show_untag_all => false, :show_untag => true, :post => post %>
       </div>
     <% end %>
     

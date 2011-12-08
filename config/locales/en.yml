@@ -60,5 +60,6 @@ en:
   text: "Text"
   stream: "Stream"
   search: "Search"
-  post_untag_failed_message: "The tag '%{tag}' was not removed successfully from your post. Please try again."
-  
+  post_untag_failed_message: "The tag '%{tag}' could not be removed from your post. Please try again."
+  record_not_found_message: "The record could not be found."
+  no_access_message: "You don't have access to this item."

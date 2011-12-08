@@ -1,9 +1,13 @@
-<span id="post_<%= post_id %>_tag_<%= tag.id %>" class="tag">
-  <%= link_to tag.name, tag %>
-  <% if show_untag_all %>
-    <%= link_to "×", tag_path(:id => tag.name, :untag => "all"), :method => :delete, :confirm => t(:confirm_untag_all_message) % { :tag => tag.name } %>
-  <% end %>
-  <% if show_untag %>
-    <%= link_to "×", tag_path(:id => tag.name, :untag => "post", :post_id => post_id), :method => :delete, :post_id => post_id, :onclick => "$('#post_#{post_id}_tag_#{tag.id}').remove();", :remote => true %>
-  <% end %>
-</span>
+<% unless tag.nil? %>
+  <span id="<%= "post_#{post.id}_" unless post.nil? %>tag_<%= tag.id %>" class="tag">
+    <%= link_to tag.name, tag %>
+    <% if !current_user.nil? and (post.nil? or current_user.posts.include?(post)) %>
+      <% if show_untag_all %>
+        <%= link_to "×", tag_path(:id => tag.name, :untag => "all"), :method => :delete, :confirm => t(:confirm_untag_all_message) % { :tag => tag.name } %>
+      <% end %>
+      <% if show_untag %>
+        <%= link_to "×", tag_path(:id => tag.name, :untag => "post", :post_id => post.id), :method => :delete, :post_id => post.id, :onclick => "$('#post_#{post.id}_tag_#{tag.id}').remove();", :remote => true %>
+      <% end %>
+    <% end %>
+  </span>
+<% end %>

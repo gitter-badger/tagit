@@ -1,3 +1,3 @@
 <% unless @post.nil? %>
-  $("tags_<%= @post.id %>").update("<%= escape_javascript(render 'tags/tags', :tags => @post.tags, :show_untag_all => false, :show_untag => true, :post_id => @post.id ) %>")
+  $('#tags_<%= @post.id %>').html('<%= escape_javascript(render "tags/tags", :tags => @post.tags, :show_untag_all => false, :show_untag => true, :post => @post ) %>');
 <% end %>
