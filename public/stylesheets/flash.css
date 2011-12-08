@@ -1,3 +1,7 @@
+.flash {
+  padding: 2px;
+  margin-bottom: 10px; }
+
 .error {
   color: white;
   background: red; }
@@ -9,11 +13,7 @@
   background: #ccffcc; }
 
 /* CLIENT FLASH */
-#client_flash {
-  padding: 2px;
-  margin-bottom: 10px; }
-
-#close_client_flash {
+.close_client_flash {
   float: right;
   cursor: pointer; }
 

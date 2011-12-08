@@ -1,3 +1,9 @@
+.flash
+{
+  padding: 2px;
+  margin-bottom: 10px;
+}
+
 $light_green: #cfc;
 $light_yellow: #ffc;
 $dark_red: #c00;
@@ -19,13 +25,7 @@ $dark_red: #c00;
 }
 
 /* CLIENT FLASH */
-#client_flash
-{
-  padding: 2px;
-  margin-bottom: 10px;
-}
-
-#close_client_flash
+.close_client_flash
 {
   float: right;
   cursor: pointer;

@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       sign_in @user
-      flash[:success] = t(:welcome_message)
+      flash[:notice] = t(:welcome_message)
       redirect_to @user
     else
       @title = t(:sign_up)
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
   
   def update
     if @user.update_attributes(params[:user])
-      flash[:success] = t(:profile_updated_message)
+      flash[:notice] = t(:profile_updated_message)
       redirect_to @user
     else
       @title = t(:edit_profile)
@@ -54,11 +54,11 @@ class UsersController < ApplicationController
   
   def destroy
     user = User.find(params[:id])
-    if user != current_user
-      user.destroy
-      flash[:success] = t(:user_deleted_message)
-    else
+    if current_user?(user)
       flash[:error] = t(:user_not_deleted_message)
+    else
+      user.destroy
+      flash[:notice] = t(:user_deleted_message)
     end
     redirect_to users_path
   end
