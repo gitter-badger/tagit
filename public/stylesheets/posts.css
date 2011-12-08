@@ -26,6 +26,18 @@
     word-wrap: break-word; }
     .posts .post .content img {
       max-width: 455px; }
+    .posts .post .content .video {
+      position: relative; }
+      .posts .post .content .video .play_video {
+        background: url(/images/play-video.png) no-repeat;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -38px;
+        margin-top: -38px;
+        width: 77px;
+        height: 77px;
+        opacity: 0.75; }
 
 form.new_post {
   margin-right: 10px;

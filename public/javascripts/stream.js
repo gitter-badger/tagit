@@ -6,7 +6,19 @@ function embedVideo() {
   $('.video').each(function() {
     var src = $(this).attr('src');
     if (src) {
-      $(this).html('<iframe width="455" height="338" src="' + src + '" frameborder="0" allowfullscreen></iframe>');
+      $(this).on('click.video', { src: src }, clickVideo);
+    }
+  });
+}
+
+function clickVideo(event) {
+  $(this).off('click.video'); //There is a 4px region on the bottom of the div that can still be clicked
+  $(this).html('<iframe width="455" height="338" src="http://youtube.com/embed/' + event.data.src + '?autoplay=1" frameborder="0" allowfullscreen></iframe>');
+  var self = this;
+  $('.video').each(function(index) {
+    if (this != self) {
+      $(this).on('click.video', { src: event.data.src }, clickVideo); //Attach the handler for other videos back on
+      $(this).html('<img src="http://img.youtube.com/vi/' + event.data.src + '/0.jpg" /><div class="play_video"></div>');
     }
   });
 }
