@@ -1,9 +1,9 @@
 <%= javascript_include_tag "stream" %>
-<% if stream.length > 0 %>
+<% unless stream.empty? %>
   <div id="stream" class="posts">
-    <%= render :partial => 'posts/post', :collection => stream %>
+    <%= render :partial => "posts/post", :collection => stream %>
   </div> 
   
   <%= javascript_include_tag "jquery.pageless.min" %>
-  <%= pageless(stream.total_pages, path, 'stream') %>
+  <%= pageless(stream.total_pages, path, "stream") %>
 <% end %>

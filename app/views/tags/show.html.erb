@@ -1,10 +1,10 @@
 <% unless @tag.nil? %>
   <div id="tag">
-    <%= render 'tags/tag', :tag => @tag, :show_untag_all => true, :show_untag => false, :post => nil %>
+    <%= render "tags/tag", :tag => @tag, :show_untag_all => true %>
     <div class="clear"></div>
   </div>
   
   <div class="posts">
-    <%= render 'posts/stream', :stream => @tag.posts.paginate(:page => params[:page]), :path => tag_path(@tag) %>
+    <%= render "posts/stream", :stream => @tag.posts.paginate(:page => params[:page]), :path => tag_path(@tag) %>
   </div>
 <% end %>

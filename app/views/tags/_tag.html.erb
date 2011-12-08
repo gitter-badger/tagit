@@ -1,17 +1,17 @@
 <% unless tag.nil? %>
-  <div id="<%= "post_#{post.id}_" unless post.nil? %>tag_<%= tag.id %>" class="tag">
+  <div id="<%= "post_#{local_assigns[:post].id}_" unless local_assigns[:post].nil? %>tag_<%= tag.id %>" class="tag">
     <% if local_assigns[:show_checkboxes] %>
-      <input type="checkbox" />
+      <input type="checkbox" checked="true" />
     <% end %>
     
     <%= link_to tag.name, tag %>
-    <% if !current_user.nil? and (post.nil? or current_user.posts.include?(post)) %>
+    <% if !current_user.nil? and (local_assigns[:post].nil? or current_user.posts.include?(local_assigns[:post])) %>
       <% if local_assigns[:show_untag_all] %>
         <%= link_to "×", tag_path(:id => tag.name, :untag => "all"), :method => :delete, :confirm => t(:confirm_untag_all_message) % { :tag => tag.name } %>
       <% end %>
       
       <% if local_assigns[:show_untag] %>
-        <%= link_to "×", tag_path(:id => tag.name, :untag => "post", :post_id => post.id), :method => :delete, :post_id => post.id, :onclick => "$('#post_#{post.id}_tag_#{tag.id}').remove();", :remote => true %>
+        <%= link_to "×", tag_path(:id => tag.name, :untag => "post", :post_id => local_assigns[:post].id), :method => :delete, :post_id => local_assigns[:post].id, :onclick => "$('#post_#{local_assigns[:post].id}_tag_#{tag.id}').remove();", :remote => true %>
       <% end %>
     <% end %>
   </div>
