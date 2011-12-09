@@ -20,6 +20,8 @@ class User < ActiveRecord::Base
   has_many :followers,
     :through => :reverse_relationships,
     :source => :follower
+  has_many :user_tags, :class_name => "UserTag", :foreign_key => "user_id", :dependent => :destroy
+  has_many :followed_tags, :through => :user_tags, :source => :tag
   
   validates :name,
     :length => { :maximum => 60 }
@@ -67,13 +69,25 @@ class User < ActiveRecord::Base
     relationships.find_by_followed_id(followed).destroy
   end
   
+  def followed_tag?(tag)
+    user_tags.find_by_tag_id(tag)
+  end
+  
+  def follow_tag!(tag)
+    user_tags.create!(:tag_id => tag.id)
+  end
+  
+  def unfollow_tag!(tag)
+    user_tags.find_by_tag_id(tag).destroy
+  end
+  
   def stream
     Post.from_users_followed_by(self)
   end
   
-  def tags
-    self.posts.map{ |post| post.tags }.flatten.uniq
-  end
+  # def tags
+    # self.posts.map{ |post| post.tags }.flatten.uniq
+  # end
   
   private
     def encrypt_password

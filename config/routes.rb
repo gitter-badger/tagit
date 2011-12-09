@@ -3,12 +3,13 @@ TagIt::Application.routes.draw do
 
 	resources :users do
     member do
-      get :following, :followers
+      get :following, :followers, :followed_tags
     end
   end
   resources :sessions, :only => [:new, :create, :destroy]
   resources :posts, :only => [:create, :show, :edit, :update, :destroy]
   resources :relationships, :only => [:create, :destroy]
+  resources :user_tags, :only => [:create, :destroy]
   resources :tags, :only => [:index, :show, :destroy]
   
 	root :to => 'pages#home'
