@@ -10,7 +10,7 @@ class UserTagsController < ApplicationController
   end
 
   def destroy
-    @tag = user_tag.find(params[:id]).tag
+    @tag = UserTag.find(params[:id]).tag
     current_user.unfollow_tag!(@tag)
     respond_with @tag
   end
