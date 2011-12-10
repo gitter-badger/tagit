@@ -24,7 +24,7 @@ class TagsController < ApplicationController
       end
       redirect_back_or tags_path
     elsif params[:untag] == "post"
-      raise PostForbidden if !current_user.tags.include?(tag)
+      raise PostForbidden unless current_user.is_following_tag?(tag)
       tag.posts.delete(@post) # this only deletes the posts-tags relation, not the actual post
       raise TagNotDeleted if tag.posts.include?(@post) # check if delete was successfull
     end

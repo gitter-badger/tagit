@@ -1,7 +1,9 @@
 <div>
   <div class="main_bar">
     <%= render "posts/fields" %>
-    <%= render "posts/stream", :stream => stream, :path => root_path %>
+    <div id="stream">
+      <%= render "posts/stream", :stream => stream, :path => root_path %>
+    </div>
   </div>
   
   <div class="info_bar">

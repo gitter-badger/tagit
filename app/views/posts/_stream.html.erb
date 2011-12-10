@@ -1,6 +1,6 @@
 <%= javascript_include_tag "stream" %>
 <% unless stream.empty? %>
-  <div id="stream" class="posts">
+  <div class="posts">
     <%= render :partial => "posts/post", :collection => stream %>
   </div> 
   

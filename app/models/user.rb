@@ -51,7 +51,7 @@ class User < ActiveRecord::Base
     user = find_by_email(email)
     (user && user.has_password?(submitted_password)) ? user : nil
   end
-
+  
   def self.authenticate_with_salt(id, stored_salt)
     user = find_by_id(id)
     (user && user.salt == stored_salt) ? user : nil
@@ -60,7 +60,7 @@ class User < ActiveRecord::Base
   def following?(followed)
     relationships.find_by_followed_id(followed)
   end
-
+  
   def follow!(followed)
     relationships.create!(:followed_id => followed.id)
   end
@@ -69,7 +69,7 @@ class User < ActiveRecord::Base
     relationships.find_by_followed_id(followed).destroy
   end
   
-  def followed_tag?(tag)
+  def is_following_tag?(tag)
     user_tags.find_by_tag_id(tag)
   end
   
