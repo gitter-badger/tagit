@@ -2,7 +2,6 @@
   <div id="<%= "post_#{local_assigns[:post].id}_" unless local_assigns[:post].nil? %>tag_<%= tag.id %>" class="tag">
     <% if local_assigns[:show_checkboxes] %>
       <%= render "user_tags/follow_form", :tag => tag %>
-      <input type="checkbox" <%= "checked='true'" if current_user.followed_tag?(tag) %> />
     <% end %>
     
     <%= link_to tag.name, tag %>

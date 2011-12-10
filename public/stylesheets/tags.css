@@ -11,3 +11,7 @@
   float: none; }
   .stream_tags .tag input[type=checkbox] {
     margin: 0px; }
+
+.follow_form {
+  float: left;
+  margin-right: 5px; }
