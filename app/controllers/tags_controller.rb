@@ -7,11 +7,6 @@ class TagsController < ApplicationController
   
   respond_to :html, :js
   
-	def index
-    @title = t(:tag).pluralize
-    @tags = current_user.nil? ? Tag.all : current_user.tags_from_posts
-  end
-  
   def show
     @tag = Tag.find(params[:id])
     @posts = @tag.posts

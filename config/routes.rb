@@ -10,7 +10,7 @@ TagIt::Application.routes.draw do
   resources :posts, :only => [:create, :show, :edit, :update, :destroy]
   resources :relationships, :only => [:create, :destroy]
   resources :user_tags, :only => [:create, :destroy]
-  resources :tags, :only => [:index, :show, :destroy]
+  resources :tags, :only => [:show, :destroy]
   
 	root :to => 'pages#home'
   
