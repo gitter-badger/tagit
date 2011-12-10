@@ -13,13 +13,10 @@ class Post < ActiveRecord::Base
   validates :user_id,
     :presence => true
   
-  default_scope :order => 'posts.created_at DESC'
-  
-  # Return posts from the users being followed by the given user.
-  scope :from_users_followed_by, lambda { |user| followed_by(user) }
+  default_scope :order => "posts.created_at DESC"
   
   def tag_list
-    self.tags.map{ |tag| tag.name }.join(', ')
+    self.tags.map{ |tag| tag.name }.join(", ")
   end
 
   def tag_list=(new_value)
@@ -27,11 +24,16 @@ class Post < ActiveRecord::Base
     self.tags = tag_names.map{ |name| Tag.called(name).first or Tag.create(:name => name) }
   end
   
-  private
-    # Return an SQL condition for users followed by the given user.
-    # We include the user's own id as well.
-    def self.followed_by(user)
-      following_ids = 'SELECT followed_id FROM relationships WHERE follower_id = :user_id'
-      where("user_id IN (#{following_ids}) OR user_id = :user_id", { :user_id => user })
-    end
+  def self.from_followed_users(user)      
+    Post.where(:user_id => [user.id, user.following_ids])
+  end
+  
+  def self.from_user_stream(user)
+    Post
+      .select("DISTINCT (posts.id), 'posts'.*")
+      .joins("INNER JOIN 'posts_tags' ON 'posts_tags'.'post_id' = 'posts'.'id'")
+      .where(
+        :user_id => [user.id, user.following_ids],
+        :posts_tags => { :tag_id => user.tag_ids })
+  end
 end

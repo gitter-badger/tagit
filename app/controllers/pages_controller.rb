@@ -4,7 +4,7 @@ class PagesController < ApplicationController
     
     if signed_in?
       @post = Post.new
-      @stream = current_user.stream.paginate(:page => params[:page])
+      @stream = current_user.stream.paginate(:page => params[:page]) # .lambda{ |post| (post.tag_ids & current_user.followed_tag_ids).length > 0}.paginate(:page => params[:page])
       if request.xhr?
         render :partial => "posts/post", :collection => @stream
       end

@@ -6,7 +6,6 @@ class Tag < ActiveRecord::Base
   
   has_and_belongs_to_many :posts
   has_many :user_tags, :class_name => "UserTag", :foreign_key => "tag_id", :dependent => :destroy
-  has_many :following_users, :through => :user_tags, :source => :user
   
   validates :name,
     :presence => true,
@@ -14,5 +13,7 @@ class Tag < ActiveRecord::Base
     :uniqueness => { :case_sensitive => false }
     
   # called / named
-  scope :called, lambda{ |name| where('tags.name = ?', name) }
+  def self.called
+    Tag.first(:name => name)
+  end
 end

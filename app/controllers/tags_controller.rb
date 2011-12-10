@@ -9,7 +9,7 @@ class TagsController < ApplicationController
   
 	def index
     @title = t(:tag).pluralize
-    @tags = current_user.nil? ? Tag.all : current_user.tags
+    @tags = current_user.nil? ? Tag.all : current_user.tags_from_posts
   end
   
   def show

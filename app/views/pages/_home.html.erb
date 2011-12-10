@@ -7,7 +7,7 @@
   <div class="info_bar">
     <%= render "users/info", :user => current_user %>
     <div class="stream_tags">
-      <%= render :partial => "tags/tag", :collection => stream.map{ |post| post.tags }.flatten.uniq, :locals => { :show_checkboxes => true } %>
+      <%= render :partial => "tags/tag", :collection => current_user.tags_from_stream, :locals => { :show_checkboxes => true } %>
     </div>
   </div>
   
