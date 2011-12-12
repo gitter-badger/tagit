@@ -28,11 +28,12 @@ class Post < ActiveRecord::Base
     Post.where(:user_id => [user.id, user.following_ids])
   end
   
-  def self.from_user_stream(user)
-    # Post.where(:user_id => [user.id, user.following_ids])
+  def self.from_user_stream(user) # Select all post from me & users I'm following that have tags I'm following
     Post
       .select('DISTINCT (posts.id), "posts".*')
-      .joins('INNER JOIN "posts_tags" ON "posts_tags"."post_id" = "posts"."id"')
-      .where('"posts"."user_id" IN (?) AND "posts_tags"."tag_id" NOT IN (COALESCE(?, 0))', [user.id, user.following_ids], user.tag_ids)
+      .joins('LEFT JOIN "relationships" ON "posts".user_id = "relationships".followed_id')
+      .joins('LEFT JOIN "posts_tags" ON "posts".id = "posts_tags".post_id')
+      .joins('LEFT JOIN "user_tags" ON "posts_tags".tag_id = "user_tags".tag_id')
+      .where('("posts".user_id = ? OR "relationships".follower_id = ?) AND "user_tags".tag_id IS NULL', user.id, user.id)
   end
 end
