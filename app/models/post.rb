@@ -31,8 +31,8 @@ class Post < ActiveRecord::Base
   def self.from_user_stream(user)
     # Post.where(:user_id => [user.id, user.following_ids])
     Post
-      .select("DISTINCT (posts.id), 'posts'.*")
-      .joins("INNER JOIN 'posts_tags' ON 'posts_tags'.post_id = 'posts'.id")
-      .where("'posts'.user_id IN (?) AND 'posts_tags'.tag_id NOT IN (COALESCE(?, 0))", [user.id, user.following_ids], user.tag_ids)
+      .select('DISTINCT (posts.id), "posts".*')
+      .joins('INNER JOIN "posts_tags" ON "posts_tags".post_id = "posts".id')
+      .where('"posts".user_id IN (?) AND "posts_tags".tag_id NOT IN (COALESCE(?, 0))', [user.id, user.following_ids], user.tag_ids)
   end
 end
