@@ -29,10 +29,10 @@ class Post < ActiveRecord::Base
   end
   
   def self.from_user_stream(user)
-    # Post.where(:user_id => [user.id, user.following_ids])
-    Post
-      .select("DISTINCT (posts.id), 'posts'.*")
-      .joins("INNER JOIN 'posts_tags' ON 'posts_tags'.post_id = 'posts'.id")
-      .where("'posts'.user_id IN (?) AND 'posts_tags'.tag_id NOT IN (?)", [user.id, user.following_ids], user.tag_ids)
+    Post.where(:user_id => [user.id, user.following_ids])
+    # Post
+      # .select("DISTINCT (posts.id), 'posts'.*")
+      # .joins("INNER JOIN 'posts_tags' ON 'posts_tags'.post_id = 'posts'.id")
+      # .where("'posts'.user_id IN (?) AND 'posts_tags'.tag_id NOT IN (?)", [user.id, user.following_ids], user.tag_ids)
   end
 end
