@@ -19,7 +19,7 @@
         <div class="expand_button"></div>
         <div class="clear"></div>
       </div>
-      <div id="my_tags">
+      <div id="my_tags" style="display: none">
         <%= render :partial => "tags/tag", :collection => current_user.tags_from_posts, :locals => { :show_checkboxes => true } %>
       </div>
       
@@ -28,7 +28,7 @@
         <div class="expand_button"></div>
         <div class="clear"></div>
       </div>
-      <div id="other_tags">
+      <div id="other_tags" style="display: none">
         <%= render :partial => "tags/tag", :collection => current_user.tags_from_followed_users - current_user.tags_from_posts, :locals => { :show_checkboxes => true } %>
       </div>
     </div>
