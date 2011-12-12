@@ -8,7 +8,7 @@ describe UsersController do
       it "should deny access" do
         get :index
         response.should redirect_to(signin_path)
-        flash[:notice].should =~ /you don't have access to this page/i
+        flash[:error].should =~ /you don't have access to this page/i
       end
     end
     
@@ -122,7 +122,7 @@ describe UsersController do
       
       it "should create paging" do
         get :show, :id => @user
-        response.should have_selector("script", :content => %(jQuery('#stream').pageless({"totalPages":2,"url":"/users/foobar","loader":"#stream"});))
+        response.should have_selector("script", :content => %($('#filtered_stream').pageless({"totalPages": 2, "url": "/users/foobar", "loader": "#filtered_stream"});))
       end
       
       it "should show the user's posts on other pages" do
@@ -217,7 +217,7 @@ describe UsersController do
       
       it "should have a welcome message" do
         post :create, :user => @attr
-        flash[:success].should =~ /welcome/i
+        flash[:notice].should =~ /welcome/i
       end
     end
   end
@@ -298,7 +298,7 @@ describe UsersController do
       
       it "should have a flash message" do
         put :update, :id => @user, :user => @attr
-        flash[:success].should =~ /updated/
+        flash[:notice].should =~ /updated/i
       end
     end
   end

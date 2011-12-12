@@ -35,7 +35,8 @@ module SessionsHelper
   
   def deny_access
     store_location
-    redirect_to signin_path, :error => t(:deny_access_message)
+    flash[:error] = t(:deny_access_message)
+    redirect_to signin_path
   end
   
   def redirect_back_or(default)
