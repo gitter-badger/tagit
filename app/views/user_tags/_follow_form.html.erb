@@ -1,7 +1,9 @@
-<div id="follow_form_<%= tag.id %>" class="follow_form">
-  <% if current_user.is_following_tag?(tag) %>
-    <%= render "user_tags/unfollow", :tag => tag %>
-  <% else %>
-    <%= render "user_tags/follow", :tag => tag %>
-  <% end %>
-</div>
+<% unless local_assigns[:tag].nil? %>
+  <div id="follow_form_<%= tag.id %>" class="follow_form">
+    <% if current_user.is_following_tag?(tag) %>
+      <%= render "user_tags/unfollow", :tag => tag %>
+    <% else %>
+      <%= render "user_tags/follow", :tag => tag %>
+    <% end %>
+  </div>
+<% end %>
