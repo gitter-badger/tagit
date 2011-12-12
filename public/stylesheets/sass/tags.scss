@@ -1,7 +1,7 @@
 .tag
 {
   float: left;
-  background: #E0EAF1;
+  background: #e0eaf1;
   padding: 0px 4px;
   margin: 2px;
 }
@@ -31,4 +31,12 @@
 {
   float: left;
   margin-right: 5px;
+}
+
+.tag_group
+{
+  cursor: pointer;
+  background: #fbfbfb;
+  padding: 0px 4px;
+  margin-top: 2px;
 }

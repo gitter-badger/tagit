@@ -24,3 +24,14 @@ function addFlash(message, type) {
   client_flash.append('<div class="flash ' + type + '">' + message + closeButton + '</div>');
   client_flash.children('.flash').filter(':last').children('.close_client_flash').on('click.flash', function() { $(this).parent().remove(); });
 }
+
+function toggleCollapsed(sender, collapsedElement) {
+  var expand_button = $(sender).children('.expand_button');
+  if (expand_button.length > 0) {
+    expand_button.attr('class', 'collapse_button');
+  }
+  else {
+    $(sender).children('.collapse_button').attr('class', 'expand_button');
+  }
+  $('#' + collapsedElement).slideToggle(200);
+}

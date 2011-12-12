@@ -13,7 +13,24 @@
         <%= render "user_tags/follow_form" %>
         <%= link_to "Select All", about_path %>
       </div>-->
-      <%= render :partial => "tags/tag", :collection => current_user.tags_from_stream, :locals => { :show_checkboxes => true } %>
+      
+      <div class="tag_group" onclick="toggleCollapsed(this, 'my_tags');">
+        <div class="left"><%= t(:my_tags) %></div>
+        <div class="expand_button"></div>
+        <div class="clear"></div>
+      </div>
+      <div id="my_tags">
+        <%= render :partial => "tags/tag", :collection => current_user.tags_from_posts, :locals => { :show_checkboxes => true } %>
+      </div>
+      
+      <div class="tag_group" onclick="toggleCollapsed(this, 'other_tags');">
+        <div class="left"><%= t(:other_tags) %></div>
+        <div class="expand_button"></div>
+        <div class="clear"></div>
+      </div>
+      <div id="other_tags">
+        <%= render :partial => "tags/tag", :collection => current_user.tags_from_followed_users - current_user.tags_from_posts, :locals => { :show_checkboxes => true } %>
+      </div>
     </div>
   </div>
   

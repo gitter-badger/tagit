@@ -45,4 +45,18 @@
 .delete_button {
   margin-top: -7px; }
 
+.expand_collapse_button, .expand_button, .collapse_button {
+  background-repeat: no-repeat;
+  background-position: 0 5px;
+  float: right;
+  height: 7px;
+  width: 8px;
+  padding-top: 5px; }
+
+.expand_button {
+  background-image: url(/images/expand.png); }
+
+.collapse_button {
+  background-image: url(/images/collapse.png); }
+
 /* BUTTONS */

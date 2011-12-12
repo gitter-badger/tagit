@@ -25,7 +25,7 @@ class Post < ActiveRecord::Base
   end
   
   def self.from_followed_users(user)      
-    Post.where(:user_id => [user.id, user.following_ids])
+    Post.where(:user_id => user.following_ids)
   end
   
   def self.from_user_stream(user) # Select all post from me & users I'm following that have tags I'm following

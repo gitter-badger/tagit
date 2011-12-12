@@ -93,7 +93,7 @@ class User < ActiveRecord::Base
     self.posts.map{ |post| post.tags }.flatten.uniq
   end
   
-  def tags_from_stream
+  def tags_from_followed_users
     self.posts_from_followed_users.map{ |post| post.tags }.flatten.uniq
   end
   
