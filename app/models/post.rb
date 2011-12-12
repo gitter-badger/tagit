@@ -32,8 +32,6 @@ class Post < ActiveRecord::Base
     Post
       .select("DISTINCT (posts.id), 'posts'.*")
       .joins("INNER JOIN 'posts_tags' ON 'posts_tags'.'post_id' = 'posts'.'id'")
-      .where(
-        :user_id => [user.id, user.following_ids],
-        :posts_tags => { :tag_id => user.tag_ids })
+      .where("posts.user_id IN (?) AND posts_tags.tag_id NOT IN (?)", [user.id, user.following_ids], user.tag_ids)
   end
 end

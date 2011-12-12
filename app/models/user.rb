@@ -70,7 +70,7 @@ class User < ActiveRecord::Base
   end
   
   def is_following_tag?(tag)
-    user_tags.find_by_tag_id(tag)
+    user_tags.find_by_tag_id(tag).nil?
   end
   
   def follow_tag!(tag)
