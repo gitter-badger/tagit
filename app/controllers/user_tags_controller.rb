@@ -1,6 +1,4 @@
 class UserTagsController < ApplicationController
-  before_filter :authenticate
-  
   respond_to :html, :js
   
   def create
@@ -9,7 +7,7 @@ class UserTagsController < ApplicationController
     @stream = current_user.stream.paginate(:page => params[:page])
     respond_with @tag, @stream
   end
-
+  
   def destroy
     @tag = UserTag.find(params[:id]).tag
     current_user.unfollow_tag!(@tag)

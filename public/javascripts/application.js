@@ -6,6 +6,10 @@ $(function() {
     flash.append(closeButton);
     flash.children('.close_client_flash').on('click.flash', function() { flash.remove(); });
   });
+  
+  //Attach submit click handlers
+  $('a.submit').click(function() { $(this).closest('form').submit(); return false; });
+  $('input.submit').click(function() { $(this).closest('form').submit(); });
 });
 
 $(document).ajaxComplete(function(event, request) {
@@ -34,4 +38,9 @@ function toggleCollapsed(sender, collapsedElement) {
     $(sender).children('.collapse_button').attr('class', 'expand_button');
   }
   $('#' + collapsedElement).slideToggle(200);
+}
+
+function submitForm(element) {
+  $(element).closest('form').submit();
+  return false;
 }

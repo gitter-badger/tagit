@@ -4,7 +4,7 @@ class Tag < ActiveRecord::Base
   
   attr_accessible :name
   
-  has_and_belongs_to_many :posts
+  has_many :post_tags, :class_name => "PostTag", :foreign_key => "tag_id", :dependent => :destroy
   has_many :user_tags, :class_name => "UserTag", :foreign_key => "tag_id", :dependent => :destroy
   
   validates :name,
