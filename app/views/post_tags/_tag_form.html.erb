@@ -1,11 +1,11 @@
 <% if !current_user.nil? %>
-  <% if local_assigns[:post].nil? or current_user.posts.include?(local_assigns[:post]) %>
+  <% if local_assigns[:post].nil? %>
     <% if local_assigns[:show_untag_all] %>
       <%= link_to "×", tag_path(:id => tag.name, :untag => "all"), :method => :delete, :confirm => t(:confirm_untag_all_message) % { :tag => tag.name } %>
     <% end %>
-    
-    <% if false and local_assigns[:show_untag] %>
-      <%= link_to "×", post_tag_path(:post_id => local_assigns[:post].id, :tag_id => tag.id), :method => :delete, :onclick => "$('#post_#{local_assigns[:post].id}_tag_#{tag.id}').remove();", :remote => true %>
+  <% elsif current_user.posts.include?(local_assigns[:post]) %>
+    <% if local_assigns[:show_untag] %>
+      <%= render "post_tags/untag", :post => post, :tag => tag %>
     <% end %>
   <% else %>
     <%= render "post_tags/tag", :post => post, :tag => tag %>

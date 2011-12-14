@@ -11,8 +11,4 @@ class Tag < ActiveRecord::Base
     :presence => true,
     :length => { :maximum => 30 },
     :uniqueness => { :case_sensitive => false }
-    
-  def self.called(name) # named
-    Tag.where("name = ?", name).first
-  end
 end

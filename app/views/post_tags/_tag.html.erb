@@ -1,5 +1,5 @@
 <%= form_for post.post_tags.build(:tag_id => tag.id), :remote => true do |f| %>
-  <div><%= f.hidden_field :post_id %></div>
-  <div><%= f.hidden_field :tag_id %></div>
-  <%= link_to "+", post_tags_path(:id => tag.id), :class => "submit" %>
+  <%= f.hidden_field :post_id %>
+  <%= f.hidden_field :tag_id %>
+  <%= link_to "+", "tag", :class => "submit" %>
 <% end %>

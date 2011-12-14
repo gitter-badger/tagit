@@ -10,16 +10,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111213194442) do
+ActiveRecord::Schema.define(:version => 20111214235855) do
 
-  create_table "post_tags", :id => false, :force => true do |t|
+  create_table "post_tags", :force => true do |t|
     t.integer "post_id"
     t.integer "tag_id"
+    t.integer "user_id"
   end
 
-  add_index "post_tags", ["post_id", "tag_id"], :name => "index_posts_tags_on_post_id_and_tag_id", :unique => true
-  add_index "post_tags", ["post_id"], :name => "index_posts_tags_on_post_id"
-  add_index "post_tags", ["tag_id"], :name => "index_posts_tags_on_tag_id"
+  add_index "post_tags", ["post_id", "tag_id", "user_id"], :name => "index_post_tags_on_post_id_and_tag_id_and_user_id", :unique => true
+  add_index "post_tags", ["post_id"], :name => "index_post_tags_on_post_id"
+  add_index "post_tags", ["tag_id"], :name => "index_post_tags_on_tag_id"
+  add_index "post_tags", ["user_id"], :name => "index_post_tags_on_user_id"
 
   create_table "posts", :force => true do |t|
     t.text     "content",    :limit => 255

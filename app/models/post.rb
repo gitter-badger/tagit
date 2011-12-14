@@ -17,20 +17,22 @@ class Post < ActiveRecord::Base
   default_scope :order => "posts.created_at DESC"
   
   def tag_list
-    self.tags.map{ |tag| tag.name }.join(", ")
-  end
-
-  def tag_list=(new_value)
-    tag_names = new_value.split(/,\s*/)
-    self.tags = tag_names.map{ |name| Tag.called(name) or Tag.create(:name => name) }
+    tags.map{ |tag| tag.name }.join(", ")
   end
   
-  def tag!(tag)
-    post_tags.create!(:tag_id => tag.id)
+  def tag_with_list(list, user)
+    tag_names = list.split(/,\s*/)
+    new_tags = tag_names.map{ |name| Tag.find_by_name(name) or Tag.create(:name => name) }
+    post_tags = new_tags.map{ |tag| PostTag.find_by_post_id_and_tag_id_and_user_id(id, tag.id, user.id) or PostTag.create(:post_id => id, :tag_id => tag.id, :user_id => user.id) }
+    # TODO: Delete unused tags
   end
   
-  def untag!(tag)
-    post_tags.find_by_tag_id(tag).destroy
+  def tag!(tag, user)
+    post_tags.create!(:tag_id => tag.id, :user_id => user.id)
+  end
+  
+  def untag!(tag, user)
+    post_tags.find_by_tag_id_and_user_id(tag, user).destroy
   end
   
   def self.from_followed_users(user)      

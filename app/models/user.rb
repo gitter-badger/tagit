@@ -20,8 +20,17 @@ class User < ActiveRecord::Base
   has_many :followers,
     :through => :reverse_relationships,
     :source => :follower
-  has_many :user_tags, :class_name => "UserTag", :foreign_key => "user_id", :dependent => :destroy
-  has_many :tags, :through => :user_tags, :source => :tag
+  has_many :post_tags,
+    :class_name => "PostTag",
+    :foreign_key => "user_id",
+    :dependent => :destroy
+  has_many :user_tags,
+    :class_name => "UserTag",
+    :foreign_key => "user_id",
+    :dependent => :destroy
+  has_many :tags,
+    :through => :user_tags,
+    :source => :tag
   
   validates :name,
     :length => { :maximum => 60 }
