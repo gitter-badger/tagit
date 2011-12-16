@@ -1,7 +1,9 @@
 <div class="tag_form">
   <% if post_tag.user_id == current_user.id %>
-    <%= render "post_tags/untag", :post_tag => post_tag %>
+    <!--render "post_tags/untag", :post_tag => post_tag-->
+    <%= link_to "×", post_tag, :method => :delete, :remote => true %>
   <% else %>
-    <%= render "post_tags/tag", :post => post_tag.post, :tag => post_tag.tag %>
+    <!--render "post_tags/tag", :post => post_tag.post, :tag => post_tag.tag-->
+    <%= link_to "+", post_tags_path(:post_id => post_tag.post.id, :tag_id => post_tag.tag.id), :method => :post, :remote => true %>
   <% end %>
 </div>

@@ -2,12 +2,12 @@
   <div class="buttons">
     <% if current_user.admin? && current_user != user %>
       <div class="delete_button">
-        <%= link_to "×", user, :method => :delete, :confirm => t(:confirm_delete_message), :title => t(:delete) << " #{user.name}?" %>
+        <%= link_to "×", user, :method => :delete, :confirm => t(:confirm_delete_message), :title => "#{t(:delete)} #{user.username}?" %>
       </div>
     <% end %>
   </div>
-
-  <%= render 'users/info', :user => user %>
-
+  
+  <%= render "users/info", :user => user %>
+  
   <div class="clear"></div>
 </div>

@@ -2,6 +2,7 @@
 {
   padding: 2px;
   margin-bottom: 10px;
+  position: relative;
 }
 
 $light_green: #cfc;
@@ -27,8 +28,11 @@ $dark_red: #c00;
 /* CLIENT FLASH */
 .close_client_flash
 {
-  float: right;
   cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 4px;
 }
 /* CLIENT FLASH */
 
