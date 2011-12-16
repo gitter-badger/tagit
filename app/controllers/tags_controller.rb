@@ -3,10 +3,9 @@ class TagsController < ApplicationController
   # end
   
   def show
-    @tag = Tag.find(params[:id])
-    @posts = @tag.posts
-  rescue ActiveRecord::RecordNotFound
-    flash[:error] = t(:record_not_found_message)
+    @tag = Tag.find_by_id(params[:id])
+    flash[:error] = t(:record_not_found_message) and return if @tag.nil?
+    # @posts = @tag.posts
   end
   
   def destroy

@@ -39,7 +39,7 @@ class Post < ActiveRecord::Base
   end
   
   def tags_for_user(user) # Select all post tags and order them so that the user's own tags are last
-    post_tags.where("user_id != ?", user.id) + post_tags.where("user_id = ?", user.id)
+    post_tags.where(:user_id => user.following) + post_tags.where(:user_id => user)
   end
   
   def self.from_followed_users(user)      

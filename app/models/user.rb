@@ -5,35 +5,22 @@ class User < ActiveRecord::Base
   attr_accessor :password
 	attr_accessible :name, :username, :email, :password, :password_confirmation
   
-  has_many :posts,
-    :dependent => :destroy
-  has_many :relationships,
-    :foreign_key => "follower_id",
-    :dependent => :destroy
-  has_many :following,
-    :through => :relationships,
-    :source => :followed
-  has_many :reverse_relationships,
-    :class_name => "Relationship",
-    :foreign_key => "followed_id",
-    :dependent => :destroy
-  has_many :followers,
-    :through => :reverse_relationships,
-    :source => :follower
-  has_many :post_tags,
-    :class_name => "PostTag",
-    :foreign_key => "user_id",
-    :dependent => :destroy
-  has_many :user_tags,
-    :class_name => "UserTag",
-    :foreign_key => "user_id",
-    :dependent => :destroy
-  has_many :tags,
-    :through => :user_tags,
-    :source => :tag
+  has_many :posts, :dependent => :destroy
   
-  validates :name,
-    :length => { :maximum => 60 }
+  has_many :relationships, :foreign_key => "follower_id", :dependent => :destroy
+  has_many :following, :through => :relationships, :source => :followed
+  
+  has_many :reverse_relationships, :class_name => "Relationship", :foreign_key => "followed_id", :dependent => :destroy
+  has_many :followers, :through => :reverse_relationships, :source => :follower
+  
+  has_many :post_tags, :class_name => "PostTag", :foreign_key => "user_id", :dependent => :destroy
+  
+  has_many :user_tags, :class_name => "UserTag", :foreign_key => "user_id", :dependent => :destroy
+  has_many :tags, :through => :user_tags, :source => :tag
+  
+  before_save :encrypt_password
+  
+  validates :name, :length => { :maximum => 60 }
   validates :username,
     :presence => true,
 		:length => { :within => 3..30 },
@@ -49,13 +36,6 @@ class User < ActiveRecord::Base
     :confirmation => true,
     :length => { :within => 6..40 }
   
-  before_save :encrypt_password
-  
-  # Return true if the user's password matches the submitted password.
-  def has_password?(submitted_password)
-    encrypted_password == encrypt(submitted_password)
-  end
-  
   def self.authenticate(email, submitted_password)
     user = find_by_email(email)
     (user && user.has_password?(submitted_password)) ? user : nil
@@ -64,6 +44,11 @@ class User < ActiveRecord::Base
   def self.authenticate_with_salt(id, stored_salt)
     user = find_by_id(id)
     (user && user.salt == stored_salt) ? user : nil
+  end
+
+  # Return true if the user's password matches the submitted password.
+  def has_password?(submitted_password)
+    encrypted_password == encrypt(submitted_password)
   end
   
   def following?(followed)
@@ -99,11 +84,11 @@ class User < ActiveRecord::Base
   end
   
   def tags_from_posts
-    self.posts.map{ |post| post.tags }.flatten.uniq
+    post_tags.map{ |post_tag| post_tag.tag }.flatten.uniq
   end
   
   def tags_from_followed_users
-    self.posts_from_followed_users.map{ |post| post.tags }.flatten.uniq
+    stream.map{ |post| post.post_tags.where(:user_id => following).map{ |post_tag| post_tag.tag } }.flatten.uniq
   end
   
   private
