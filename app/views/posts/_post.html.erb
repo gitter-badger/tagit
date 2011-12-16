@@ -26,7 +26,7 @@
       <% end %>
       <% unless post.post_tags.blank? %>
         <div id="post_<%= post.id %>_tags" class="tags">
-          <%= render :partial => "post_tags/post_tag", :collection => post.post_tags %>
+          <%= render :partial => "post_tags/post_tag", :collection => post.tags_for_user(current_user) %>
         </div>
       <% end %>
     

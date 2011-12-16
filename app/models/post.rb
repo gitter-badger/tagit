@@ -14,7 +14,7 @@ class Post < ActiveRecord::Base
   validates :user_id,
     :presence => true
   
-  default_scope :order => "posts.created_at DESC"
+  default_scope :order => "created_at DESC"
   
   def tag_list
     tags.map{ |tag| tag.name }.join(", ")
@@ -38,11 +38,15 @@ class Post < ActiveRecord::Base
     post_tags.find_by_tag_id_and_user_id(tag, user)
   end
   
+  def tags_for_user(user) # Select all post tags and order them so that the user's own tags are last
+    post_tags.where("user_id != ?", user.id) + post_tags.where("user_id = ?", user.id)
+  end
+  
   def self.from_followed_users(user)      
     Post.where(:user_id => user.following_ids)
   end
   
-  def self.from_user_stream(user) # Select all post from me & users I'm following that have tags I'm following
+  def self.from_user_stream(user) # Select all [posts] from [me & users I'm following] that have [tags I'm following]
     Post
       .select('DISTINCT (posts.id), "posts".*')
       .joins('LEFT JOIN "relationships" ON "posts".user_id = "relationships".followed_id')

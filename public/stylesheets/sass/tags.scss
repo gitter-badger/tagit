@@ -1,7 +1,11 @@
+$light_gray: #f3f3ff;
+$medium_gray: #dfdfef;
+$dark_gray: #cfcfdf;
+
 .tag
 {
   float: left;
-  background: #e0eaf1;
+  background: $medium_gray;
   padding: 0px 4px;
   margin: 2px;
   
@@ -16,7 +20,7 @@
     float: left;
   }
   
-  .tag_form
+  .tag_untag
   {
     float: left;
     margin-left: 3px;
@@ -26,7 +30,7 @@
 .foreign_tag
 {
   @extend .tag;
-  background: #eef9ff;
+  background: $light_gray;
 }
 
 #tag
@@ -53,7 +57,18 @@
 .tag_group
 {
   cursor: pointer;
-  background: #fbfbfb;
+  background: $dark_gray;
   padding: 0px 4px;
   margin-top: 2px;
+}
+
+#my_tags .tag
+{
+  margin: 2px 0px;
+}
+
+#other_tags .tag
+{
+  margin: 2px 0px;
+  background: $light_gray;
 }

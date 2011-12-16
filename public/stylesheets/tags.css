@@ -1,6 +1,6 @@
 .tag, .foreign_tag {
   float: left;
-  background: #e0eaf1;
+  background: #dfdfef;
   padding: 0px 4px;
   margin: 2px; }
   .tag .tag_follow_form, .foreign_tag .tag_follow_form {
@@ -8,12 +8,12 @@
     margin-right: 5px; }
   .tag .tag_name, .foreign_tag .tag_name {
     float: left; }
-  .tag .tag_form, .foreign_tag .tag_form {
+  .tag .tag_untag, .foreign_tag .tag_untag {
     float: left;
     margin-left: 3px; }
 
 .foreign_tag {
-  background: #eef9ff; }
+  background: #f3f3ff; }
 
 #tag .tag, #tag .foreign_tag {
   margin: 0px 0px 5px 0px; }
@@ -25,6 +25,13 @@
 
 .tag_group {
   cursor: pointer;
-  background: #fbfbfb;
+  background: #cfcfdf;
   padding: 0px 4px;
   margin-top: 2px; }
+
+#my_tags .tag, #my_tags .foreign_tag {
+  margin: 2px 0px; }
+
+#other_tags .tag, #other_tags .foreign_tag {
+  margin: 2px 0px;
+  background: #f3f3ff; }
