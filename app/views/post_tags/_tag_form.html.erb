@@ -1,13 +1,7 @@
-<% if !current_user.nil? %>
-  <% if local_assigns[:post].nil? %>
-    <% if local_assigns[:show_untag_all] %>
-      <%= link_to "×", tag_path(:id => tag.name, :untag => "all"), :method => :delete, :confirm => t(:confirm_untag_all_message) % { :tag => tag.name } %>
-    <% end %>
-  <% elsif current_user.posts.include?(local_assigns[:post]) %>
-    <% if local_assigns[:show_untag] %>
-      <%= render "post_tags/untag", :post => post, :tag => tag %>
-    <% end %>
+<div class="tag_form">
+  <% if post_tag.user_id == current_user.id %>
+    <%= render "post_tags/untag", :post_tag => post_tag %>
   <% else %>
-    <%= render "post_tags/tag", :post => post, :tag => tag %>
+    <%= render "post_tags/tag", :post => post_tag.post, :tag => post_tag.tag %>
   <% end %>
-<% end %>
+</div>

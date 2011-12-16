@@ -1,20 +1,27 @@
-.tag {
+.tag, .foreign_tag {
   float: left;
   background: #e0eaf1;
   padding: 0px 4px;
   margin: 2px; }
+  .tag .tag_follow_form, .foreign_tag .tag_follow_form {
+    float: left;
+    margin-right: 5px; }
+  .tag .tag_name, .foreign_tag .tag_name {
+    float: left; }
+  .tag .tag_form, .foreign_tag .tag_form {
+    float: left;
+    margin-left: 3px; }
 
-#tag .tag {
+.foreign_tag {
+  background: #eef9ff; }
+
+#tag .tag, #tag .foreign_tag {
   margin: 0px 0px 5px 0px; }
 
-.stream_tags .tag {
+.stream_tags .tag, .stream_tags .foreign_tag {
   float: none; }
-  .stream_tags .tag input[type=checkbox] {
+  .stream_tags .tag input[type=checkbox], .stream_tags .foreign_tag input[type=checkbox] {
     margin: 0px; }
-
-.follow_form {
-  float: left;
-  margin-right: 5px; }
 
 .tag_group {
   cursor: pointer;

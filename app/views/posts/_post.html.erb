@@ -24,9 +24,9 @@
       <% unless post.title.blank? %>
         <div class="title"><%= post.title %></div>
       <% end %>
-      <% unless post.tags.blank? %>
+      <% unless post.post_tags.blank? %>
         <div id="post_<%= post.id %>_tags" class="tags">
-          <%= render :partial => "tags/tag", :collection => post.tags, :locals => { :show_untag => true, :post => post } %>
+          <%= render :partial => "post_tags/post_tag", :collection => post.post_tags %>
         </div>
       <% end %>
     

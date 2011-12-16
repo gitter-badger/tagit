@@ -4,7 +4,14 @@
       <%= render "user_tags/follow_form", :tag => tag %>
     <% end %>
     
-    <%= link_to tag.name, tag %>
-    <%= render "post_tags/tag_form", :post => local_assigns[:post], :tag => tag, :show_untag_all => local_assigns[:show_untag_all], :show_untag => local_assigns[:show_untag] %>
+    <div class="tag_name">
+      <%= link_to tag.name, tag %>
+    </div>
+    
+    <% if local_assigns[:show_untag_all] %>
+      <%= link_to "×", tag_path(:id => tag.name, :untag => "all"), :method => :delete, :confirm => t(:confirm_untag_all_message) % { :tag => tag.name } %>
+    <% end %>
+    
+    <div class="clear"></div>
   </div>
 <% end %>

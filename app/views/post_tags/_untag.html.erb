@@ -1,0 +1,5 @@
+<%= form_for post_tag, :html => { :method => :delete }, :remote => true do |f| %>
+  <%= f.hidden_field :post_id %>
+  <%= f.hidden_field :tag_id %>
+  <%= link_to "×", "untag", :class => "submit" %>
+<% end %>

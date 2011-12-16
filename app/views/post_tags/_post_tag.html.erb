@@ -1,0 +1,11 @@
+<% unless post_tag.nil? %>
+  <div id="<%= "post_tag_#{post_tag.id}" %>" class="<%= "foreign_" if post_tag.user_id != current_user.id %>tag">
+    <div class="tag_name">
+      <%= link_to post_tag.tag.name, post_tag.tag %>
+    </div>
+    
+    <%= render "post_tags/tag_form", :post_tag => post_tag %>
+    
+    <div class="clear"></div>
+  </div>
+<% end %>

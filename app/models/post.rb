@@ -24,7 +24,6 @@ class Post < ActiveRecord::Base
     tag_names = list.split(/,\s*/)
     new_tags = tag_names.map{ |name| Tag.find_by_name(name) or Tag.create(:name => name) }
     post_tags = new_tags.map{ |tag| PostTag.find_by_post_id_and_tag_id_and_user_id(id, tag.id, user.id) or PostTag.create(:post_id => id, :tag_id => tag.id, :user_id => user.id) }
-    # TODO: Delete unused tags
   end
   
   def tag!(tag, user)
@@ -33,6 +32,10 @@ class Post < ActiveRecord::Base
   
   def untag!(tag, user)
     post_tags.find_by_tag_id_and_user_id(tag, user).destroy
+  end
+  
+  def is_tagged?(tag, user)
+    post_tags.find_by_tag_id_and_user_id(tag, user)
   end
   
   def self.from_followed_users(user)      

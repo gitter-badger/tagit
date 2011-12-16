@@ -4,6 +4,29 @@
   background: #e0eaf1;
   padding: 0px 4px;
   margin: 2px;
+  
+  .tag_follow_form
+  {
+    float: left;
+    margin-right: 5px;
+  }
+  
+  .tag_name
+  {
+    float: left;
+  }
+  
+  .tag_form
+  {
+    float: left;
+    margin-left: 3px;
+  }
+}
+
+.foreign_tag
+{
+  @extend .tag;
+  background: #eef9ff;
 }
 
 #tag
@@ -20,17 +43,11 @@
   {
     float: none;
     
-      input[type=checkbox]
-      {
-        margin: 0px;
-      }
+    input[type=checkbox]
+    {
+      margin: 0px;
+    }
   }
-}
-
-.follow_form
-{
-  float: left;
-  margin-right: 5px;
 }
 
 .tag_group

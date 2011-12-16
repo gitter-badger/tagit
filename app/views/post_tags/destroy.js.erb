@@ -1,0 +1,1 @@
+$('#post_<%= @post.id %>_tags').html('<%= escape_javascript(render :partial => "tags/tag", :collection => @post.tags, :locals => { :show_untag => true, :post => @post }) %>');
