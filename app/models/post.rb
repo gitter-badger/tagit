@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  attr_accessible :title, :content, :tag_list
+  attr_accessible :title, :content, :tag_list, :user_id
   
   belongs_to :user
   has_many :post_tags, :class_name => "PostTag", :foreign_key => "post_id", :dependent => :destroy
@@ -17,13 +17,15 @@ class Post < ActiveRecord::Base
   default_scope :order => "created_at DESC"
   
   def tag_list
-    tags.map{ |tag| tag.name }.join(", ")
+    post_tags.find_all_by_user_id(user_id).map{ |post_tag| post_tag.tag.name }.join(", ")
   end
   
   def tag_with_list(list, user)
+    post_tags.find_all_by_user_id(user.id).each(&:destroy) # Clean up the old tags from this user to make room for the new ones
+    
     tag_names = list.split(/,\s*/)
     new_tags = tag_names.map{ |name| Tag.find_by_name(name) or Tag.create(:name => name) }
-    post_tags = new_tags.map{ |tag| PostTag.find_by_post_id_and_tag_id_and_user_id(id, tag.id, user.id) or PostTag.create(:post_id => id, :tag_id => tag.id, :user_id => user.id) }
+    post_tags.push(new_tags.map{ |tag| PostTag.find_by_post_id_and_tag_id_and_user_id(id, tag.id, user.id) or PostTag.create(:post_id => id, :tag_id => tag.id, :user_id => user.id) })
   end
   
   def tag!(tag, user)
@@ -39,7 +41,7 @@ class Post < ActiveRecord::Base
   end
   
   def tags_for_user(user) # Select all post tags and order them so that the user's own tags are last
-    post_tags.where(:user_id => user.following) + post_tags.where(:user_id => user)
+    post_tags.where(:user_id => user.following) + post_tags.where(:user_id => user.id)
   end
   
   def self.from_followed_users(user)      

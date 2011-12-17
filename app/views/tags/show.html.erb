@@ -5,6 +5,6 @@
   </div>
   
   <div class="posts">
-    <%= render "posts/stream", :stream => @tag.posts.paginate(:page => params[:page]), :path => tag_path(@tag) %>
+    <%= render "posts/stream", :stream => Post.where(:id => @tag.posts.uniq).paginate(:page => params[:page]), :path => tag_path(@tag) %>
   </div>
 <% end %>
