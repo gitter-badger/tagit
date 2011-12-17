@@ -13,4 +13,8 @@ class Tag < ActiveRecord::Base
     :presence => true,
     :length => { :maximum => 30 },
     :uniqueness => { :case_sensitive => false }
+    
+  def count
+    PostTag.where(:tag_id => id).length
+  end
 end

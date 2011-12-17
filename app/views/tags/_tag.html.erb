@@ -6,6 +6,7 @@
     
     <div class="tag_name">
       <%= link_to tag.name, tag %>
+      <%= "(#{tag.count})" if local_assigns[:show_count] %>
     </div>
     
     <% if local_assigns[:show_untag_all] %>
