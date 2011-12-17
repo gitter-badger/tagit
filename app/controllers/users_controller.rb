@@ -13,7 +13,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @title = @user.name
-    @posts = @user.posts.paginate(:page => params[:page])
+    tagged_or_posted_post_ids = (@user.posts.map{ |post| post.id } + @user.post_tags.map{ |post_tag| post_tag.post_id }).uniq
+    @posts = Post.where(:id => tagged_or_posted_post_ids).paginate(:page => params[:page])
     if request.xhr?
       render :partial => "posts/post", :collection => @posts
     end

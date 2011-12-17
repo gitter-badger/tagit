@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  attr_accessible :title, :content, :tag_list, :user_id
+  attr_accessible :title, :content, :tag_list
   
   belongs_to :user
   has_many :post_tags, :class_name => "PostTag", :foreign_key => "post_id", :dependent => :destroy

@@ -1,11 +1,7 @@
 class TagsController < ApplicationController
-  # class PostForbidden < StandardError
-  # end
-  
   def show
     @tag = Tag.find_by_id(params[:id])
     flash[:error] = t(:record_not_found_message) and return if @tag.nil?
-    # @posts = @tag.posts
   end
   
   def destroy
