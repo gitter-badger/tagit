@@ -4,7 +4,7 @@ module PostsHelper
   WHITESPACE_REGEX = /\s+/
   URL_REGEX = /(http|ftp|https):\/\/(\S*)/i
   IMAGE_URL_REGEX = />((http|ftp|https):\/\/(\S*)\.(jpg|jpeg|gif|png)(\?[^\\\/\s]+)?)<\/a>/i
-  VIDEO_REGEX = /<a class="_blank" href="(http:\/\/(www\.)?(youtube\.com\/watch\?(?=.*v=(\w+))(?:\S+)?))">\1<\/a>/i
+  VIDEO_REGEX = /<a class="_blank" href="(http:\/\/(www\.)?(youtube\.com\/watch\?(?=.*v=([\w-]+))(?:\S+)?))">\1<\/a>/i
   
   def format_post(content)
     insert_newlines_and_whitespaces = content.gsub(NEWLINE_REGEX, "<br>").gsub(WHITESPACE_REGEX, " ")
