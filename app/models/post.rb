@@ -45,7 +45,7 @@ class Post < ActiveRecord::Base
   end
   
   def tags_for_user(user) # Select ([post tags] for [user]) + ([post tags] for [followed users] except those the user already has)
-    user_tag_ids = user.post_tags.map{ |post_tag| post_tag.tag_id }.uniq
+    user_tag_ids = user.post_tags.where(:post_id => id).map(&:tag_id).uniq
     post_tags.where("user_id = ? OR (user_id IN (?) AND tag_id NOT IN (?))", user.id, user.following, user_tag_ids)
   end
   
