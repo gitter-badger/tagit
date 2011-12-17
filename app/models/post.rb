@@ -44,15 +44,16 @@ class Post < ActiveRecord::Base
     post_tags.find_by_tag_id_and_user_id(tag, user)
   end
   
-  def tags_for_user(user) # Select all post tags and order them so that the user's own tags are last
-    post_tags.where(:user_id => user.following) + post_tags.where(:user_id => user.id)
+  def tags_for_user(user) # Select ([post tags] for [user]) + ([post tags] for [followed users] except those the user already has)
+    user_tag_ids = user.post_tags.map{ |post_tag| post_tag.tag_id }.uniq
+    post_tags.where("user_id = ? OR (user_id IN (?) AND tag_id NOT IN (?))", user.id, user.following, user_tag_ids)
   end
   
   def self.from_followed_users(user)      
     Post.where(:user_id => user.following_ids)
   end
   
-  def self.from_user_stream(user) # Select all [posts] from [me & users I'm following] that have [tags I'm following]
+  def self.from_user_stream(user) # Select [posts] from [user + followed users] that have [tags the user is following]
     Post
       .select('DISTINCT (posts.id), "posts".*')
       .joins('LEFT JOIN "relationships" ON "posts".user_id = "relationships".followed_id')

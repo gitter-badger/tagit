@@ -1,18 +1,8 @@
 <% unless tag.nil? %>
   <div id="<%= "post_#{local_assigns[:post].id}" unless local_assigns[:post].nil? %>tag_<%= tag.id %>" class="tag">
-    <% if local_assigns[:show_checkboxes] %>
-      <%= render "user_tags/follow_form", :tag => tag %>
-    <% end %>
-    
-    <div class="tag_name">
-      <%= link_to tag.name, tag %>
-      <%= "(#{tag.count})" if local_assigns[:show_count] %>
-    </div>
-    
-    <% if local_assigns[:show_untag_all] %>
-      <%= link_to "×", tag_path(:id => tag.name), :method => :delete, :confirm => t(:confirm_untag_all_message) % { :tag => tag.name } %>
-    <% end %>
-    
-    <div class="clear"></div>
+    <%= render "user_tags/follow_form", :tag => tag if local_assigns[:show_checkboxes] %>
+    <%= link_to tag.name, tag %>
+    <%= "(#{tag.count})" if local_assigns[:show_count] %>
+    <%= link_to "×", tag_path(:id => tag.name), :method => :delete, :confirm => t(:confirm_untag_all_message) % { :tag => tag.name } if local_assigns[:show_untag_all] %>
   </div>
 <% end %>

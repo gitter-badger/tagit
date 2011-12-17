@@ -14,17 +14,6 @@ $dark_gray: #cfcfdf;
     float: left;
     margin-right: 5px;
   }
-  
-  .tag_name
-  {
-    float: left;
-  }
-  
-  .tag_untag
-  {
-    float: left;
-    margin-left: 3px;
-  }
 }
 
 .foreign_tag
@@ -41,7 +30,7 @@ $dark_gray: #cfcfdf;
   }
 }
 
-.stream_tags
+.user_tags
 {
   .tag
   {

@@ -88,7 +88,7 @@ class User < ActiveRecord::Base
   end
   
   def tags_from_posts
-    post_tags.map{ |post_tag| post_tag.tag }.flatten.uniq.sort_by{ |tag| tag.name }
+    post_tags.map{ |post_tag| post_tag.tag }.uniq.sort_by{ |tag| tag.name }
   end
   
   def tags_from_followed_users

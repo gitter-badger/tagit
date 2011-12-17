@@ -6,11 +6,6 @@
   .tag .tag_follow_form, .foreign_tag .tag_follow_form {
     float: left;
     margin-right: 5px; }
-  .tag .tag_name, .foreign_tag .tag_name {
-    float: left; }
-  .tag .tag_untag, .foreign_tag .tag_untag {
-    float: left;
-    margin-left: 3px; }
 
 .foreign_tag {
   background: #f3f3ff; }
@@ -18,9 +13,9 @@
 #tag .tag, #tag .foreign_tag {
   margin: 0px 0px 5px 0px; }
 
-.stream_tags .tag, .stream_tags .foreign_tag {
+.user_tags .tag, .user_tags .foreign_tag {
   float: none; }
-  .stream_tags .tag input[type=checkbox], .stream_tags .foreign_tag input[type=checkbox] {
+  .user_tags .tag input[type=checkbox], .user_tags .foreign_tag input[type=checkbox] {
     margin: 0px; }
 
 .tag_group {
