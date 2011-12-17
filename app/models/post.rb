@@ -16,6 +16,10 @@ class Post < ActiveRecord::Base
   
   default_scope :order => "created_at DESC"
   
+  def self.per_page
+    10
+  end
+  
   def tag_list
     post_tags.find_all_by_user_id(user_id).map{ |post_tag| post_tag.tag.name }.join(", ")
   end

@@ -36,6 +36,10 @@ class User < ActiveRecord::Base
     :confirmation => true,
     :length => { :within => 6..40 }
   
+  def self.per_page
+    10
+  end
+  
   def self.authenticate(email, submitted_password)
     user = find_by_email(email)
     (user && user.has_password?(submitted_password)) ? user : nil
