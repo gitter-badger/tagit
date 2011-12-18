@@ -1,7 +1,7 @@
 class TagsController < ApplicationController
   def show
-    @tag = Tag.find_by_id(params[:id])
-    flash[:error] = t(:record_not_found_message) and return if @tag.nil?
+    @tag = Tag.find_by_slug(params[:id])
+    flash[:error] = t(:record_not_found_message) if @tag.nil?
   end
   
   def destroy
