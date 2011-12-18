@@ -46,12 +46,12 @@ class Post < ActiveRecord::Base
   
   def tags_for_user(user) # Select ([post tags] for [this user]) + ([post tags] for [author and followed users] except those this user already has)
     post_tags
-      .select('DISTINCT (post_tags.id), "post_tags".*')
-      .joins('JOIN "posts" ON "post_tags".post_id = "posts".id')
-      .joins('JOIN "tags" ON "post_tags".tag_id = "tags".id')
-      .joins('LEFT JOIN "relationships" ON "post_tags".user_id = "relationships".followed_id')
+      # .select('DISTINCT (post_tags.id), "post_tags".*')
+      # .joins('JOIN "posts" ON "post_tags".post_id = "posts".id')
+      # .joins('JOIN "tags" ON "post_tags".tag_id = "tags".id')
+      # .joins('LEFT JOIN "relationships" ON "post_tags".user_id = "relationships".followed_id')
       # .where('"post_tags".user_id = ? OR (("post_tags".user_id = "posts".user_id OR "relationships".follower_id = ?) AND "post_tags".tag_id NOT IN (SELECT "post_tags".tag_id FROM "post_tags" WHERE "post_tags".post_id = "posts".id AND "post_tags".user_id = ?))', user.id, user.id, user.id)
-      .order('"tags".name')
+      # .order('"tags".name')
   end
   
   def self.from_followed_users(user)      
@@ -64,6 +64,6 @@ class Post < ActiveRecord::Base
       .joins('LEFT JOIN "relationships" ON "posts".user_id = "relationships".followed_id')
       .joins('LEFT JOIN "post_tags" ON "posts".id = "post_tags".post_id')
       .joins('LEFT JOIN "user_tags" ON "post_tags".tag_id = "user_tags".tag_id')
-      .where('("posts".user_id = ? OR "relationships".follower_id = ? OR ("post_tags".user_id = ?)) AND "user_tags".tag_id IS NULL', user.id, user.id, user.id)
+      .where('("posts".user_id = ? OR "relationships".follower_id = ? OR "post_tags".user_id = ?) AND "user_tags".tag_id IS NULL', user.id, user.id, user.id)
   end
 end
