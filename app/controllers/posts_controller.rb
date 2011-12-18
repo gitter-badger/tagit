@@ -32,12 +32,7 @@ class PostsController < ApplicationController
   end
   
   def destroy
-    # tag_ids = @post.tag_ids # save tag ids for a destroy check later
     @post.destroy
-    # tags = Tag.find(tag_ids)
-    # tags.each do |tag|
-      # tag.destroy if tag.posts.empty? # destroy unused tags to keep the database neat
-    # end
     redirect_back_or root_path
   end
   
