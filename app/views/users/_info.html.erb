@@ -2,12 +2,12 @@
   <a href="<%= user_path(user) %>" class="user_base">
     <%= gravatar_for user %>
     
+    <span class="user_username"><%= user.username %></span>
+    <br />
     <% unless user.name.empty? %>
       <span class="user_name"><%= user.name %></span>
       <br />
     <% end %>
-    <span class="user_username"><%= "@#{user.username}" %></span>
-    <br />
     <span class="post_count"><%= pluralize(user.posts.count, t(:_post)) %></span>
   </a>
   

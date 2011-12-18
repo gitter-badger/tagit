@@ -18,7 +18,12 @@
   </div>
   
   <div class="post">
-    <span class="user"><%= link_to post.user.name, post.user %></span>
+    <span class="user">
+      <a href="<%= user_path(post.user) %>">
+        <%= post.user.username %>
+        <%= post.user.name %>
+      </a>
+    </span>
     <span class="timestamp"><%= t(:posted_message) % { :time => time_ago_in_words(post.created_at) } %></span>
     <div class="title_and_tags">
       <% unless post.title.blank? %>

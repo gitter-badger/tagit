@@ -44,25 +44,26 @@ class Post < ActiveRecord::Base
     post_tags.find_by_tag_id_and_user_id(tag, user)
   end
   
-  def tags_for_user(user) # Select ([post tags] for [user]) + ([post tags] for [followed users] except those the user already has)
+  def tags_for_user(user) # Select ([post tags] for [this user]) + ([post tags] for [author and followed users] except those this user already has)
     post_tags
-      .select('"post_tags".*')
-      .joins('JOIN "relationships" ON "post_tags".user_id = "relationships".followed_id')
-      .where('"post_tags".user_id = ? OR ("relationships".follower_id = ? AND "post_tags".tag_id NOT IN (SELECT tag_id FROM "post_tags" WHERE post_id = ? AND user_id = ?))', user.id, user.id, id, user.id)
-    # user_tag_ids = post_tags.where(:user_id => user.id).map(&:tag_id)
-    # post_tags.where("user_id = ? OR (user_id IN (COALESCE(?, 0)) AND tag_id NOT IN (COALESCE(?, 0)))", user.id, user.following, user_tag_ids)
+      .select('DISTINCT (post_tags.id), "post_tags".*')
+      .joins('JOIN "posts" ON "post_tags".post_id = "posts".id')
+      .joins('JOIN "tags" ON "post_tags".tag_id = "tags".id')
+      .joins('LEFT JOIN "relationships" ON "post_tags".user_id = "relationships".followed_id')
+      .where('"post_tags".user_id = ? OR (("post_tags".user_id = "posts".user_id OR "relationships".follower_id = ?) AND "post_tags".tag_id NOT IN (SELECT tag_id FROM "post_tags" WHERE post_id = "posts".id AND user_id = ?))', user.id, user.id, user.id)
+      .order('"tags".name')
   end
   
   def self.from_followed_users(user)      
     Post.where(:user_id => user.following_ids)
   end
   
-  def self.from_user_stream(user) # Select [posts] from [user + followed users] that have [tags the user is following]
+  def self.from_user_stream(user) # Select [posts] from [this user + followed users + tagged posts] that have [tags this user has not blocked]
     Post
       .select('DISTINCT (posts.id), "posts".*')
       .joins('LEFT JOIN "relationships" ON "posts".user_id = "relationships".followed_id')
       .joins('LEFT JOIN "post_tags" ON "posts".id = "post_tags".post_id')
       .joins('LEFT JOIN "user_tags" ON "post_tags".tag_id = "user_tags".tag_id')
-      .where('("posts".user_id = ? OR "relationships".follower_id = ?) AND "user_tags".tag_id IS NULL', user.id, user.id)
+      .where('("posts".user_id = ? OR "relationships".follower_id = ? OR ("post_tags".user_id = ?)) AND "user_tags".tag_id IS NULL', user.id, user.id, user.id)
   end
 end
