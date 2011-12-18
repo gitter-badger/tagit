@@ -2,11 +2,6 @@
   <%= link_to gravatar_for(post.user, :size => 50), post.user %>
   
   <div class="buttons">
-    <% if params[:action] != :show %>
-      <div class="show_post_button left margin-right">
-        <%= link_to "◱", post_path(post) %>
-      </div>
-    <% end %>
     <% if current_user?(post.user) %>
       <div class="edit_button left margin-right">
         <%= link_to "✎", edit_post_path(post) %>
@@ -20,11 +15,11 @@
   <div class="post">
     <span class="user">
       <a href="<%= user_path(post.user) %>">
-        <%= post.user.username %>
-        <%= post.user.name %>
+        <span class="user_username"><%= post.user.username %></span>
+        <span class="user_name"><%= post.user.name %></span>
       </a>
     </span>
-    <span class="timestamp"><%= t(:posted_message) % { :time => time_ago_in_words(post.created_at) } %></span>
+    <%= link_to t(:posted_message) % { :time => time_ago_in_words(post.created_at) }, post, :title => post.created_at.to_s(:short), :class => "timestamp" %>
     <div class="title_and_tags">
       <% unless post.title.blank? %>
         <div class="title"><%= post.title %></div>

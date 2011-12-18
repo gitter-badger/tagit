@@ -3,12 +3,8 @@
     <%= gravatar_for user %>
     
     <span class="user_username"><%= user.username %></span>
-    <br />
-    <% unless user.name.empty? %>
-      <span class="user_name"><%= user.name %></span>
-      <br />
-    <% end %>
-    <span class="post_count"><%= pluralize(user.posts.count, t(:_post)) %></span>
+    <span class="user_name"><%= user.name %></span>
+    <div class="post_count"><%= pluralize(user.posts.count, t(:_post)) %></div>
   </a>
   
   <%= render "relationships/following", :user => user %>
