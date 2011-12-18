@@ -50,7 +50,7 @@ class Post < ActiveRecord::Base
       .joins('JOIN "posts" ON "post_tags".post_id = "posts".id')
       .joins('JOIN "tags" ON "post_tags".tag_id = "tags".id')
       .joins('LEFT JOIN "relationships" ON "post_tags".user_id = "relationships".followed_id')
-      .where('"post_tags".user_id = ? OR (("post_tags".user_id = "posts".user_id OR "relationships".follower_id = ?) AND "post_tags".tag_id NOT IN (SELECT tag_id FROM "post_tags" WHERE post_id = "posts".id AND user_id = ?))', user.id, user.id, user.id)
+      .where('"post_tags".user_id = ? OR (("post_tags".user_id = "posts".user_id OR "relationships".follower_id = ?) AND "post_tags".tag_id NOT IN (SELECT "post_tags".tag_id FROM "post_tags" WHERE "post_tags".post_id = "posts".id AND "post_tags".user_id = ?))', user.id, user.id, user.id)
       .order('"tags".name')
   end
   
