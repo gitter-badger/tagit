@@ -45,8 +45,12 @@ class Post < ActiveRecord::Base
   end
   
   def tags_for_user(user) # Select ([post tags] for [user]) + ([post tags] for [followed users] except those the user already has)
-    user_tag_ids = user.post_tags.where(:post_id => id).map(&:tag_id).uniq
-    post_tags.where("user_id = ? OR (user_id IN (?) AND tag_id NOT IN (?))", user.id, user.following, user_tag_ids)
+    post_tags
+      .select('"post_tags".*')
+      .joins('LEFT JOIN "relationships" ON "post_tags".user_id = "relationships".followed_id')
+      .where('"post_tags".user_id = ? OR ("relationships".follower_id = ? AND "post_tags".tag_id NOT IN (SELECT tag_id FROM "post_tags" WHERE post_id = ? AND user_id = ?))', user.id, user.id, id, user.id)
+    # user_tag_ids = post_tags.where(:user_id => user.id).map(&:tag_id)
+    # post_tags.where("user_id = ? OR (user_id IN (COALESCE(?, 0)) AND tag_id NOT IN (COALESCE(?, 0)))", user.id, user.following, user_tag_ids)
   end
   
   def self.from_followed_users(user)      

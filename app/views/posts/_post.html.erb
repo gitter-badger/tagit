@@ -2,7 +2,7 @@
   <%= link_to gravatar_for(post.user, :size => 50), post.user %>
   
   <div class="buttons">
-    <% if params[:action] != "show" %>
+    <% if params[:action] != :show %>
       <div class="show_post_button left margin-right">
         <%= link_to "◱", post_path(post) %>
       </div>
@@ -29,7 +29,7 @@
           <%= render :partial => "post_tags/post_tag", :collection => post.tags_for_user(current_user) %>
         </div>
       <% end %>
-    
+      
       <div class="clear"></div>
     </div>
     <div class="content"><%= format_post(post.content) %></div>
