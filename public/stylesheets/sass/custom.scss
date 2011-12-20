@@ -45,24 +45,22 @@ $margin: 5px;
 .base_button
 {
   font-size: 1.25em;
+  cursor: pointer;
+  color: #ccc;
   
-  a
+  a, span, div
   {
     color: #ccc;
-    text-decoration: none;
   }
   
-  a:hover
+  a:hover, span:hover, div:hover
   {
     color: #666;
   }
 }
-
-.show_post_button
+.base_button:hover
 {
-  @extend .base_button;
-  margin-top: -7px;
-  font-family: Segoe UI Symbol;
+  color: #666;
 }
 
 .edit_button
@@ -72,6 +70,12 @@ $margin: 5px;
 }
 
 .delete_button
+{
+  @extend .base_button;
+  margin-top: -7px;
+}
+
+.add_button
 {
   @extend .base_button;
   margin-top: -7px;

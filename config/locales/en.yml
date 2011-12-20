@@ -57,6 +57,7 @@ en:
   more: "More"
   tag: "Tag"
   tag_list_placeholder: "Tags (separated by commas)"
+  tag_list_placeholder_short: "Tags"
   text: "Text"
   stream: "Stream"
   search: "Search"

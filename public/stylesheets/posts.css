@@ -13,13 +13,23 @@
     .post_item .post .timestamp {
       color: #666; }
     .post_item .post .title_and_tags {
-      margin-top: 8px; }
+      margin-top: 4px; }
       .post_item .post .title_and_tags .title {
         font-weight: bold;
-        float: left; }
+        float: left;
+        margin-top: 4px; }
       .post_item .post .title_and_tags .tags {
         float: right;
-        margin: -3px -2px -3px 0px; }
+        margin: 1px -2px -3px 0px; }
+      .post_item .post .title_and_tags .add_tags {
+        float: right;
+        margin: 3px 0px 1px 4px;
+        overflow: hidden; }
+        .post_item .post .title_and_tags .add_tags input {
+          width: 75px;
+          height: 15px;
+          margin-right: 4px;
+          display: none; }
     .post_item .post .content {
       margin-left: -55px;
       margin-top: 5px;

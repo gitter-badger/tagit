@@ -24,6 +24,18 @@
       <% unless post.title.blank? %>
         <div class="title"><%= post.title %></div>
       <% end %>
+      
+      <div class="add_tags">
+        <input id="post_<%= post.id %>_added_tags" class="left" type="text" onkeypress="if (event.keyCode == 13) $('#post_<%= post.id %>_add_tags').click();" placeholder="<%= t(:tag_list_placeholder_short) %>" />
+        
+        <div class="add_button left">
+          <span id="post_<%= post.id %>_show_add_tags" onclick="addTags(this, <%= post.id %>, true);">+</span>
+          <%= link_to "+", post_tags_path(:post_id => post.id, :add_tags => true), :method => :post, :remote => true, :id => "post_#{post.id}_add_tags", :style => "display: none", :onclick => "addTags(this, #{post.id}, false);" %>
+        </div>
+        
+        <div class="clear"></div>
+      </div>
+      
       <% unless post.post_tags.blank? %>
         <div id="post_<%= post.id %>_tags" class="tags">
           <%= render :partial => "post_tags/post_tag", :collection => post.tags_for_user(current_user) %>
@@ -34,7 +46,7 @@
     </div>
     <div class="content"><%= format_post(post.content) %></div>
     <!--
-    if $('post_< %= post.id %>').html().length > TRUNC_POST_LENGTH (or @TRUNC_POST_LENGTH)
+    if $('post_<%= post.id %>').html().length > TRUNC_POST_LENGTH (or @TRUNC_POST_LENGTH)
       <div style="a href"> t(:more) »</div>
     -->
   </div>

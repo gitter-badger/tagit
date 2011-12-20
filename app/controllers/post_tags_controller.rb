@@ -3,9 +3,13 @@ class PostTagsController < ApplicationController
   
   def create
     @post = Post.find(params[:post_id])
-    @tag = Tag.find(params[:tag_id])
-    @post.tag!(@tag, current_user)
-    respond_with @post, @tag
+    if (params[:add_tags])
+      @post.tag_with_list(params[:added_tags], current_user, false)
+    else
+      tag = Tag.find(params[:tag_id])
+      @post.tag!(tag, current_user)
+    end
+    respond_with @post
   end
   
   def destroy

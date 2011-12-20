@@ -27,22 +27,25 @@
     font-weight: bold; }
 
 /* BUTTONS */
-.base_button, .show_post_button, .edit_button, .delete_button {
-  font-size: 1.25em; }
-  .base_button a, .show_post_button a, .edit_button a, .delete_button a {
-    color: #ccc;
-    text-decoration: none; }
-  .base_button a:hover, .show_post_button a:hover, .edit_button a:hover, .delete_button a:hover {
+.base_button, .edit_button, .delete_button, .add_button {
+  font-size: 1.25em;
+  cursor: pointer;
+  color: #ccc; }
+  .base_button a, .edit_button a, .delete_button a, .add_button a, .base_button span, .edit_button span, .delete_button span, .add_button span, .base_button div, .edit_button div, .delete_button div, .add_button div {
+    color: #ccc; }
+  .base_button a:hover, .edit_button a:hover, .delete_button a:hover, .add_button a:hover, .base_button span:hover, .edit_button span:hover, .delete_button span:hover, .add_button span:hover, .base_button div:hover, .edit_button div:hover, .delete_button div:hover, .add_button div:hover {
     color: #666; }
 
-.show_post_button {
-  margin-top: -7px;
-  font-family: Segoe UI Symbol; }
+.base_button:hover, .edit_button:hover, .delete_button:hover, .add_button:hover {
+  color: #666; }
 
 .edit_button {
   margin-top: -5px; }
 
 .delete_button {
+  margin-top: -7px; }
+
+.add_button {
   margin-top: -7px; }
 
 .expand_collapse_button, .expand_button, .collapse_button {

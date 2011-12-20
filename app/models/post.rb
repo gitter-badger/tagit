@@ -20,12 +20,14 @@ class Post < ActiveRecord::Base
     10
   end
   
-  def tag_list
-    post_tags.find_all_by_user_id(user_id).map{ |post_tag| post_tag.tag.name }.join(", ")
+  def tag_list(uid = user_id)
+    post_tags.find_all_by_user_id(uid).map{ |post_tag| post_tag.tag.name }.join(", ")
   end
   
-  def tag_with_list(list, user)
-    post_tags.find_all_by_user_id(user.id).each(&:destroy) # Clean up the old post tags from this user to make room for the new ones
+  def tag_with_list(list, user, destroy_old = true)
+    return if list.blank?
+  
+    post_tags.find_all_by_user_id(user.id).each(&:destroy) if (destroy_old)
     
     tag_names = list.split(/,\s*/)
     new_tags = tag_names.map{ |tag_name| Tag.find_or_create_by_name(:name => tag_name) }

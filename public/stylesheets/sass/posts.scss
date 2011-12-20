@@ -28,18 +28,34 @@
     
     .title_and_tags
     {
-      margin-top: 8px;
+      margin-top: 4px;
       
       .title
       {
         font-weight: bold;
         float: left;
+        margin-top: 4px;
       }
       
       .tags
       {
         float: right;
-        margin: -3px -2px -3px 0px;
+        margin: 1px -2px -3px 0px;
+      }
+      
+      .add_tags
+      {
+        float: right;
+        margin: 3px 0px 1px 4px;
+        overflow: hidden;
+        
+        input
+        {
+          width: 75px;
+          height: 15px;
+          margin-right: 4px;
+          display: none;
+        }
       }
     }
     
