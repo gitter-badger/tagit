@@ -9,8 +9,8 @@ $(function() {
   });
   
   //Attach submit click handlers
-  $('a.submit').click(function() { $(this).closest('form').submit(); return false; });
-  $('input.submit').click(function() { $(this).closest('form').submit(); });
+  $('body').on('click.submit', 'a.submit', function() { $(this).closest('form').submit(); return false; });
+  $('body').on('click.submit', 'input.submit', function() { $(this).closest('form').submit(); });
 });
 
 $(document).ajaxComplete(function(event, request) {
