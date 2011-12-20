@@ -50,11 +50,11 @@
 
 .expand_collapse_button, .expand_button, .collapse_button {
   background-repeat: no-repeat;
-  background-position: 0 5px;
+  background-position: 0 7px;
   float: right;
   height: 7px;
   width: 8px;
-  padding-top: 5px; }
+  padding-top: 7px; }
 
 .expand_button {
   background-image: url(/images/expand.png); }
