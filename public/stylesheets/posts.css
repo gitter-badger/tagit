@@ -30,6 +30,9 @@
           height: 15px;
           margin-right: 4px;
           display: none; }
+        .post_item .post .title_and_tags .add_tags .add_button {
+          margin-top: -5px;
+          margin-bottom: -2px; }
     .post_item .post .content {
       margin-left: -55px;
       margin-top: 5px;
