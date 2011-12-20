@@ -4,9 +4,11 @@ class PagesController < ApplicationController
     
     if signed_in?
       @post = Post.new
-      @stream = current_user.stream.paginate(:page => params[:page])
-      # @stream = current_user.stream.before(params[:latest_post_created_at]).paginate(:page => params[:page])
-      if request.xhr?
+      unless request.xhr?
+        @stream = current_user.stream.paginate(:page => params[:page])
+        session[:latest_post_id] = @stream.first.id
+      else
+        @stream = current_user.stream.where("[posts].id <= ?", session[:latest_post_id]).paginate(:page => params[:page])
         render :partial => "posts/post", :collection => @stream
       end
     end
