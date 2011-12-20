@@ -46,6 +46,19 @@ function submitForm(element) {
   return false;
 }
 
+function addedTagsTextBoxKeyUp(event, self, post_id) {
+  switch (event.keyCode) {
+    case 13: //Enter
+      $('#post_' + post_id + '_add_tags').click();
+      break;
+    case 27: //Escape
+      $('#post_' + post_id + '_show_add_tags').toggle(true);
+      $('#post_' + post_id + '_add_tags').toggle(false);
+      $(self).toggle(false);
+      break;
+  }
+}
+
 function addTags(self, post_id, show) {
   $('#post_' + post_id + '_show_add_tags').toggle(!show);
   $('#post_' + post_id + '_add_tags').toggle(show);
