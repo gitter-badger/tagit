@@ -8,17 +8,14 @@
   
   <div class="info_bar">
     <%= render "users/info", :user => current_user %>
+    
     <div class="user_tags">
-      <!--<div class="tag">
-        <%= render "user_tags/follow_form" %>
-        <%= link_to "Select All", about_path %>
-      </div>-->
-      
       <div class="tag_group" onclick="toggleCollapsed(this, 'my_tags');">
         <div class="left"><%= t(:my_tags) %></div>
         <div class="expand_button"></div>
         <div class="clear"></div>
       </div>
+      
       <div id="my_tags" class="tag_group_list" style="display: none">
         <%= render :partial => "tags/tag", :collection => current_user.tags_from_posts, :locals => { :show_checkboxes => true, :show_count => true } %>
       </div>
@@ -28,6 +25,7 @@
         <div class="expand_button"></div>
         <div class="clear"></div>
       </div>
+      
       <div id="other_tags" class="tag_group_list" style="display: none">
         <%= render :partial => "tags/tag", :collection => current_user.tags_from_followed_users - current_user.tags_from_posts, :locals => { :show_checkboxes => true, :show_count => true } %>
       </div>

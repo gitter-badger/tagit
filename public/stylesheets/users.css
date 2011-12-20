@@ -13,6 +13,12 @@
   width: 30%;
   margin: -5px;
   padding: 5px; }
+  .info_bar .user_info .user_fields, .info_bar .user_info .user_relations {
+    background: #fbfbfb; }
+  .info_bar .user_info .user_fields {
+    border-top: 1px solid #e3e3e3; }
+  .info_bar .user_info .user_relations {
+    border-bottom: 1px solid #e3e3e3; }
 
 /* USER PROFILE */
 /* EDIT USER */

@@ -2,16 +2,20 @@
   <a href="<%= user_path(user) %>" class="user_base">
     <%= gravatar_for user %>
     
-    <span class="user_username"><%= user.username %></span>
-    <span class="user_name"><%= user.name %></span>
-    <div class="post_count"><%= pluralize(user.posts.count, t(:_post)) %></div>
+    <div class="user_fields">
+      <span class="user_username"><%= user.username %></span>
+      <span class="user_name"><%= user.name %></span>
+      <div class="post_count"><%= pluralize(user.posts.count, t(:_post)) %></div>
+    </div>
   </a>
   
-  <%= render "relationships/following", :user => user %>
+  <div class="user_relations">
+    <%= render "relationships/following", :user => user %>
 
-  <%= render "relationships/followers", :user => user %>
-  
-  <%= render "relationships/follow_form", :user => user %>
+    <%= render "relationships/followers", :user => user %>
+    
+    <%= render "relationships/follow_form", :user => user %>
+  </div>
   
   <div class="clear"></div>
 </div>

@@ -5,6 +5,7 @@ class PagesController < ApplicationController
     if signed_in?
       @post = Post.new
       @stream = current_user.stream.paginate(:page => params[:page])
+      # @stream = current_user.stream.before(params[:latest_post_created_at]).paginate(:page => params[:page])
       if request.xhr?
         render :partial => "posts/post", :collection => @stream
       end
