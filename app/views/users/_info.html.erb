@@ -3,8 +3,8 @@
     <%= gravatar_for user %>
     
     <div class="user_fields">
+      <div class="user_name"><%= user.name %></div>
       <span class="user_username"><%= user.username %></span>
-      <span class="user_name"><%= user.name %></span>
       <div class="post_count"><%= pluralize(user.posts.count, t(:_post)) %></div>
     </div>
   </a>

@@ -31,19 +31,8 @@ function addFlash(message, type) {
 }
 
 function toggleCollapsed(sender, collapsedElement) {
-  var expand_button = $(sender).children('.expand_button');
-  if (expand_button.length > 0) {
-    expand_button.attr('class', 'collapse_button');
-  }
-  else {
-    $(sender).children('.collapse_button').attr('class', 'expand_button');
-  }
+  $(sender).children('.expand_button, .collapse_button').toggleClass('expand_button').toggleClass('collapse_button');
   $('#' + collapsedElement).animate({ height: 'toggle' }, ANIMATION_DURATION);
-}
-
-function submitForm(element) {
-  $(element).closest('form').submit();
-  return false;
 }
 
 function addedTagsTextBoxKeyUp(event, self, post_id) {
@@ -72,4 +61,8 @@ function addTags(self, post_id, show) {
   else {
     self.href += '&added_tags=' + encodeURIComponent(added_tags_text_box.val());
   }
+}
+
+function clickEach(elements) {
+  elements.each(function() { $(this).click(); });
 }

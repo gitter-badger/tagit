@@ -10,9 +10,9 @@
     <%= render "users/info", :user => current_user %>
     
     <div class="user_tags">
-      <div class="tag_group" onclick="toggleCollapsed(this, 'my_tags');">
+      <div class="group" onclick="toggleCollapsed(this, 'my_tags');">
         <div class="left"><%= t(:my_tags) %></div>
-        <div class="expand_button"></div>
+        <div class="expand_button right"></div>
         <div class="clear"></div>
       </div>
       
@@ -20,9 +20,9 @@
         <%= render :partial => "tags/tag", :collection => current_user.tags_from_posts, :locals => { :show_checkboxes => true, :show_count => true } %>
       </div>
       
-      <div class="tag_group" onclick="toggleCollapsed(this, 'other_tags');">
+      <div class="group" onclick="toggleCollapsed(this, 'other_tags');">
         <div class="left"><%= t(:other_tags) %></div>
-        <div class="expand_button"></div>
+        <div class="expand_button right"></div>
         <div class="clear"></div>
       </div>
       

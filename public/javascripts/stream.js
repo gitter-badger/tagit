@@ -1,14 +1,15 @@
 $(function() {
-  setPostAnchorTarget('_blank');
+  setAnchorTarget('_blank');
   embedVideo();
+  attachTogglePost();
 });
 
 $(document).ajaxComplete(function(event, request) {
-  setPostAnchorTarget('_blank');
+  setAnchorTarget('_blank');
 });
 
 //This has to be done client side due to server sanitization not allowing the 'target' attribute
-function setPostAnchorTarget(target) {
+function setAnchorTarget(target) {
   $('a.' + target).attr('target', target);
 }
 
@@ -26,4 +27,14 @@ function clickVideo() {
       $(this).html('<img src="http://img.youtube.com/vi/' + $(this).attr('src') + '/0.jpg" /><div class="play_video"></div>');
     }
   });
+}
+
+function attachTogglePost() {
+  $('#toggle_all_posts').on('click.expand_all', '.expand_all_posts', function() { clickEach($('#stream').find('.expand_button:visible')); });
+  $('#toggle_all_posts').on('click.collapse_all', '.collapse_all_posts', function() { clickEach($('#stream').find('.collapse_button:visible')); });
+  $('#stream').on('click.toggle_post', '.expand_button, .collapse_button', togglePost);
+}
+
+function togglePost() {
+  $(this).closest('.post_item').children('.expanded_post, .collapsed_post').animate({ height: 'toggle' }, ANIMATION_DURATION);
 }

@@ -1,5 +1,12 @@
 <%= javascript_include_tag "stream" %>
 <% unless stream.empty? %>
+  <div id="toggle_all_posts" style="float: right; margin: -25px 15px 6px 0px; cursor: pointer;">
+    <a class="expand_all_posts">Expand all</a>
+    &nbsp;
+    <a class="collapse_all_posts">Collapse all</a>
+  </div>
+  <div class="clear"></div>
+  
   <div id="filtered_stream" class="posts">
     <%= render :partial => "posts/post", :collection => stream %>
   </div> 

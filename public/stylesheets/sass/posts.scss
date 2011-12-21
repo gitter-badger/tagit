@@ -1,97 +1,121 @@
 .post_item
 {
   border-top: 1px solid #ccc;
-  padding-top: 5px;
   margin-right: 15px;
-  margin-bottom: 10px;
-
-  img.gravatar
+  
+  .collapsed_post
   {
-    float: left;
-    width: 50px;
-  }
-
-  .buttons
-  {
-    float: right;
-  }
-
-  .post
-  {
-    $post_margin: 55px;
-    margin-left: $post_margin;
-
-    .timestamp
+    padding-top: 5px;
+    margin-bottom: 5px;
+    
+    $avatar_width: 30px;
+    img.gravatar
     {
-      color: #666;
+      float: left;
+      width: avatar_width;
     }
     
-    .title_and_tags
+    .post
     {
-      margin-top: 4px;
-      
-      .title
+      margin-left: $avatar_width + 5;
+      margin-right: 10px;
+    }
+  }
+  
+  .expanded_post
+  {
+    padding-top: 5px;
+    margin-bottom: 10px;
+    
+    $avatar_width: 50px;
+    img.gravatar
+    {
+      float: left;
+      width: $avatar_width;
+    }
+
+    .buttons
+    {
+      float: right;
+    }
+    
+    .post
+    {
+      $post_margin: $avatar_width + 5;
+      margin-left: $post_margin;
+
+      .timestamp
       {
-        font-weight: bold;
-        float: left;
+        color: #666;
+      }
+      
+      .title_and_tags
+      {
         margin-top: 4px;
-      }
-      
-      .tags
-      {
-        float: right;
-        margin: 1px -2px -3px 0px;
-      }
-      
-      .add_tags
-      {
-        float: right;
-        margin: 3px 0px 1px 4px;
-        overflow: hidden;
         
-        input
+        .title
         {
-          width: 75px;
-          height: 15px;
-          margin-right: 4px;
-          display: none;
+          font-weight: bold;
+          float: left;
+          margin-top: 4px;
         }
         
-        .add_button
+        .tags
         {
-          margin-top: -5px;
-          margin-bottom: -2px;
+          float: right;
+          margin: 1px -2px -3px 0px;
+        }
+        
+        .add_tags
+        {
+          float: right;
+          margin: 3px 0px 1px 4px;
+          overflow: hidden;
+          
+          input
+          {
+            width: 75px;
+            height: 15px;
+            margin-right: 4px;
+            display: none;
+          }
+          
+          .add_button
+          {
+            margin-top: -5px;
+            margin-bottom: -2px;
+          }
         }
       }
-    }
-    
-    .content
-    {
-      margin-left: -$post_margin;
-      margin-top: 5px;
-      word-wrap: break-word;
       
-      img
+      .content
       {
-        max-width: 455px;
-      }
-      
-      .video
-      {
-        width: 455px;
-        position: relative;
+        margin-left: -$post_margin;
+        margin-top: 5px;
+        word-wrap: break-word;
         
-        .play_video
+        img
         {
-          background: url(/images/play-video.png) no-repeat;
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          margin-left: -38px;
-          margin-top: -38px;
-          width: 77px;
-          height: 77px;
-          opacity: 0.75;
+          max-width: 455px;
+        }
+        
+        .video
+        {
+          width: 455px;
+          position: relative;
+          
+          .play_video
+          {
+            background: url(/images/play-video.png) no-repeat;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -38px;
+            margin-top: -38px;
+            width: 77px;
+            height: 77px;
+            opacity: 0.75;
+          }
         }
       }
     }
@@ -131,8 +155,8 @@ form.new_post
   {
     input
     {
-      float: right;
-      margin: -2px 4px;
+      margin: -2px -1px;
+      min-width: 52px;
     }
   }
 }

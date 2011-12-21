@@ -7,6 +7,18 @@
 .clear {
   clear: both; }
 
+.small-margin-top {
+  margin-top: 2px; }
+
+.small-margin-right {
+  margin-right: 2px; }
+
+.small-margin-bottom {
+  margin-bottom: 2px; }
+
+.small-margin-left {
+  margin-left: 2px; }
+
 .margin-top {
   margin-top: 5px; }
 
@@ -25,6 +37,14 @@
   .menu span {
     padding: 5px;
     font-weight: bold; }
+
+.group {
+  cursor: pointer;
+  background: #fbfbfb;
+  padding: 2px 4px;
+  margin-top: 2px;
+  border-top: 1px solid #e3e3e3;
+  border-bottom: 1px solid #e3e3e3; }
 
 /* BUTTONS */
 .base_button, .edit_button, .delete_button, .add_button {
@@ -46,15 +66,16 @@
   margin-top: -7px; }
 
 .add_button {
-  margin-top: -7px; }
+  margin-top: -7px;
+  margin-right: -2px; }
 
 .expand_collapse_button, .expand_button, .collapse_button {
   background-repeat: no-repeat;
-  background-position: 0 7px;
-  float: right;
-  height: 7px;
-  width: 8px;
-  padding-top: 7px; }
+  background-position: 1px 7px;
+  height: 13px;
+  width: 10px;
+  padding-top: 7px;
+  cursor: pointer; }
 
 .expand_button {
   background-image: url(/images/expand.png); }

@@ -1,57 +1,67 @@
 .post_item {
   border-top: 1px solid #ccc;
-  padding-top: 5px;
-  margin-right: 15px;
-  margin-bottom: 10px; }
-  .post_item img.gravatar {
-    float: left;
-    width: 50px; }
-  .post_item .buttons {
-    float: right; }
-  .post_item .post {
-    margin-left: 55px; }
-    .post_item .post .timestamp {
-      color: #666; }
-    .post_item .post .title_and_tags {
-      margin-top: 4px; }
-      .post_item .post .title_and_tags .title {
-        font-weight: bold;
-        float: left;
+  margin-right: 15px; }
+  .post_item .collapsed_post {
+    padding-top: 5px;
+    margin-bottom: 5px; }
+    .post_item .collapsed_post img.gravatar {
+      float: left;
+      width: avatar_width; }
+    .post_item .collapsed_post .post {
+      margin-left: 35px;
+      margin-right: 10px; }
+  .post_item .expanded_post {
+    padding-top: 5px;
+    margin-bottom: 10px; }
+    .post_item .expanded_post img.gravatar {
+      float: left;
+      width: 50px; }
+    .post_item .expanded_post .buttons {
+      float: right; }
+    .post_item .expanded_post .post {
+      margin-left: 55px; }
+      .post_item .expanded_post .post .timestamp {
+        color: #666; }
+      .post_item .expanded_post .post .title_and_tags {
         margin-top: 4px; }
-      .post_item .post .title_and_tags .tags {
-        float: right;
-        margin: 1px -2px -3px 0px; }
-      .post_item .post .title_and_tags .add_tags {
-        float: right;
-        margin: 3px 0px 1px 4px;
-        overflow: hidden; }
-        .post_item .post .title_and_tags .add_tags input {
-          width: 75px;
-          height: 15px;
-          margin-right: 4px;
-          display: none; }
-        .post_item .post .title_and_tags .add_tags .add_button {
-          margin-top: -5px;
-          margin-bottom: -2px; }
-    .post_item .post .content {
-      margin-left: -55px;
-      margin-top: 5px;
-      word-wrap: break-word; }
-      .post_item .post .content img {
-        max-width: 455px; }
-      .post_item .post .content .video {
-        width: 455px;
-        position: relative; }
-        .post_item .post .content .video .play_video {
-          background: url(/images/play-video.png) no-repeat;
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          margin-left: -38px;
-          margin-top: -38px;
-          width: 77px;
-          height: 77px;
-          opacity: 0.75; }
+        .post_item .expanded_post .post .title_and_tags .title {
+          font-weight: bold;
+          float: left;
+          margin-top: 4px; }
+        .post_item .expanded_post .post .title_and_tags .tags {
+          float: right;
+          margin: 1px -2px -3px 0px; }
+        .post_item .expanded_post .post .title_and_tags .add_tags {
+          float: right;
+          margin: 3px 0px 1px 4px;
+          overflow: hidden; }
+          .post_item .expanded_post .post .title_and_tags .add_tags input {
+            width: 75px;
+            height: 15px;
+            margin-right: 4px;
+            display: none; }
+          .post_item .expanded_post .post .title_and_tags .add_tags .add_button {
+            margin-top: -5px;
+            margin-bottom: -2px; }
+      .post_item .expanded_post .post .content {
+        margin-left: -55px;
+        margin-top: 5px;
+        word-wrap: break-word; }
+        .post_item .expanded_post .post .content img {
+          max-width: 455px; }
+        .post_item .expanded_post .post .content .video {
+          width: 455px;
+          position: relative; }
+          .post_item .expanded_post .post .content .video .play_video {
+            background: url(/images/play-video.png) no-repeat;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -38px;
+            margin-top: -38px;
+            width: 77px;
+            height: 77px;
+            opacity: 0.75; }
 
 form.new_post {
   margin-right: 10px;
@@ -69,5 +79,5 @@ form.new_post {
     height: 4em;
     font-family: Segoe UI; }
   form.new_post .actions input {
-    float: right;
-    margin: -2px 4px; }
+    margin: -2px -1px;
+    min-width: 52px; }
