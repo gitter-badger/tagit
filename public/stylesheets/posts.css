@@ -9,7 +9,8 @@
       width: avatar_width; }
     .post_item .collapsed_post .post {
       margin-left: 35px;
-      margin-right: 10px; }
+      margin-right: 10px;
+      word-wrap: break-word; }
   .post_item .expanded_post {
     padding-top: 5px;
     margin-bottom: 10px; }
