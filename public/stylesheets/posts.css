@@ -87,3 +87,6 @@ form.new_post {
   float: right;
   margin: -25px 15px 6px 0px;
   cursor: pointer; }
+
+.user_profile #toggle_all_posts {
+  margin-top: 0px; }
