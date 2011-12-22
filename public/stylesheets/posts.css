@@ -82,3 +82,8 @@ form.new_post {
   form.new_post .actions input {
     margin: -2px -1px;
     min-width: 52px; }
+
+#toggle_all_posts {
+  float: right;
+  margin: -25px 15px 6px 0px;
+  cursor: pointer; }

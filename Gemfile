@@ -7,6 +7,7 @@ gem "will_paginate", "3.0.0"
 gem "admin_data"
 gem "friendly_id", "4.0.0.beta14"
 gem "jquery-rails", "1.0.19"
+gem "ledermann-rails-settings", :require => "rails-settings"
 
 group :development do
   gem "rspec-rails", "2.7.0"

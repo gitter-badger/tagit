@@ -4,6 +4,8 @@ class UsersController < ApplicationController
   before_filter :redirect_signed_in_user, :only => [:new, :create]  
   before_filter :authenticate_admin, :only => :destroy
   
+  respond_to :html, :js
+  
 	def index
     @title = t(:user).pluralize
     query = "%#{params[:search]}%"
@@ -79,6 +81,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @users = @user.send(action).paginate(:page => params[:page])
     render "users/show_relationships"
+  end
+  
+  def settings
+    current_user.settings.collapse_posts = params[:collapse_posts] unless params[:collapse_posts].nil?
   end
   
   private
