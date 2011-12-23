@@ -3,7 +3,8 @@ TagIt::Application.routes.draw do
 
 	resources :users do
     member do
-      get :following, :followers, :followed_tags, :settings
+      get :following, :followers, :followed_tags
+      post :settings
     end
   end
   

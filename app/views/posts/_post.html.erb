@@ -1,5 +1,5 @@
 <div class="post_item">
-  <div class="expanded_post" style="display: <%= current_user.settings.collapse_posts == "true" ? "none" : "block" %>">
+  <div class="expanded_post" <%= raw('style="display: none"') if current_user.settings.collapse_posts == "true" %>>
     <%= link_to gravatar_for(post.user, :size => 50), post.user %>
     
     <div class="buttons">
@@ -57,7 +57,7 @@
     <div class="clear"></div>
   </div>
   
-  <div class="collapsed_post" style="display: <%= current_user.settings.collapse_posts == "true" ? "block" : "none" %>">
+  <div class="collapsed_post" <%= raw('style="display: none"') if current_user.settings.collapse_posts != "true" %>>
     <div class="expand_button right margin-left"></div>
     
     <%= link_to gravatar_for(post.user, :size => 30), post.user %>

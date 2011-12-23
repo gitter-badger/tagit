@@ -123,7 +123,7 @@
   }
 }
 
-form.new_post
+.new_post
 {
   margin-right: 10px;
   margin-bottom: 5px;
@@ -139,6 +139,11 @@ form.new_post
       margin: 0px;
       width: 221px;
     }
+    
+    .input_expanded
+    {
+      width: 321px;
+    }
   }
   
   .content
@@ -148,6 +153,11 @@ form.new_post
       width: 448px;
       height: 4em;
       font-family: Segoe UI;
+    }
+    
+    .textarea_expanded
+    {
+      width: 649px;
     }
   }
   

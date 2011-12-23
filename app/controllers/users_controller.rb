@@ -85,6 +85,7 @@ class UsersController < ApplicationController
   
   def settings
     current_user.settings.collapse_posts = params[:collapse_posts] unless params[:collapse_posts].nil?
+    current_user.settings.hide_user_profile = (current_user.settings.hide_user_profile == "true" ? "false" : "true") unless params[:toggle_user_profile].nil?
   end
   
   private

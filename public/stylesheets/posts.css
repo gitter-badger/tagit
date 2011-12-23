@@ -63,21 +63,25 @@
             height: 77px;
             opacity: 0.75; }
 
-form.new_post {
+.new_post {
   margin-right: 10px;
   margin-bottom: 5px; }
-  form.new_post .title, form.new_post .tags {
+  .new_post .title, .new_post .tags {
     float: left;
     width: 50%;
     margin-bottom: 3px; }
-    form.new_post .title input, form.new_post .tags input {
+    .new_post .title input, .new_post .tags input {
       margin: 0px;
       width: 221px; }
-  form.new_post .content textarea {
+    .new_post .title .input_expanded, .new_post .tags .input_expanded {
+      width: 321px; }
+  .new_post .content textarea {
     width: 448px;
     height: 4em;
     font-family: Segoe UI; }
-  form.new_post .actions input {
+  .new_post .content .textarea_expanded {
+    width: 649px; }
+  .new_post .actions input {
     margin: -2px -1px;
     min-width: 52px; }
 

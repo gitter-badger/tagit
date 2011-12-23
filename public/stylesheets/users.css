@@ -4,9 +4,15 @@
 
 /* GENERAL */
 /* USER PROFILE */
+#toggle_profile {
+  margin-top: -20px; }
+
 .main_bar {
   float: left;
   width: 70%; }
+
+.main_bar_expanded {
+  width: 100%; }
 
 .info_bar {
   float: left;
@@ -30,7 +36,7 @@
 /* EDIT USER */
 /* USER INFO */
 .user_info img.gravatar {
-  margin-right: 5px; }
+  margin: 1px 5px 0px 0px; }
 
 /* USER INFO */
 /* USERS INDEX */

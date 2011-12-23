@@ -1,9 +1,9 @@
 <%= javascript_include_tag "stream" %>
 <% unless stream.empty? %>
   <div id="toggle_all_posts">
-    <%= link_to t(:expand_all), settings_user_path(current_user, :collapse_posts => "false"), :class => "expand_all_posts", :remote => true %>
+    <%= link_to t(:expand_all), settings_user_path(current_user, :collapse_posts => "false"), :method => :post, :class => "expand_all_posts", :remote => true %>
     &nbsp;
-    <%= link_to t(:collapse_all), settings_user_path(current_user, :collapse_posts => "true"), :class => "collapse_all_posts", :remote => true %>
+    <%= link_to t(:collapse_all), settings_user_path(current_user, :collapse_posts => "true"), :method => :post, :class => "collapse_all_posts", :remote => true %>
   </div>
   <div class="clear"></div>
   
