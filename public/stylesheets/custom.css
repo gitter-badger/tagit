@@ -38,13 +38,18 @@
     padding: 5px;
     font-weight: bold; }
 
-.group {
+.group, .profile_group {
   cursor: pointer;
   background: #fbfbfb;
-  padding: 2px 4px;
-  margin-top: 2px;
+  padding: 0px 4px;
+  margin-top: 3px;
   border-top: 1px solid #e3e3e3;
   border-bottom: 1px solid #e3e3e3; }
+
+.profile_group {
+  margin-top: 1px;
+  margin-bottom: 3px;
+  height: 20px; }
 
 /* BUTTONS */
 .base_button, .edit_button, .delete_button, .add_button {

@@ -49,17 +49,16 @@
         margin-top: 5px;
         word-wrap: break-word; }
         .post_item .expanded_post .post .content img {
-          max-width: 455px; }
+          max-width: 100%; }
         .post_item .expanded_post .post .content .video {
-          width: 455px;
           position: relative; }
           .post_item .expanded_post .post .content .video .play_video {
             background: url(/images/play-video.png) no-repeat;
             position: absolute;
             left: 50%;
             top: 50%;
-            margin-left: -38px;
-            margin-top: -38px;
+            margin-left: -38.5px;
+            margin-top: -38.5px;
             width: 77px;
             height: 77px;
             opacity: 0.75; }
@@ -73,10 +72,9 @@ form.new_post {
     margin-bottom: 3px; }
     form.new_post .title input, form.new_post .tags input {
       margin: 0px;
-      width: 96.67%; }
+      width: 221px; }
   form.new_post .content textarea {
     width: 448px;
-    max-width: 448px;
     height: 4em;
     font-family: Segoe UI; }
   form.new_post .actions input {

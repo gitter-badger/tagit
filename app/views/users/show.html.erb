@@ -1,11 +1,11 @@
 <div class="main_bar">
   <div id="stream" class="user_profile">
-    <%= render 'posts/stream', :stream => @posts, :path => user_path(@user) %>
+    <%= render "posts/stream", :stream => @posts, :path => user_path(@user) %>
   </div>
 </div>
 
 <div class="info_bar">
-  <%= render 'users/info', :user => @user %>
+  <%= render "users/info", :user => @user, :show_toggle => true %>
 </div>
 
 <div class="clear"></div>

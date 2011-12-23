@@ -7,7 +7,7 @@
   </div>
   
   <div class="info_bar">
-    <%= render "users/info", :user => current_user %>
+    <%= render "users/info", :user => current_user, :show_toggle => true %>
     
     <div class="user_tags">
       <div class="group" onclick="toggleCollapsed(this, 'my_tags');">

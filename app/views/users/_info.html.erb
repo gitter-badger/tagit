@@ -1,21 +1,30 @@
 <div class="user_info">
-  <a href="<%= user_path(user) %>" class="user_base">
-    <%= gravatar_for user %>
-    
-    <div class="user_fields">
-      <div class="user_name"><%= user.name %></div>
-      <span class="user_username"><%= user.username %></span>
-      <div class="post_count"><%= pluralize(user.posts.count, t(:_post)) %></div>
-    </div>
-  </a>
-  
-  <div class="user_relations">
-    <%= render "relationships/following", :user => user %>
-
-    <%= render "relationships/followers", :user => user %>
-    
-    <%= render "relationships/follow_form", :user => user %>
+  <% if local_assigns[:show_toggle] %>
+  <%= javascript_include_tag "user" %>
+  <div id="toggle_profile" class="profile_group">
+    <div class="collapse_button right"></div>
+    <div class="left"><%= t(:profile) %></div>
+    <div class="clear"></div>
   </div>
+  <% end %>
   
-  <div class="clear"></div>
+  <div class="user_profile">
+    <a href="<%= user_path(user) %>" class="user_base">
+      <%= gravatar_for user %>
+      
+      <div class="user_fields">
+        <div class="user_name"><%= user.name %></div>
+        <span class="user_username"><%= user.username %></span>
+        <div class="post_count"><%= pluralize(user.posts.count, t(:_post)) %></div>
+      </div>
+    </a>
+    
+    <div class="user_relations">
+      <%= render "relationships/following", :user => user %>
+      <%= render "relationships/followers", :user => user %>
+      <%= render "relationships/follow_form", :user => user %>
+    </div>
+    
+    <div class="clear"></div>
+  </div>
 </div>

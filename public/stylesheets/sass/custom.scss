@@ -63,10 +63,18 @@ $margin: 5px;
 {
   cursor: pointer;
   background: #fbfbfb;
-  padding: 2px 4px;
-  margin-top: 2px;
+  padding: 0px 4px;
+  margin-top: 3px;
   border-top: 1px solid #e3e3e3;
   border-bottom: 1px solid #e3e3e3;
+}
+
+.profile_group
+{
+  @extend .group;
+  margin-top: 1px;
+  margin-bottom: 3px;
+  height: 20px;
 }
 
 /* BUTTONS */
