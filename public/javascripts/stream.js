@@ -20,7 +20,7 @@ function embedVideo() {
 
 function clickVideo() {
   if ($(this).children('iframe').length > 0) return; //There is a 4px region on the bottom of the div that can still be clicked after the video has started
-  $(this).html('<iframe width="100%" height="360" src="http://youtube.com/embed/' + $(this).attr('src') + '?autoplay=1" frameborder="0" allowfullscreen></iframe>');
+  $(this).html('<iframe width="480" height="360" src="http://youtube.com/embed/' + $(this).attr('src') + '?autoplay=1" frameborder="0" allowfullscreen></iframe>');
   var self = this;
   $('.video').each(function() { //Revert any playing videos back to static images
     if (this != self && $(this).children('iframe').length > 0) {
@@ -30,9 +30,14 @@ function clickVideo() {
 }
 
 function attachTogglePost() {
-  $('#toggle_all_posts').on('click.expand_all', '.expand_all_posts', function() { clickEach($('#stream').find('.expand_button:visible')); });
-  $('#toggle_all_posts').on('click.collapse_all', '.collapse_all_posts', function() { clickEach($('#stream').find('.collapse_button:visible')); });
-  $('#stream').on('click.toggle_post', '.expand_button, .collapse_button', togglePost);
+  $('#toggle_all_posts').on('click.expand_all', '.expand_all_posts, .collapse_all_posts', toggleAllPosts);
+  $('#filtered_stream').on('click.toggle_post', '.expand_button, .collapse_button', togglePost);
+}
+
+function toggleAllPosts() {
+  $('#toggle_all_posts').children().toggle();
+  $('#filtered_stream').animate({ height: 'toggle' }, ANIMATION_DURATION);
+  $('#stream').append('<div class="loading_panel"></div>');
 }
 
 function togglePost() {

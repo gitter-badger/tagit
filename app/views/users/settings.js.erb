@@ -1,5 +1,10 @@
-<% unless @collapse_post.nil? || @post.nil? %>
-  var post = $('#post_<%= @post.id %>');
-  post.html('<%= escape_javascript(render "posts/" + (@collapse_post ? "collapsed" : "expanded") + "_post", :post => @post) %>');
-  post.children().hide().animate({ height: 'toggle' }, ANIMATION_DURATION);
+<% if !@collapse_posts.nil? && !@stream.nil? %>
+var stream = $('#stream')
+stream.html('<%= escape_javascript(render "posts/stream", :stream => @stream, :path => root_path) %>');
+stream.children('#filtered_stream').hide().animate({ height: 'toggle' }, ANIMATION_DURATION)
+
+<% elsif !@collapse_post.nil? && !@post.nil? %>
+var post = $('#post_<%= @post.id %>');
+post.html('<%= escape_javascript(render "posts/" + (@collapse_post ? "collapsed" : "expanded") + "_post", :post => @post) %>');
+post.children().hide().animate({ height: 'toggle' }, ANIMATION_DURATION);
 <% end %>

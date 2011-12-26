@@ -84,11 +84,16 @@ class UsersController < ApplicationController
   end
   
   def settings
-    current_user.settings.collapse_posts = params[:collapse_posts] unless params[:collapse_posts].nil?
+    if !params[:hide_user_profile].nil?
+      current_user.settings.hide_user_profile = params[:hide_user_profile]
     
-    current_user.settings.hide_user_profile = (current_user.settings.hide_user_profile == "true" ? "false" : "true") unless params[:toggle_user_profile].nil?
+    elsif !params[:collapse_posts].nil?
+      current_user.settings.collapse_posts = params[:collapse_posts]
+      @collapse_posts = params[:collapse_posts]
+      @stream = current_user.stream.paginate(:page => params[:page])
+      respond_with @collapse_posts, @stream
     
-    unless params[:collapse_post].nil? || params[:post_id].nil?
+    elsif !params[:collapse_post].nil? && !params[:post_id].nil?
       @collapse_post = (params[:collapse_post] == "true")
       @post = Post.find_by_id(params[:post_id])
       unless @post.nil?

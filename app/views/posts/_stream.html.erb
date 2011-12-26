@@ -1,16 +1,14 @@
-<%= javascript_include_tag "stream" %>
 <% unless stream.empty? %>
-  <div id="toggle_all_posts">
-    <%= link_to t(:expand_all), settings_user_path(current_user, :collapse_posts => "false"), :method => :post, :class => "expand_all_posts", :remote => true %>
-    &nbsp;
-    <%= link_to t(:collapse_all), settings_user_path(current_user, :collapse_posts => "true"), :method => :post, :class => "collapse_all_posts", :remote => true %>
-  </div>
-  <div class="clear"></div>
-  
-  <div id="filtered_stream" class="posts">
-    <%= render :partial => "posts/post", :collection => stream %>
-  </div> 
-  
+<%= javascript_include_tag "stream" %>
+<div id="toggle_all_posts">
+  <%= link_to t(:expand_all), settings_user_path(current_user, :collapse_posts => "false"), :method => :post, :class => "expand_all_posts" + (current_user.settings.collapse_posts != "true" ? " hidden" : ""), :remote => true %>
+  <%= link_to t(:collapse_all), settings_user_path(current_user, :collapse_posts => "true"), :method => :post, :class => "collapse_all_posts" + (current_user.settings.collapse_posts == "true" ? " hidden" : ""), :remote => true %>
+</div>
+<div class="clear"></div>
+
+<div id="filtered_stream" class="posts">
+  <%= render :partial => "posts/post", :collection => stream %>
   <%= javascript_include_tag "jquery.pageless.min" %>
-  <%= pageless(stream.total_pages, path, "stream") %>
+  <%= pageless(stream.total_pages, path, "filtered_stream") %>
+</div> 
 <% end %>
