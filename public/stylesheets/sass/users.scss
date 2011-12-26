@@ -24,6 +24,19 @@
 .main_bar_expanded
 {
   width: 100%;
+  
+  .new_post
+  {
+    .title input, .tags input
+    {
+      width: 321px;
+    }
+    
+    .content textarea
+    {
+      width: 649px;
+    }
+  }
 }
 
 .info_bar

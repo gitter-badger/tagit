@@ -36,5 +36,7 @@ function attachTogglePost() {
 }
 
 function togglePost() {
-  $(this).closest('.post_item').children('.expanded_post, .collapsed_post').animate({ height: 'toggle' }, ANIMATION_DURATION);
+  var post_item = $(this).closest('.post_item');
+  post_item.children().animate({ height: 'toggle' }, ANIMATION_DURATION);
+  post_item.append('<div class="loading_panel"></div>');
 }

@@ -56,6 +56,10 @@ class Post < ActiveRecord::Base
       .order('"tags".name ASC')
   end
   
+  def is_collapsed_by(user)
+    user.settings.collapse_posts == "true" || (!user.settings.collapsed_posts.nil? && user.settings.collapsed_posts.include?(id))
+  end
+  
   def self.from_followed_users(user)      
     Post.where(:user_id => user.following_ids)
   end

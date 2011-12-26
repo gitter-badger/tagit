@@ -1,0 +1,5 @@
+<% unless @collapse_post.nil? || @post.nil? %>
+  var post = $('#post_<%= @post.id %>');
+  post.html('<%= escape_javascript(render "posts/" + (@collapse_post ? "collapsed" : "expanded") + "_post", :post => @post) %>');
+  post.children().hide().animate({ height: 'toggle' }, ANIMATION_DURATION);
+<% end %>

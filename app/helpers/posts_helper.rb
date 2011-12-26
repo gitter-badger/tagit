@@ -6,7 +6,6 @@ module PostsHelper
   VIDEO_REGEX = /<a class="_blank" href="(http:\/\/(www\.)?(youtube\.com\/watch\?(?=.*v=([\w-]+))(?:\S+)?))">\1<\/a>/i
   
   def format_post(content, collapsed = false)
-    content = truncate(content, :length => 180) if collapsed
     insert_newlines_and_whitespaces = content.gsub(NEWLINE_REGEX, "<br>").gsub(WHITESPACE_REGEX, " ")
     insert_user_paths = insert_newlines_and_whitespaces.gsub(AT_USERNAME_REGEX, link_to("@\\1", users_path + "/\\1") + "\\2")
     insert_urls = insert_user_paths.gsub(URL_REGEX, '<a class="_blank" href="\\0">\\0</a>')

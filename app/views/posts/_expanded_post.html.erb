@@ -1,0 +1,57 @@
+<div class="expanded_post">
+  <%= link_to gravatar_for(post.user, :size => 50), post.user %>
+  
+  <div class="buttons">
+    <% if current_user?(post.user) %>
+    <div class="delete_button left margin-left">
+      <%= link_to "×", post, :method => :delete, :confirm => t(:confirm_delete_message) %>
+    </div>
+    
+    <div class="edit_button left margin-left">
+      <%= link_to "✎", edit_post_path(post) %>
+    </div>
+    <% end %>
+    
+    <%= link_to "", settings_user_path(current_user, :collapse_post => "true", :post_id => post.id), :method => :post, :class => "collapse_button left margin-left", :remote => true %>
+  </div>
+  
+  <div class="post">
+    <span class="user">
+      <a href="<%= user_path(post.user) %>">
+        <span class="user_username"><%= post.user.username %></span>
+      </a>
+    </span>
+    <%= link_to t(:posted_message) % { :time => time_ago_in_words(post.created_at) }, post, :title => post.created_at.to_s(:short), :class => "timestamp" %>
+    
+    <div class="title_and_tags">
+      <% unless post.title.blank? %>
+      <div class="title"><%= post.title %></div>
+      <% end %>
+      
+      <div class="add_tags">
+        <input id="post_<%= post.id %>_added_tags" class="left" type="text" onkeyup="addedTagsTextBoxKeyUp(event, this, <%= post.id %>);" placeholder="<%= t(:tag_list_placeholder_short) %>" />
+        
+        <div class="add_button left">
+          <span id="post_<%= post.id %>_show_add_tags" onclick="addTags(this, <%= post.id %>, true);">+</span>
+          <%= link_to "+", post_tags_path(:post_id => post.id, :add_tags => true), :method => :post, :remote => true, :id => "post_#{post.id}_add_tags", :style => "display: none", :onclick => "addTags(this, #{post.id}, false);" %>
+        </div>
+        
+        <div class="clear"></div>
+      </div>
+      
+      <% unless post.post_tags.blank? %>
+      <div id="post_<%= post.id %>_tags" class="tags">
+        <%= render :partial => "post_tags/post_tag", :collection => post.tags_for_user(current_user) %>
+      </div>
+      <% end %>
+      
+      <div class="clear"></div>
+    </div>
+    
+    <div class="content">
+      <%= format_post(post.content) %>
+    </div>
+  </div>
+  
+  <div class="clear"></div>
+</div>

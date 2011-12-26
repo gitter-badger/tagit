@@ -13,6 +13,10 @@
 
 .main_bar_expanded {
   width: 100%; }
+  .main_bar_expanded .new_post .title input, .main_bar_expanded .new_post .tags input {
+    width: 321px; }
+  .main_bar_expanded .new_post .content textarea {
+    width: 649px; }
 
 .info_bar {
   float: left;

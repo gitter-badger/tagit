@@ -85,7 +85,22 @@ class UsersController < ApplicationController
   
   def settings
     current_user.settings.collapse_posts = params[:collapse_posts] unless params[:collapse_posts].nil?
+    
     current_user.settings.hide_user_profile = (current_user.settings.hide_user_profile == "true" ? "false" : "true") unless params[:toggle_user_profile].nil?
+    
+    unless params[:collapse_post].nil? || params[:post_id].nil?
+      @collapse_post = (params[:collapse_post] == "true")
+      @post = Post.find_by_id(params[:post_id])
+      unless @post.nil?
+        current_user.settings.collapsed_posts = [] if current_user.settings.collapsed_posts.nil?
+        if @collapse_post
+          current_user.settings.collapsed_posts += [params[:post_id].to_i] unless current_user.settings.collapsed_posts.include?(params[:post_id])
+        else
+          current_user.settings.collapsed_posts.delete(params[:post_id].to_i)
+        end
+      end
+      respond_with @collapse_post, @post
+    end
   end
   
   private

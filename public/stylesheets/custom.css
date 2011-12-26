@@ -86,3 +86,12 @@
   background-image: url(/images/collapse.png); }
 
 /* BUTTONS */
+.loading_panel {
+  background-repeat: no-repeat;
+  background-image: url(/images/load.gif);
+  width: 36px;
+  height: 36px;
+  margin: 10px auto; }
+
+.hidden {
+  display: none; }
