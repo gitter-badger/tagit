@@ -21,6 +21,7 @@
   {
     $post_margin: $avatar_width + 5;
     margin-left: $post_margin;
+    word-wrap: break-word;
 
     .timestamp
     {
@@ -70,7 +71,6 @@
     {
       margin-left: -$post_margin;
       margin-top: 5px;
-      word-wrap: break-word;
       
       img
       {

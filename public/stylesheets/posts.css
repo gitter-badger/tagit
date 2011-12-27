@@ -9,7 +9,8 @@
   .post_item .buttons {
     float: right; }
   .post_item .post {
-    margin-left: 55px; }
+    margin-left: 55px;
+    word-wrap: break-word; }
     .post_item .post .timestamp {
       color: #666; }
     .post_item .post .title_and_tags {
@@ -35,8 +36,7 @@
           margin-bottom: -2px; }
     .post_item .post .content {
       margin-left: -55px;
-      margin-top: 5px;
-      word-wrap: break-word; }
+      margin-top: 5px; }
       .post_item .post .content img {
         max-width: 100%; }
       .post_item .post .content .video {
