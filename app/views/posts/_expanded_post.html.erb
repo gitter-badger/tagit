@@ -39,11 +39,9 @@
         <div class="clear"></div>
       </div>
       
-      <% unless post.post_tags.blank? %>
       <div id="post_<%= post.id %>_tags" class="tags">
         <%= render :partial => "post_tags/post_tag", :collection => post.tags_for_user(current_user) %>
       </div>
-      <% end %>
       
       <div class="clear"></div>
     </div>
