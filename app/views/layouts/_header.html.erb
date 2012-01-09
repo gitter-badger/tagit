@@ -8,7 +8,7 @@
       <span><%= link_to t(:profile), current_user %></span>
       <span><%= link_to t(:setting).pluralize, edit_user_path(current_user) %></span>
     <% end %>
-    <span><%= link_to t(:help), help_path %></span>
+    <span class="hidden"><%= link_to t(:help), help_path %></span>
     <span>
       <% if signed_in? %>
         <%= link_to t(:sign_out), signout_path, :method => :delete %>
