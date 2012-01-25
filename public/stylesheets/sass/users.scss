@@ -18,7 +18,7 @@
 .main_bar
 {
   float: left;
-  width: 70%;
+  width: 500px;
 }
 
 .main_bar_expanded
@@ -29,12 +29,12 @@
   {
     .title input, .tags input
     {
-      width: 321px;
+      width: 336px;
     }
     
     .content textarea
     {
-      width: 649px;
+      width: 679px;
     }
   }
 }
@@ -42,10 +42,8 @@
 .info_bar
 {
   float: left;
-  width: 30%;
-  margin: -5px;
-  padding: 5px;
-    
+  width: 200px;
+  
   .user_info
   {
     .user_fields, .user_relations

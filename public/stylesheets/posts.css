@@ -62,11 +62,11 @@
     margin-bottom: 3px; }
     .new_post .title input, .new_post .tags input {
       margin: 0px;
-      width: 221px; }
+      width: 237px; }
     .new_post .title .input_expanded, .new_post .tags .input_expanded {
-      width: 321px; }
+      width: 336px; }
   .new_post .content textarea {
-    width: 448px;
+    width: 480px;
     height: 4em;
     font-family: Segoe UI; }
   .new_post .actions input {

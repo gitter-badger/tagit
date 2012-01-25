@@ -9,20 +9,18 @@
 
 .main_bar {
   float: left;
-  width: 70%; }
+  width: 500px; }
 
 .main_bar_expanded {
   width: 100%; }
   .main_bar_expanded .new_post .title input, .main_bar_expanded .new_post .tags input {
-    width: 321px; }
+    width: 336px; }
   .main_bar_expanded .new_post .content textarea {
-    width: 649px; }
+    width: 679px; }
 
 .info_bar {
   float: left;
-  width: 30%;
-  margin: -5px;
-  padding: 5px; }
+  width: 200px; }
   .info_bar .user_info .user_fields, .info_bar .user_info .user_relations {
     background: #fbfbfb; }
   .info_bar .user_info .user_fields {
