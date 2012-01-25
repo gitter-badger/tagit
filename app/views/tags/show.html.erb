@@ -1,4 +1,5 @@
 <% unless @tag.nil? %>
+<div id="stream">
   <div id="tag">
     <%= render "tags/tag", :tag => @tag, :show_untag_all => true %>
     <div class="clear"></div>
@@ -7,4 +8,5 @@
   <div class="posts">
     <%= render "posts/stream", :stream => @tag_posts, :path => tag_path(@tag) %>
   </div>
+</div>
 <% end %>
