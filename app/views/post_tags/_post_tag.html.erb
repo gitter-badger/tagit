@@ -2,6 +2,11 @@
   <div id="<%= "post_tag_#{post_tag.id}" %>" class="<%= "foreign_" if post_tag.user_id != current_user.id %>tag">
     <%= link_to post_tag.tag.name, post_tag.tag %>
     
+    <% tag_count = PostTag.find_all_by_tag_id_and_post_id(post_tag.tag.id, post_tag.post.id).length %>
+    <% if tag_count > 1 %>
+      (<%= tag_count %>)
+    <% end %>
+    
     <% if post_tag.user_id == current_user.id %>
       <%= link_to "×", post_tag, :method => :delete, :remote => true %>
     <% else %>
