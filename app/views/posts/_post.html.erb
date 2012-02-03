@@ -1,3 +1,3 @@
 <div id="post_<%= post.id %>" class="post_item">
-  <%= render "posts/" + (post.is_collapsed_by(current_user) ? "collapsed" : "expanded") + "_post", :post => post %>
+  <%= render "posts/" + (signed_in? && post.is_collapsed_by(current_user) ? "collapsed" : "expanded") + "_post", :post => post %>
 </div>
