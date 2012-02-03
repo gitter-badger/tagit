@@ -24,3 +24,8 @@
 #other_tags .tag, #other_tags .foreign_tag {
   margin: 2px 0px;
   background: #f3f3ff; }
+
+.tag_count {
+  color: #09c;
+  font-size: small;
+  margin: 2px 0px 0px 3px; }
