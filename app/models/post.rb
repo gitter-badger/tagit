@@ -54,7 +54,7 @@ class Post < ActiveRecord::Base
       .joins('LEFT JOIN "relationships" ON "post_tags".user_id = "relationships".followed_id')
       .where('"post_tags".user_id = ? OR (("post_tags".user_id = "posts".user_id OR "relationships".follower_id = ?) AND "post_tags".tag_id NOT IN (SELECT "post_tags".tag_id FROM "post_tags" WHERE "post_tags".post_id = "posts".id AND "post_tags".user_id = ?))', user.id, user.id, user.id)
       .order('"tags".name ASC')
-      .group('"post_tags".id')
+      .group('"post_tags".id, "tags".name')
   end
   
   def is_collapsed_by(user)
