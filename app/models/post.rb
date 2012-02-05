@@ -46,14 +46,15 @@ class Post < ActiveRecord::Base
     post_tags.find_by_tag_id_and_user_id(tag, user)
   end
   
-  def tags_for_user(user) # Select ([post tags] for [this user]) + ([post tags] for [author and followed users] except those this user already has)
+  def tags_for_user(user) # Select ([post tags] for [this user]) + ([post tags] for [author + followed users] except those this user already has)
     post_tags
-      .select('DISTINCT "post_tags".id, "tags".name, "post_tags".*')
+      .select('"tags".name, "post_tags".post_id, "post_tags".tag_id, (CASE WHEN "post_tags".user_id = ' + user.id.to_s + ' THEN ' + user.id.to_s + ' ELSE 0 END) AS user_id, (CASE WHEN "post_tags".user_id = ' + user.id.to_s + ' THEN "post_tags".id ELSE 0 END) AS id')
       .joins('JOIN "posts" ON "post_tags".post_id = "posts".id')
       .joins('JOIN "tags" ON "post_tags".tag_id = "tags".id')
       .joins('LEFT JOIN "relationships" ON "post_tags".user_id = "relationships".followed_id')
       .where('"post_tags".user_id = ? OR (("post_tags".user_id = "posts".user_id OR "relationships".follower_id = ?) AND "post_tags".tag_id NOT IN (SELECT "post_tags".tag_id FROM "post_tags" WHERE "post_tags".post_id = "posts".id AND "post_tags".user_id = ?))', user.id, user.id, user.id)
       .order('"tags".name ASC')
+      .group('"tags".name, "post_tags".post_id, "post_tags".tag_id, user_id, id')
   end
   
   def is_collapsed_by(user)
@@ -66,7 +67,7 @@ class Post < ActiveRecord::Base
   
   def self.from_user_stream(user) # Select [posts] from [this user + followed users + tagged posts] that have [tags this user has not blocked]
     Post
-      .select('DISTINCT (posts.id), "posts".*')
+      .select('DISTINCT "posts".id, "posts".*')
       .joins('LEFT JOIN "relationships" ON "posts".user_id = "relationships".followed_id')
       .joins('LEFT JOIN "post_tags" ON "posts".id = "post_tags".post_id')
       .joins('LEFT JOIN "user_tags" ON "post_tags".tag_id = "user_tags".tag_id')
