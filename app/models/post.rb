@@ -48,13 +48,13 @@ class Post < ActiveRecord::Base
   
   def tags_for_user(user) # Select ([post tags] for [this user]) + ([post tags] for [author + followed users] except those this user already has)
     post_tags
-      .select('"tags".name, "post_tags".post_id, "post_tags".tag_id, (CASE WHEN "post_tags".user_id = ' + user.id.to_s + ' THEN ' + user.id.to_s + ' ELSE 0 END) AS tagger_id')
+      .select('"tags".name, "post_tags".post_id, "post_tags".tag_id, (CASE WHEN "post_tags".user_id = ' + user.id.to_s + ' THEN "true" ELSE "false" END) AS belongs_to_current_user')
       .joins('JOIN "posts" ON "post_tags".post_id = "posts".id')
       .joins('JOIN "tags" ON "post_tags".tag_id = "tags".id')
       .joins('LEFT JOIN "relationships" ON "post_tags".user_id = "relationships".followed_id')
       .where('"post_tags".user_id = ? OR (("post_tags".user_id = "posts".user_id OR "relationships".follower_id = ?) AND "post_tags".tag_id NOT IN (SELECT "post_tags".tag_id FROM "post_tags" WHERE "post_tags".post_id = "posts".id AND "post_tags".user_id = ?))', user.id, user.id, user.id)
       .order('"tags".name ASC')
-      .group('"tags".name, "post_tags".post_id, "post_tags".tag_id, tagger_id')
+      .group('"tags".name, "post_tags".post_id, "post_tags".tag_id, belongs_to_current_user')
   end
   
   def is_collapsed_by(user)
