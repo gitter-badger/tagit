@@ -1,5 +1,5 @@
 <% unless post_tag.nil? %>
-  <div id="<%= "post_tag_#{post_tag.id}" %>" class="<%= "foreign_" if post_tag.belongs_to_current_user.to_s == "1" %>tag">
+  <div id="<%= "post_tag_#{post_tag.id}" %>" class="<%= "foreign_" if post_tag.belongs_to_current_user.to_s == "0" %>tag">
     <div class="right">
       <div class="left tag_count">
         <% tag_count = PostTag.find_all_by_tag_id_and_post_id(post_tag.tag.id, post_tag.post.id).length %>
