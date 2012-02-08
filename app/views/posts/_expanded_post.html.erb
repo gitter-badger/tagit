@@ -4,7 +4,7 @@
   <div class="buttons">
     <% if current_user?(post.user) %>
     <div class="delete_button left margin-left">
-      <%= link_to "×", post, :method => :delete, :confirm => t(:confirm_delete_message) %>
+      <%= link_to "×", post, :method => :delete, :remote => true, :confirm => t(:confirm_delete_message) %>
     </div>
     
     <div class="edit_button left margin-left">

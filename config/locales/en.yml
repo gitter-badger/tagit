@@ -68,3 +68,4 @@ en:
   other_tags: "Other tags"
   expand_all: "Expand all"
   collapse_all: "Collapse all"
+  post_failed_message: "There was an error while trying to save your post. Please try again."

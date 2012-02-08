@@ -2,14 +2,15 @@ class PostsController < ApplicationController
   before_filter :authenticate, :only => [:create, :destroy]
   before_filter :authorized_user, :only => :destroy
   
+  respond_to :html, :js
+  
   def create
     @post = current_user.posts.build(:title => params[:post][:title], :content => params[:post][:content])
     if @post.save
       @post.tag_with_list(params[:post][:tag_list], current_user)
-      redirect_to root_path
+      respond_with @post
     else
-      @stream = []
-      render 'pages/home'
+      flash[:error] = t(:post_failed_message)
     end
   end
   
@@ -32,8 +33,9 @@ class PostsController < ApplicationController
   end
   
   def destroy
+    @post_id = @post.id
     @post.destroy
-    redirect_back_or root_path
+    respond_with @post_id
   end
   
   private
