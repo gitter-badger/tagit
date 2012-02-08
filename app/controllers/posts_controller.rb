@@ -20,15 +20,16 @@ class PostsController < ApplicationController
   
   def edit
     @post = Post.find_by_id(params[:id])
+    respond_with @post
   end
   
   def update
-    post = Post.find_by_id(params[:id])
-    if post.update_attributes(:title => params[:post][:title], :content => params[:post][:content])
-      post.tag_with_list(params[:post][:tag_list], current_user)
-      redirect_to root_path
+    @post = Post.find_by_id(params[:id])
+    if @post.update_attributes(:title => params[:post][:title], :content => params[:post][:content])
+      @post.tag_with_list(params[:post][:tag_list], current_user)
+      respond_with @post
     else
-      render 'post/edit'
+      flash[:error] = t(:post_failed_message)
     end
   end
   

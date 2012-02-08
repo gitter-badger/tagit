@@ -103,6 +103,15 @@
 .new_post
 {
   margin-right: 10px;
+}
+
+.edit_post
+{
+  margin-right: -5px;
+}
+
+.new_post, .edit_post
+{
   margin-bottom: 5px;
   
   .title, .tags

@@ -13,9 +13,9 @@
 
 .main_bar_expanded {
   width: 100%; }
-  .main_bar_expanded .new_post .title input, .main_bar_expanded .new_post .tags input {
+  .main_bar_expanded .new_post .title input, .main_bar_expanded .new_post .tags input, .main_bar_expanded .edit_post .title input, .main_bar_expanded .edit_post .tags input {
     width: 336px; }
-  .main_bar_expanded .new_post .content textarea {
+  .main_bar_expanded .new_post .content textarea, .main_bar_expanded .edit_post .content textarea {
     width: 679px; }
 
 .info_bar {
