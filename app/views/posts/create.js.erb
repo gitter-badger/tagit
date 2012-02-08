@@ -1,0 +1,4 @@
+<% unless @post.nil? %>
+  $('#filtered_stream').prepend('<%= escape_javascript(render "posts/post", :post => @post) %>');
+  $('#post_<%= @post.id %>').toggle(false).animate({ height: 'toggle' }, ANIMATION_DURATION);
+<% end %>
