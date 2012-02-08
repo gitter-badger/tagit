@@ -17,7 +17,7 @@
   
   <div class="actions">
     <div class="left margin-right">
-      <%= f.submit t(:post_verb) %>
+      <%= f.submit t(:post_verb), :disable_with => "..." %>
     </div>
     <% if local_assigns[:show_cancel] %>
     <div class="left">

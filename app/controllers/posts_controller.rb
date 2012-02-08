@@ -10,7 +10,13 @@ class PostsController < ApplicationController
       @post.tag_with_list(params[:post][:tag_list], current_user)
       respond_with @post
     else
-      flash[:error] = t(:post_failed_message)
+      if @post.valid?
+        flash[:error] = t(:post_failed_message)
+      else
+        flash[:error] = @post.errors.full_messages
+      end
+      @post = nil
+      respond_with @post
     end
   end
   
@@ -29,7 +35,13 @@ class PostsController < ApplicationController
       @post.tag_with_list(params[:post][:tag_list], current_user)
       respond_with @post
     else
-      flash[:error] = t(:post_failed_message)
+      if @post.valid?
+        flash[:error] = t(:post_failed_message)
+      else
+        flash[:error] = @post.errors.full_messages
+      end
+      @post = nil
+      respond_with @post
     end
   end
   
