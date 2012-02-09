@@ -6,7 +6,7 @@
   </div>
 </div>
 
-<div class="info_bar" <%= raw('style="display: none"') if signed_in? && current_user.settings.hide_user_profile == "true" %>>
+<div class="info_bar <%= "hidden" if signed_in? && current_user.settings.hide_user_profile == "true" %>">
   <%= render "users/info", :user => @user %>
 </div>
 

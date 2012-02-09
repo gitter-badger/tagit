@@ -2,7 +2,10 @@
   <!--<%= link_to logo, root_path %>-->
   
   <div class="menu">
+    <% if signed_in? %>
     <span><%= link_to t(:home), root_path %></span>
+    <% end %>
+    
     <span><%= link_to t(:user).pluralize, users_path %></span>
     
     <% if signed_in? %>

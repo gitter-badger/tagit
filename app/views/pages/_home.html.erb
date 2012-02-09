@@ -7,7 +7,7 @@
   </div>
 </div>
 
-<div class="info_bar" <%= raw('style="display: none"') if current_user.settings.hide_user_profile == "true" %>>
+<div class="info_bar <%= "hidden" if current_user.settings.hide_user_profile == "true" %>">
   <%= render "users/info", :user => current_user %>
   
   <div class="user_tags">
