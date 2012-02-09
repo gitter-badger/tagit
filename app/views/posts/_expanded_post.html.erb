@@ -10,9 +10,9 @@
     <div class="edit_button left margin-left">
       <%= link_to "✎", edit_post_path(post), :remote => true %>
     </div>
-    <% end %>
     
     <%= link_to "", settings_user_path(current_user, :collapse_post => "true", :post_id => post.id), :method => :post, :class => "collapse_button left margin-left", :remote => true %>
+    <% end %>
   </div>
   
   <div class="post">
