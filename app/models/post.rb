@@ -46,6 +46,16 @@ class Post < ActiveRecord::Base
     post_tags.find_by_tag_id_and_user_id(tag, user)
   end
   
+  def tags_for_author
+      post_tags
+        .select('"tags".name, "post_tags".post_id, "post_tags".tag_id, 0 AS belongs_to_current_user')
+        .joins('JOIN "posts" ON "post_tags".post_id = "posts".id')
+        .joins('JOIN "tags" ON "post_tags".tag_id = "tags".id')
+        .where('"post_tags".user_id = "posts".user_id')
+        .order('"tags".name ASC')
+        .group('"tags".name, "post_tags".post_id, "post_tags".tag_id, belongs_to_current_user')
+  end
+  
   def tags_for_user(user) # Select ([post tags] for [this user]) + ([post tags] for [author + followed users] except those this user already has)
     post_tags
       .select('"tags".name, "post_tags".post_id, "post_tags".tag_id, (CASE WHEN "post_tags".user_id = ' + user.id.to_s + ' THEN 1 ELSE 0 END) AS belongs_to_current_user')

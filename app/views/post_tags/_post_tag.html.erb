@@ -8,6 +8,7 @@
         <% end %>
       </div>
       
+      <% if signed_in? %>
       <div class="left">
         <% if post_tag.belongs_to_current_user.to_s == "1" %>
           <%= link_to "−", current_user.post_tags.find_by_post_id_and_tag_id(post_tag.post_id, post_tag.tag_id), :method => :delete, :remote => true %>
@@ -15,6 +16,7 @@
           <%= link_to "+", post_tags_path(:post_id => post_tag.post.id, :tag_id => post_tag.tag.id), :method => :post, :remote => true %>
         <% end %>
       </div>
+      <% end %>
       
       <div class="clear"></div>
     </div>

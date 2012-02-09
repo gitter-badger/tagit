@@ -1,10 +1,13 @@
 <% unless stream.empty? %>
 <%= javascript_include_tag "stream" %>
+
+<% if signed_in? %>
 <div id="toggle_all_posts">
   <%= link_to t(:expand_all), settings_user_path(current_user, :collapse_posts => "false"), :method => :post, :class => "expand_all_posts" + (current_user.settings.collapse_posts != "true" ? " hidden" : ""), :remote => true %>
   <%= link_to t(:collapse_all), settings_user_path(current_user, :collapse_posts => "true"), :method => :post, :class => "collapse_all_posts" + (current_user.settings.collapse_posts == "true" ? " hidden" : ""), :remote => true %>
 </div>
 <div class="clear"></div>
+<% end %>
 
 <div id="filtered_stream" class="posts">
   <%= render :partial => "posts/post", :collection => stream %>

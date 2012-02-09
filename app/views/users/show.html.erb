@@ -1,12 +1,12 @@
 <%= render "users/toggle_profile" %>
 
-<div class="main_bar <%= "main_bar_expanded" if current_user.settings.hide_user_profile == "true" %>">
+<div class="main_bar <%= "main_bar_expanded" if signed_in? && current_user.settings.hide_user_profile == "true" %>">
   <div id="stream" class="user_profile">
     <%= render "posts/stream", :stream => @posts, :path => user_path(@user) %>
   </div>
 </div>
 
-<div class="info_bar" <%= raw('style="display: none"') if current_user.settings.hide_user_profile == "true" %>>
+<div class="info_bar" <%= raw('style="display: none"') if signed_in? && current_user.settings.hide_user_profile == "true" %>>
   <%= render "users/info", :user => @user %>
 </div>
 

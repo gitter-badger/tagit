@@ -1,3 +1,5 @@
-<%= javascript_include_tag "toggle_profile" %>
-<%= link_to "", settings_user_path(current_user, :hide_user_profile => (current_user.settings.hide_user_profile == "true" ? "false" : "true")), :method => :post, :id => "toggle_profile", :class => (current_user.settings.hide_user_profile == "true" ? "expand" : "collapse") + "_button right", :remote => true %>
-<div class="clear"></div>
+<% if signed_in? %>
+  <%= javascript_include_tag "toggle_profile" %>
+  <%= link_to "", settings_user_path(current_user, :hide_user_profile => (current_user.settings.hide_user_profile == "true" ? "false" : "true")), :method => :post, :id => "toggle_profile", :class => (current_user.settings.hide_user_profile == "true" ? "expand" : "collapse") + "_button right", :remote => true %>
+  <div class="clear"></div>
+<% end %>

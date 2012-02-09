@@ -28,6 +28,7 @@
       <div class="title"><%= post.title %></div>
       <% end %>
       
+      <% if signed_in? %>
       <div class="add_tags">
         <input id="post_<%= post.id %>_added_tags" class="left" type="text" onkeyup="addedTagsTextBoxKeyUp(event, this, <%= post.id %>);" placeholder="<%= t(:tag_list_placeholder_short) %>" />
         
@@ -38,9 +39,14 @@
         
         <div class="clear"></div>
       </div>
+      <% end %>
       
       <div id="post_<%= post.id %>_tags" class="tags">
-        <%= render :partial => "post_tags/post_tag", :collection => post.tags_for_user(current_user) %>
+        <% if signed_in? %>
+          <%= render :partial => "post_tags/post_tag", :collection => post.tags_for_user(current_user) %>
+        <% else %>
+          <%= render :partial => "post_tags/post_tag", :collection => post.tags_for_author %>
+        <% end %>
       </div>
       
       <div class="clear"></div>
