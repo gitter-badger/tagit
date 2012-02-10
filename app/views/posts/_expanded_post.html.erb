@@ -1,6 +1,7 @@
 <div class="expanded_post">
   <%= link_to gravatar_for(post.user, :size => 50), post.user %>
   
+  <% if signed_in? %>
   <div class="buttons">
     <% if current_user?(post.user) %>
     <div class="delete_button left margin-left">
@@ -10,10 +11,11 @@
     <div class="edit_button left margin-left">
       <%= link_to "✎", edit_post_path(post), :remote => true %>
     </div>
+    <% end %>
     
     <%= link_to "", settings_user_path(current_user, :collapse_post => "true", :post_id => post.id), :method => :post, :class => "collapse_button left margin-left", :remote => true %>
-    <% end %>
   </div>
+  <% end %>
   
   <div class="post">
     <span class="user">
