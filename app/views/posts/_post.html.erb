@@ -1,3 +1,5 @@
 <div id="post_<%= post.id %>" class="post_item">
-  <%= render "posts/" + (signed_in? && post.is_collapsed_by(current_user) ? "collapsed" : "expanded") + "_post", :post => post %>
+  <% post_tag_names = post.tags_for_author.map{ |tag| tag.name } %>
+  <% post_is_collapsed = (signed_in? && post.is_collapsed_by(current_user)) || post_tag_names.include?("nsfw") || post_tag_names.include?("18+") || post_tag_names.include?("long") || post_tag_names.include?("adult") || post_tag_names.include?("spoiler") %>
+  <%= render "posts/" + (post_is_collapsed ? "collapsed" : "expanded") + "_post", :post => post %>
 </div>
