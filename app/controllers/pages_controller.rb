@@ -6,7 +6,7 @@ class PagesController < ApplicationController
       @post = Post.new
       unless request.xhr?
         @stream = current_user.stream.paginate(:page => params[:page])
-        session[:latest_post_id] = @stream.first.id
+        session[:latest_post_id] = @stream.first.id unless @stream.empty?
       else
         @stream = current_user.stream.where('"posts".id <= ?', session[:latest_post_id]).paginate(:page => params[:page])
         render :partial => "posts/post", :collection => @stream
