@@ -55,7 +55,11 @@ function toggleAllPosts() {
 }
 
 function togglePost() {
-  var post_item = $(this).closest('.post_item');
-  post_item.children().animate({ height: 'toggle' }, ANIMATION_DURATION);
-  post_item.append('<div class="loading_panel"></div>');
+  $(this).toggleClass('expand_button').toggleClass('collapse_button');
+  var collapse_post = $(this).hasClass('collapse_button');
+  $(this).attr('href', $(this).attr('href').replace('collapse_post=' + (!collapse_post).toString(), 'collapse_post=' + collapse_post.toString()));
+  
+  var post_content = $(this).closest('.post_item').find('.content');
+  post_content.children().animate({ height: 'toggle' }, ANIMATION_DURATION);
+  post_content.append('<div class="loading_panel"></div>');
 }

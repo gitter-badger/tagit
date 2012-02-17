@@ -92,7 +92,6 @@ class UsersController < ApplicationController
       @collapse_posts = params[:collapse_posts]
       @stream = current_user.stream.paginate(:page => params[:page])
       respond_with @collapse_posts, @stream
-    
     elsif !params[:collapse_post].nil? && !params[:post_id].nil?
       @collapse_post = (params[:collapse_post] == "true")
       post_id_int = params[:post_id].to_i

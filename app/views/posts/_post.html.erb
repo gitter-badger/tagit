@@ -1,5 +1,66 @@
 <div id="post_<%= post.id %>" class="post_item">
   <% post_tag_names = post.tags_for_author.map{ |tag| tag.name } %>
   <% post_is_collapsed = (signed_in? && post.is_collapsed_by(current_user)) || post_tag_names.include?("nsfw") || post_tag_names.include?("18+") || post_tag_names.include?("long") || post_tag_names.include?("adult") || post_tag_names.include?("spoiler") %>
-  <%= render "posts/" + (post_is_collapsed ? "collapsed" : "expanded") + "_post", :post => post %>
+  
+  <%= link_to gravatar_for(post.user, :size => 50), post.user %>
+  
+  <% if signed_in? %>
+  <div class="buttons">
+    <% if current_user?(post.user) %>
+    <div class="delete_button left margin-left">
+      <%= link_to "×", post, :method => :delete, :remote => true, :confirm => t(:confirm_delete_message) %>
+    </div>
+    
+    <div class="edit_button left margin-left">
+      <%= link_to "✎", edit_post_path(post), :remote => true %>
+    </div>
+    <% end %>
+    
+    <%= link_to "", settings_user_path(current_user, :collapse_post => (!post_is_collapsed).to_s, :post_id => post.id), :method => :post, :class => (post_is_collapsed ? "expand" : "collapse") + "_button right margin-left", :remote => true %>
+  </div>
+  <% end %>
+  
+  <div class="post">
+    <span class="user">
+      <a href="<%= user_path(post.user) %>">
+        <span class="user_username"><%= post.user.username %></span>
+      </a>
+    </span>
+    <%= link_to t(:posted_message) % { :time => time_ago_in_words(post.created_at) }, post, :title => post.created_at.to_s(:short), :class => "timestamp" %>
+    
+    <div class="title_and_tags">
+      <% unless post.title.blank? %>
+      <div class="title"><%= post.title %></div>
+      <% end %>
+      
+      <% if signed_in? %>
+      <div class="add_tags">
+        <input id="post_<%= post.id %>_added_tags" class="left" type="text" onkeyup="addedTagsTextBoxKeyUp(event, this, <%= post.id %>);" placeholder="<%= t(:tag_list_placeholder_short) %>" />
+        
+        <div class="add_button left">
+          <span id="post_<%= post.id %>_show_add_tags" onclick="addTags(this, <%= post.id %>, true);">+</span>
+          <%= link_to "+", post_tags_path(:post_id => post.id, :add_tags => true), :method => :post, :remote => true, :id => "post_#{post.id}_add_tags", :style => "display: none", :onclick => "addTags(this, #{post.id}, false);" %>
+        </div>
+        
+        <div class="clear"></div>
+      </div>
+      <% end %>
+      
+      <div id="post_<%= post.id %>_tags" class="tags">
+        <% if signed_in? %>
+          <%= render :partial => "post_tags/post_tag", :collection => post.tags_for_user(current_user) %>
+        <% else %>
+          <%= render :partial => "post_tags/post_tag", :collection => post.tags_for_author %>
+        <% end %>
+      </div>
+      
+      <div class="clear"></div>
+    </div>
+    
+    <div class="content">
+      <%= format_post(post.content, post_is_collapsed) %>
+    </div>
+  </div>
+  
+  <div class="clear"></div>
 </div>
