@@ -3,7 +3,7 @@ class TagsController < ApplicationController
 
   def show
     @tag = Tag.find_by_slug(params[:id])
-    @tag_posts = Post.where(:id => @tag.posts.uniq).paginate(:page => params[:page])
+    @tag_posts = Post.where(:id => @tag.posts.uniq).paginate(:page => params[:page]) unless @tag.nil?
     flash[:error] = t(:record_not_found_message) if @tag.nil?
     if request.xhr?
       render :partial => "posts/post", :collection => @tag_posts
