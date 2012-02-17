@@ -55,9 +55,9 @@ function toggleAllPosts() {
 }
 
 function togglePost() {
-  $(this).toggleClass('expand_button').toggleClass('collapse_button');
   var collapse_post = $(this).hasClass('collapse_button');
   $(this).attr('href', $(this).attr('href').replace('collapse_post=' + (!collapse_post).toString(), 'collapse_post=' + collapse_post.toString()));
+  $(this).toggleClass('expand_button').toggleClass('collapse_button');
   
   var post_content = $(this).closest('.post_item').find('.content');
   post_content.children().animate({ height: 'toggle' }, ANIMATION_DURATION);
