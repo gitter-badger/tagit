@@ -11,6 +11,8 @@ $(function() {
   //Attach submit click handlers
   $('body').on('click.submit', 'a.submit', function() { $(this).closest('form').submit(); return false; });
   $('body').on('click.submit', 'input.submit', function() { $(this).closest('form').submit(); });
+  
+  $('.autocomplete_tags').on('click.select', 'div.tag', function() { console.log('selected'); });
 });
 
 $(document).ajaxComplete(function(event, request) {
@@ -65,9 +67,9 @@ function addedTagsTextBoxKeyUp(event, self, post_id) {
             $('#autocomplete_tags_post_' + post_id).append('<div class="clear"></div>');
           }
           
-          //TODO: Attach a click handler to each tag
-          
           //TODO: Close the tag picker if clicked anywhere in the body except the autocomplete_tags_post_X div and the input itself
+          
+          //TODO: Attach a click handler to each tag
         }
       });
   }
