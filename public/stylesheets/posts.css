@@ -24,13 +24,31 @@
         margin: 1px -2px -3px 0px; }
       .post_item .post .title_and_tags .add_tags {
         float: right;
-        margin: 3px 0px 1px 4px;
-        overflow: hidden; }
+        position: relative;
+        margin: 3px 0px 1px 4px; }
         .post_item .post .title_and_tags .add_tags input {
           width: 75px;
           height: 15px;
           margin-right: 4px;
           display: none; }
+        .post_item .post .title_and_tags .add_tags .autocomplete_tags {
+          z-index: 1000;
+          position: absolute;
+          top: 20px;
+          font-size: small;
+          background: white;
+          color: #666;
+          border: 1px solid #aaaaaa;
+          border-top: 0;
+          width: 77px; }
+          .post_item .post .title_and_tags .add_tags .autocomplete_tags .tag {
+            cursor: pointer;
+            width: 69px;
+            margin-left: 0px;
+            background: white; }
+          .post_item .post .title_and_tags .add_tags .autocomplete_tags .tag:hover {
+            color: white;
+            background: blue; }
         .post_item .post .title_and_tags .add_tags .add_button {
           margin-top: -5px;
           margin-bottom: -2px; }

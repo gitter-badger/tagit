@@ -45,6 +45,31 @@ function addedTagsTextBoxKeyUp(event, self, post_id) {
       $('#post_' + post_id + '_add_tags').toggle(false);
       $(self).toggle(false);
       break;
+    default:
+      var lastIndexOfDelimiter = $(self).val().lastIndexOf(',');
+      var query = $(self).val().substr(lastIndexOfDelimiter + 1);
+      if (query.length == 0) {
+        $('#autocomplete_tags_post_' + post_id).remove();
+        return;
+      }
+      
+      $.ajax({
+        url: 'tags?search=' + query,
+        context: self,
+        success: function(data) {
+          $('#autocomplete_tags_post_' + post_id).remove();
+          data = $.trim(data);
+          if (data.length > 0) {
+            $(this).after('<div id="autocomplete_tags_post_' + post_id + '" class="autocomplete_tags"></div>');
+            $('#autocomplete_tags_post_' + post_id).html(data);
+            $('#autocomplete_tags_post_' + post_id).append('<div class="clear"></div>');
+          }
+          
+          //TODO: Attach a click handler to each tag
+          
+          //TODO: Close the tag picker if clicked anywhere in the body except the autocomplete_tags_post_X div and the input itself
+        }
+      });
   }
 }
 

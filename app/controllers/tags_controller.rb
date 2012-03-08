@@ -1,6 +1,14 @@
 class TagsController < ApplicationController
   respond_to :html, :js
-
+  
+  def index
+    query = "#{params[:search]}%"
+    @tags = Tag.where("name LIKE ?", query)
+    if request.xhr?
+      render :partial => "tags/autocomplete_tag", :collection => @tags.take(5)
+    end
+  end
+  
   def show
     @tag = Tag.find_by_slug(params[:id])
     @tag_posts = Post.where(:id => @tag.posts.uniq).paginate(:page => params[:page]) unless @tag.nil?

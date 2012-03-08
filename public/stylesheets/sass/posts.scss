@@ -48,15 +48,45 @@
       .add_tags
       {
         float: right;
+        position: relative;
         margin: 3px 0px 1px 4px;
-        overflow: hidden;
         
+        $add_tags_input_width: 75px;
+        $add_tags_input_margin_right: 4px;
         input
         {
-          width: 75px;
+          width: $add_tags_input_width;
           height: 15px;
-          margin-right: 4px;
+          margin-right: $add_tags_input_margin_right;
           display: none;
+        }
+        
+        $autocomplete_tags_border_width: 1px;
+        .autocomplete_tags
+        {
+          z-index: 1000;
+          position: absolute;
+          top: 20px;
+          font-size: small;
+          background: white;
+          color: #666;
+          border: $autocomplete_tags_border_width solid #aaa;
+          border-top: 0;
+          width: $add_tags_input_width + 2 * $autocomplete_tags_border_width;
+          
+          .tag
+          {
+            cursor: pointer;
+            width: $add_tags_input_width - $add_tags_input_margin_right - 2 * $autocomplete_tags_border_width;
+            margin-left: 0px;
+            background: white;
+          }
+          
+          .tag:hover
+          {
+            color: white;
+            background: blue;
+          }
         }
         
         .add_button
