@@ -2,6 +2,7 @@ var ANIMATION_DURATION = 200;
 var CLOSE_BUTTON = '<span class="close_client_flash delete_button">×</span>';
 
 $(function() {
+  //Enable flash closing
   $('.flash').each(function() {
     var flash = $(this);
     flash.append(CLOSE_BUTTON);
@@ -9,10 +10,18 @@ $(function() {
   });
   
   //Attach submit click handlers
-  $('body').on('click.submit', 'a.submit', function() { $(this).closest('form').submit(); return false; });
-  $('body').on('click.submit', 'input.submit', function() { $(this).closest('form').submit(); });
+  $(document).on('click.submit', 'a.submit', function() { $(this).closest('form').submit(); return false; });
+  $(document).on('click.submit', 'input.submit', function() { $(this).closest('form').submit(); });
   
-  $('.autocomplete_tags').on('click.select', 'div.tag', function() { console.log('selected'); });
+  //Attach autocompleting of tags
+  $('.add_tags').on('click.select', '.tag', function() {
+    var addedTags = $(this).closest('.add_tags').children('.added_tags');
+    var lastIndexOfDelimiter = addedTags.val().lastIndexOf(',');
+    var separator = (lastIndexOfDelimiter != -1 ? ' ' : '');
+    var previousTags = addedTags.val().substring(0, lastIndexOfDelimiter + 1);
+    addedTags.val(previousTags + separator + $(this).html() + ', ');
+    addedTags.focus();
+  });
 });
 
 $(document).ajaxComplete(function(event, request) {
@@ -27,9 +36,9 @@ $(document).ajaxComplete(function(event, request) {
 });
 
 function addFlash(message, type) {
-  var client_flash = $('#client_flash');
-  client_flash.append('<div class="flash ' + type + '">' + message + CLOSE_BUTTON + '</div>');
-  client_flash.children('.flash').filter(':last').children('.close_client_flash').on('click.flash', function() { $(this).parent().remove(); });
+  var clientFlash = $('#client_flash');
+  clientFlash.append('<div class="flash ' + type + '">' + message + CLOSE_BUTTON + '</div>');
+  clientFlash.children('.flash').filter(':last').children('.close_client_flash').on('click.flash', function() { $(this).parent().remove(); });
 }
 
 function toggleCollapsed(sender, collapsedElement) {
@@ -37,7 +46,8 @@ function toggleCollapsed(sender, collapsedElement) {
   $('#' + collapsedElement).animate({ height: 'toggle' }, ANIMATION_DURATION);
 }
 
-function addedTagsTextBoxKeyUp(event, self, post_id) {
+function addedTagsTextBoxKeyUp(event, path, post_id) {
+  var sender = event.srcElement;
   switch (event.keyCode) {
     case 13: //Enter
       $('#post_' + post_id + '_add_tags').click();
@@ -45,51 +55,58 @@ function addedTagsTextBoxKeyUp(event, self, post_id) {
     case 27: //Escape
       $('#post_' + post_id + '_show_add_tags').toggle(true);
       $('#post_' + post_id + '_add_tags').toggle(false);
-      $(self).toggle(false);
+      $(sender).toggle(false);
       break;
     default:
-      var lastIndexOfDelimiter = $(self).val().lastIndexOf(',');
-      var query = $(self).val().substr(lastIndexOfDelimiter + 1);
-      if (query.length == 0) {
-        $('#autocomplete_tags_post_' + post_id).remove();
+      if (!(event.keyCode == 8 || //Backspace
+        event.keyCode == 46 || //Delete
+        String.fromCharCode(event.keyCode).match(/\w/))) {
         return;
       }
       
-      $.ajax({
-        url: 'tags?search=' + query,
-        context: self,
-        success: function(data) {
-          $('#autocomplete_tags_post_' + post_id).remove();
-          data = $.trim(data);
-          if (data.length > 0) {
-            $(this).after('<div id="autocomplete_tags_post_' + post_id + '" class="autocomplete_tags"></div>');
-            $('#autocomplete_tags_post_' + post_id).html(data);
-            $('#autocomplete_tags_post_' + post_id).append('<div class="clear"></div>');
-          }
-          
-          //TODO: Close the tag picker if clicked anywhere in the body except the autocomplete_tags_post_X div and the input itself
-          
-          //TODO: Attach a click handler to each tag
-        }
-      });
+      var lastIndexOfDelimiter = $(sender).val().lastIndexOf(',');
+      var query = $(sender).val().substring(lastIndexOfDelimiter + 1);
+      if (query.length == 0) break;
+      
+      getAutocompleteTags(sender, path, query);
+      return; //Do not remove the autocomplete_tags
   }
+  $('#autocomplete_tags').remove();
 }
 
-function addTags(self, post_id, show) {
+function getAutocompleteTags(sender, path, query) {
+  query = $.trim(query);
+  if (query.length == 0) return;
+
+  $.ajax({
+    url: path + '?search=' + encodeURIComponent(query),
+    context: sender,
+    success: function(data) {
+      $('#autocomplete_tags').remove();
+      if (data.length > 0) {
+        $(sender).after('<div id="autocomplete_tags" class="autocomplete_tags"></div>');
+        $('#autocomplete_tags').html(data);
+        $('#autocomplete_tags').append('<div class="clear"></div>');
+      }
+      
+      $(document).one('click.close_autocomplete', ':not(#' + sender.id + ')', function() {
+        $('#autocomplete_tags').remove();
+      });
+    }
+  });
+}
+
+function addTags(sender, post_id, show) {
   $('#post_' + post_id + '_show_add_tags').toggle(!show);
   $('#post_' + post_id + '_add_tags').toggle(show);
   
-  added_tags_text_box = $('#post_' + post_id + '_added_tags');
-  added_tags_text_box.toggle(show);
+  var addedTagsTextBox = $('#post_' + post_id + '_added_tags');
+  addedTagsTextBox.toggle(show);
   if (show) {
-    added_tags_text_box.val('');
-    added_tags_text_box.focus();
+    addedTagsTextBox.val('');
+    addedTagsTextBox.focus();
   }
   else {
-    self.href += '&added_tags=' + encodeURIComponent(added_tags_text_box.val());
+    sender.href += '&added_tags=' + encodeURIComponent(addedTagsTextBox.val());
   }
-}
-
-function clickEach(elements) {
-  elements.each(function() { $(this).click(); });
 }

@@ -6,6 +6,7 @@
     <span><%= link_to t(:home), root_path %></span>
     <% end %>
     
+    <span><%= link_to t(:tag).pluralize, tags_path %></span>
     <span><%= link_to t(:user).pluralize, users_path %></span>
     
     <% if signed_in? %>
