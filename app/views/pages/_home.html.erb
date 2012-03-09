@@ -9,28 +9,7 @@
 
 <div class="info_bar <%= "hidden" if current_user.settings.hide_user_profile == "true" %>">
   <%= render "users/info", :user => current_user %>
-  
-  <div class="user_tags">
-    <div class="tag_group" onclick="toggleCollapsed(this, 'my_tags');">
-      <div class="left"><%= t(:my_tags) %></div>
-      <div class="expand_button right"></div>
-      <div class="clear"></div>
-    </div>
-    
-    <div id="my_tags" class="tag_group_list" style="display: none">
-      <%= render :partial => "tags/tag", :collection => current_user.tags_from_posts, :locals => { :show_checkboxes => true, :show_count => true } %>
-    </div>
-    
-    <div class="tag_group" onclick="toggleCollapsed(this, 'other_tags');">
-      <div class="left"><%= t(:other_tags) %></div>
-      <div class="expand_button right"></div>
-      <div class="clear"></div>
-    </div>
-    
-    <div id="other_tags" class="tag_group_list" style="display: none">
-      <%= render :partial => "tags/tag", :collection => current_user.tags_from_followed_users - current_user.tags_from_posts, :locals => { :show_checkboxes => true, :show_count => true } %>
-    </div>
-  </div>
+  <%= render "tags/tag_groups", :user => current_user %>
 </div>
 
 <div class="clear"></div>
