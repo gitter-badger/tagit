@@ -5,8 +5,8 @@
     <%= f.text_field :title, :placeholder => t(:title) %>
   </div>
   
-  <div class="tags">
-    <%= f.text_field :tag_list, :placeholder => t(:tag_list_placeholder) %>
+  <div class="tags tag_list">
+    <%= f.text_field :tag_list, :placeholder => t(:tag_list_placeholder), :autocomplete => "off", :onkeyup => "tagListTextBoxKeyUp(event, '" + tags_path + "');" %>
   </div>
   
   <div class="clear"></div>

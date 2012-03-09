@@ -14,13 +14,13 @@ $(function() {
   $(document).on('click.submit', 'input.submit', function() { $(this).closest('form').submit(); });
   
   //Attach autocompleting of tags
-  $('.add_tags').on('click.select', '.tag', function() {
-    var addedTags = $(this).closest('.add_tags').children('.added_tags');
-    var lastIndexOfDelimiter = addedTags.val().lastIndexOf(',');
+  $('.tag_list').on('click.select', '.tag', function() {
+    var tagListTextBox = $(this).closest('.tag_list').children('input[type=text]');
+    var lastIndexOfDelimiter = tagListTextBox.val().lastIndexOf(',');
     var separator = (lastIndexOfDelimiter != -1 ? ' ' : '');
-    var previousTags = addedTags.val().substring(0, lastIndexOfDelimiter + 1);
-    addedTags.val(previousTags + separator + $(this).html() + ', ');
-    addedTags.focus();
+    var previousTags = tagListTextBox.val().substring(0, lastIndexOfDelimiter + 1);
+    tagListTextBox.val(previousTags + separator + $(this).html() + ', ');
+    tagListTextBox.focus();
   });
 });
 
@@ -46,16 +46,20 @@ function toggleCollapsed(sender, collapsedElement) {
   $('#' + collapsedElement).animate({ height: 'toggle' }, ANIMATION_DURATION);
 }
 
-function addedTagsTextBoxKeyUp(event, path, post_id) {
+function tagListTextBoxKeyUp(event, path, post_id) {
   var sender = event.srcElement;
   switch (event.keyCode) {
     case 13: //Enter
-      $('#post_' + post_id + '_add_tags').click();
+      if (post_id != undefined) {
+        $('#post_' + post_id + '_add_tags').click();
+      }
       break;
     case 27: //Escape
-      $('#post_' + post_id + '_show_add_tags').toggle(true);
-      $('#post_' + post_id + '_add_tags').toggle(false);
-      $(sender).toggle(false);
+      if (post_id != undefined) {
+        $('#post_' + post_id + '_show_add_tags').toggle(true);
+        $('#post_' + post_id + '_add_tags').toggle(false);
+        $(sender).toggle(false);
+      }
       break;
     default:
       if (!(event.keyCode == 8 || //Backspace
@@ -69,7 +73,7 @@ function addedTagsTextBoxKeyUp(event, path, post_id) {
       if (query.length == 0) break;
       
       getAutocompleteTags(sender, path, query);
-      return; //Do not remove the autocomplete_tags
+      return; //Do not remove the #autocomplete_tags div
   }
   $('#autocomplete_tags').remove();
 }
@@ -84,7 +88,7 @@ function getAutocompleteTags(sender, path, query) {
     success: function(data) {
       $('#autocomplete_tags').remove();
       if (data.length > 0) {
-        $(sender).after('<div id="autocomplete_tags" class="autocomplete_tags"></div>');
+        $(sender).after('<div id="autocomplete_tags"></div>');
         $('#autocomplete_tags').html(data);
         $('#autocomplete_tags').append('<div class="clear"></div>');
       }
@@ -100,13 +104,13 @@ function addTags(sender, post_id, show) {
   $('#post_' + post_id + '_show_add_tags').toggle(!show);
   $('#post_' + post_id + '_add_tags').toggle(show);
   
-  var addedTagsTextBox = $('#post_' + post_id + '_added_tags');
-  addedTagsTextBox.toggle(show);
+  var tagListTextBox = $('#post_' + post_id + '_tag_list_text_box');
+  tagListTextBox.toggle(show);
   if (show) {
-    addedTagsTextBox.val('');
-    addedTagsTextBox.focus();
+    tagListTextBox.val('');
+    tagListTextBox.focus();
   }
   else {
-    sender.href += '&added_tags=' + encodeURIComponent(addedTagsTextBox.val());
+    sender.href += '&added_tags=' + encodeURIComponent(tagListTextBox.val());
   }
 }

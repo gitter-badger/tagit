@@ -5,7 +5,7 @@ class TagsController < ApplicationController
     query = "#{params[:search]}%"
     @tags = Tag.where("name LIKE ?", query)
     if request.xhr?
-      render :partial => "tags/autocomplete_tag", :collection => @tags.take(5)
+      render :partial => "tags/autocomplete_tag", :collection => @tags.take(5), :post_id => params[:post_id]
     end
   end
   

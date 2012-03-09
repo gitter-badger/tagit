@@ -24,31 +24,17 @@
         margin: 1px -2px -3px 0px; }
       .post_item .post .title_and_tags .add_tags {
         float: right;
-        position: relative;
         margin: 3px 0px 1px 4px; }
-        .post_item .post .title_and_tags .add_tags input {
+        .post_item .post .title_and_tags .add_tags .tag_list input {
           width: 75px;
           height: 15px;
           margin-right: 4px;
           display: none; }
-        .post_item .post .title_and_tags .add_tags .autocomplete_tags {
-          z-index: 1000;
-          position: absolute;
-          top: 20px;
-          font-size: small;
-          background: white;
-          color: #666;
-          border: 1px solid #aaaaaa;
-          border-top: 0;
+        .post_item .post .title_and_tags .add_tags .tag_list #autocomplete_tags {
+          top: 21px;
           width: 77px; }
-          .post_item .post .title_and_tags .add_tags .autocomplete_tags .tag {
-            cursor: pointer;
-            width: 69px;
-            margin-left: 0px;
-            background: white; }
-          .post_item .post .title_and_tags .add_tags .autocomplete_tags .tag:hover {
-            color: white;
-            background: blue; }
+          .post_item .post .title_and_tags .add_tags .tag_list #autocomplete_tags .tag {
+            width: 90%; }
         .post_item .post .title_and_tags .add_tags .add_button {
           margin-top: -5px;
           margin-bottom: -2px; }
@@ -88,6 +74,11 @@
       width: 237px; }
     .new_post .title .input_expanded, .new_post .tags .input_expanded, .edit_post .title .input_expanded, .edit_post .tags .input_expanded {
       width: 336px; }
+  .new_post .tag_list #autocomplete_tags, .edit_post .tag_list #autocomplete_tags {
+    top: 23px;
+    width: 98%; }
+    .new_post .tag_list #autocomplete_tags .tag, .edit_post .tag_list #autocomplete_tags .tag {
+      width: 97%; }
   .new_post .content textarea, .edit_post .content textarea {
     width: 480px;
     height: 4em;
@@ -103,3 +94,21 @@
 
 .user_profile #toggle_all_posts {
   margin-top: 0px; }
+
+.tag_list {
+  position: relative; }
+  .tag_list #autocomplete_tags {
+    z-index: 1000;
+    position: absolute;
+    background: white;
+    border: 1px solid #aaa;
+    margin-right: 4px; }
+    .tag_list #autocomplete_tags .tag {
+      color: black;
+      cursor: normal;
+      background: white;
+      margin: 0px;
+      font-size: small; }
+    .tag_list #autocomplete_tags .tag:hover {
+      color: white;
+      background: #3298fe; }

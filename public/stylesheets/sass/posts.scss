@@ -22,7 +22,7 @@
     $post_margin: $avatar_width + 5;
     margin-left: $post_margin;
     word-wrap: break-word;
-
+    
     .timestamp
     {
       color: #666;
@@ -48,44 +48,28 @@
       .add_tags
       {
         float: right;
-        position: relative;
         margin: 3px 0px 1px 4px;
         
-        $add_tags_input_width: 75px;
-        $add_tags_input_margin_right: 4px;
-        input
+        .tag_list
         {
-          width: $add_tags_input_width;
-          height: 15px;
-          margin-right: $add_tags_input_margin_right;
-          display: none;
-        }
-        
-        $autocomplete_tags_border_width: 1px;
-        .autocomplete_tags
-        {
-          z-index: 1000;
-          position: absolute;
-          top: 20px;
-          font-size: small;
-          background: white;
-          color: #666;
-          border: $autocomplete_tags_border_width solid #aaa;
-          border-top: 0;
-          width: $add_tags_input_width + 2 * $autocomplete_tags_border_width;
-          
-          .tag
+          $tag_list_text_box_width: 75px;
+          input
           {
-            cursor: pointer;
-            width: $add_tags_input_width - $add_tags_input_margin_right - 2 * $autocomplete_tags_border_width;
-            margin-left: 0px;
-            background: white;
+            width: $tag_list_text_box_width;
+            height: 15px;
+            margin-right: 4px;
+            display: none;
           }
           
-          .tag:hover
+          #autocomplete_tags
           {
-            color: white;
-            background: blue;
+            top: 21px;
+            width: $tag_list_text_box_width + 2;
+            
+            .tag
+            {
+              width: 90%;
+            }
           }
         }
         
@@ -162,6 +146,17 @@
     }
   }
   
+  .tag_list #autocomplete_tags
+  {
+    top: 23px;
+    width: 98%;
+    
+    .tag
+    {
+      width: 97%;
+    }
+  }
+  
   .content
   {
     textarea
@@ -192,4 +187,33 @@
 .user_profile #toggle_all_posts
 {
   margin-top: 0px;
+}
+
+.tag_list
+{
+  position: relative;
+  
+  #autocomplete_tags
+  {
+    z-index: 1000;
+    position: absolute;
+    background: white;
+    border: 1px solid #aaa;
+    margin-right: 4px;
+    
+    .tag
+    {
+      color: black;
+      cursor: normal;
+      background: white;
+      margin: 0px;
+      font-size: small;
+    }
+    
+    .tag:hover
+    {
+      color: white;
+      background: #3298fe;
+    }
+  }
 }
