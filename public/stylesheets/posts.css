@@ -105,7 +105,7 @@
     margin-right: 4px; }
     .tag_list #autocomplete_tags .tag {
       color: black;
-      cursor: normal;
+      cursor: default;
       background: white;
       margin: 0px;
       font-size: small; }
