@@ -69,21 +69,21 @@ function tagListTextBoxKeyUp(event, path, post_id) {
       }
       
       var lastIndexOfDelimiter = $(sender).val().lastIndexOf(',');
-      var query = $(sender).val().substring(lastIndexOfDelimiter + 1);
-      if (query.length == 0) break;
+      var name = $(sender).val().substring(lastIndexOfDelimiter + 1);
+      if (name.length == 0) break;
       
-      getAutocompleteTags(sender, path, query);
+      getAutocompleteTags(sender, path, name, post_id);
       return; //Do not remove the #autocomplete_tags div
   }
   $('#autocomplete_tags').remove();
 }
 
-function getAutocompleteTags(sender, path, query) {
-  query = $.trim(query);
-  if (query.length == 0) return;
-
+function getAutocompleteTags(sender, path, name, post_id) {
+  name = $.trim(name);
+  if (name.length == 0) return;
+  
   $.ajax({
-    url: path + '?search=' + encodeURIComponent(query),
+    url: path + '?name=' + encodeURIComponent(name) + (post_id != undefined ? '&post_id=' + post_id : ''),
     context: sender,
     success: function(data) {
       $('#autocomplete_tags').remove();
