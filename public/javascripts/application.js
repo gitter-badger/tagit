@@ -68,8 +68,7 @@ function tagListTextBoxKeyUp(event, path, post_id) {
         return;
       }
       
-      var lastIndexOfDelimiter = $(sender).val().lastIndexOf(',');
-      var name = $(sender).val().substring(lastIndexOfDelimiter + 1);
+      var name = extractLast($(sender).val());
       if (name.length == 0) break;
       
       getAutocompleteTags(sender, path, name, post_id);
