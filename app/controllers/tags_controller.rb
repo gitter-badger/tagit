@@ -2,12 +2,12 @@ class TagsController < ApplicationController
   respond_to :html, :js
   
   def index
-    name = "#{params[:name]}%".downcase
+    name = "#{params[:name]}%"
     post_id = params[:post_id]
     if post_id.nil?
-      @tags = Tag.select('name').where('name LIKE ?', name)
+      @tags = Tag.select('name').where('LOWER(name) LIKE LOWER(?)', name)
     else
-      @tags = Tag.select('name').where('name LIKE ? AND id NOT IN (SELECT "post_tags".tag_id FROM "post_tags" WHERE "post_tags".post_id = ?)', name, post_id)
+      @tags = Tag.select('name').where('LOWER(name) LIKE LOWER(?) AND id NOT IN (SELECT "post_tags".tag_id FROM "post_tags" WHERE "post_tags".post_id = ?)', name, post_id)
     end
     if request.xhr?
       render :partial => 'tags/autocomplete_tag', :collection => @tags.take(5), :post_id => params[:post_id]
