@@ -2,7 +2,7 @@ class TagsController < ApplicationController
   respond_to :html, :js
   
   def index
-    name = "#{params[:name]}%"
+    name = "#{params[:name]}%".downcase
     post_id = params[:post_id]
     if post_id.nil?
       @tags = Tag.select('name').where('name LIKE ?', name)

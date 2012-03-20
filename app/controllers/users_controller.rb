@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   
 	def index
     @title = t(:user).pluralize
-    query = "#{params[:search]}%"
+    query = "#{params[:search]}%".downcase
     @users = User.where("username LIKE ? OR name LIKE ?", query, query).order("created_at DESC").paginate(:page => params[:page])
     if request.xhr?
      render 'users/search', :users => @users
