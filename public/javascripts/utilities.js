@@ -8,7 +8,9 @@ function split(value, delimiter) {
   return value.split(splitRegex);
 }
 
-function search(sender, path, query) {
+function search(sender, path, query, caseSensitive) {
+  if (!caseSensitive) query = query.toLowerCase();
+  
   query = $.trim(query);
   $.ajax({
     url: path + '?search=' + encodeURIComponent(query),
