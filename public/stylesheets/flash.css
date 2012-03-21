@@ -14,10 +14,8 @@
   background: #ccffcc; }
 
 /* CLIENT FLASH */
-#client_flash {
-  margin-bottom: 20px; }
-
 .close_client_flash {
+  color: white;
   cursor: pointer;
   position: absolute;
   top: 0;

@@ -1,6 +1,5 @@
 .post_item {
-  border-top: 1px solid #ccc;
-  margin-right: 15px;
+  border-top: 1px solid #e3e3e3;
   margin-bottom: 10px;
   padding-top: 5px; }
   .post_item img.gravatar {
@@ -57,43 +56,28 @@
           height: 77px;
           opacity: 0.75; }
 
-.new_post {
-  margin-right: 10px; }
-
-.edit_post {
-  margin-right: -5px; }
-
 .new_post, .edit_post {
-  margin-bottom: 5px; }
+  margin-bottom: 5px;
+  margin-right: -5px; }
   .new_post .title, .new_post .tags, .edit_post .title, .edit_post .tags {
     float: left;
     width: 50%;
     margin-bottom: 3px; }
     .new_post .title input, .new_post .tags input, .edit_post .title input, .edit_post .tags input {
       margin: 0px;
-      width: 237px; }
-    .new_post .title .input_expanded, .new_post .tags .input_expanded, .edit_post .title .input_expanded, .edit_post .tags .input_expanded {
-      width: 336px; }
+      width: 344px; }
   .new_post .tag_list #autocomplete_tags, .edit_post .tag_list #autocomplete_tags {
     top: 23px;
     width: 98%; }
     .new_post .tag_list #autocomplete_tags .tag, .edit_post .tag_list #autocomplete_tags .tag {
       width: 97%; }
   .new_post .content textarea, .edit_post .content textarea {
-    width: 480px;
+    width: 694px;
     height: 4em;
     font-family: Segoe UI; }
   .new_post .actions input, .edit_post .actions input {
     margin: -2px -1px;
     min-width: 52px; }
-
-#toggle_all_posts {
-  float: right;
-  margin: -25px 15px 6px 0px;
-  cursor: pointer; }
-
-.user_profile #toggle_all_posts {
-  margin-top: 0px; }
 
 .tag_list {
   position: relative; }
@@ -112,3 +96,7 @@
     .tag_list #autocomplete_tags .tag:hover {
       color: white;
       background: #3298fe; }
+
+.main_bar_docked {
+  float: left;
+  width: 500px; }

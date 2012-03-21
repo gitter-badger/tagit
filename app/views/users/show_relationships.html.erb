@@ -1,9 +1,7 @@
 <div class="user_relationships">
-  <%= render 'users/users', :users => @users %>
+  <%= render "users/users", :users => @users %>
 </div>
 
-<div class="info_bar">
-  <%= render 'users/info', :user => @user %>
-</div>
+<%= render "users/user", :user => @user %>
 
 <div class="clear"></div>

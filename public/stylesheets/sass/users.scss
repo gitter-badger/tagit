@@ -1,72 +1,26 @@
-/* GENERAL */
-.user_username
-{
-}
-
 .user_name
 {
   color: #999;
 }
-/* GENERAL */
 
-/* USER PROFILE */
-#toggle_profile
+.user
 {
-  margin-top: -20px;
-}
-
-.main_bar
-{
-  float: left;
-  width: 500px;
-}
-
-.main_bar_expanded
-{
-  width: 100%;
+  margin-bottom: 10px;
+  padding-top: 5px;
+  border-top: 1px solid #e3e3e3;
   
-  .new_post, .edit_post
+  .avatar
   {
-    .title input, .tags input
-    {
-      width: 336px;
-    }
-    
-    .content textarea
-    {
-      width: 679px;
-    }
+    float: left;
+    margin-right: 5px;
+  }
+  
+  .buttons
+  {
+    float: right;
   }
 }
 
-.info_bar
-{
-  float: left;
-  width: 200px;
-  
-  .user_info
-  {
-    .user_fields, .user_relations
-    {
-      background: #fbfbfb;
-    }
-    
-    .user_fields
-    {
-      padding: 2px 4px 0px 4px;
-      border-top: 1px solid #e3e3e3;
-    }
-    
-    .user_relations
-    {
-      padding: 0px 4px 2px 4px;
-      border-bottom: 1px solid #e3e3e3;
-    }
-  }
-}
-/* USER PROFILE */
-
-/* EDIT USER */
 .edit_user
 {
   .user_data
@@ -74,45 +28,12 @@
     float: left;
   }
 }
-/* EDIT USER */
 
-/* USER INFO */
-.user_info
+.index_users
 {
-  img.gravatar
-  {
-    margin: 1px 5px 0px 0px;
-  }
-}
-/* USER INFO */
-
-/* USERS INDEX */
-.search
-{
-  input[type=text]
+  .search input[type=text]
   {
     margin: 5px 0px;
     width: 196px;
   }
 }
-
-.users
-{
-  .user
-  {
-    border-top: 1px solid #ccc;
-    padding-top: 5px;
-    margin-bottom: 15px;
-  }
-
-  .user_info .user_base img.gravatar
-  {
-    float: left;
-  }
-
-  .buttons
-  {
-    float: right;
-  }
-}
-/* USERS INDEX */

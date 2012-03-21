@@ -1,15 +1,7 @@
-<%= render "users/toggle_profile" %>
-
-<div class="main_bar <%= "main_bar_expanded" if current_user.settings.hide_user_profile == "true" %>">
+<div class="main_bar">
   <%= render "posts/fields" %>
   <div id="stream">
     <%= render "posts/stream", :stream => stream, :path => root_path %>
   </div>
 </div>
-
-<div class="info_bar <%= "hidden" if current_user.settings.hide_user_profile == "true" %>">
-  <%= render "users/info", :user => current_user %>
-  <%= render "tags/tag_groups", :user => current_user %>
-</div>
-
 <div class="clear"></div>

@@ -7,7 +7,27 @@
     <% end %>
   </div>
   
-  <%= render "users/info", :user => user %>
+  <div class="user_info">
+    <a href="<%= user_path(user) %>">
+      <div class="avatar">
+        <%= gravatar_for user %>
+      </div>
+      
+      <div class="user_fields">
+        <div class="user_name"><%= user.name %></div>
+        <span class="user_username"><%= user.username %></span>
+        <div class="post_count"><%= pluralize(user.posts.count, t(:_post)) %></div>
+      </div>
+    </a>
+    
+    <div class="user_relations">
+      <%= render "relationships/following", :user => user %>
+      <%= render "relationships/followers", :user => user %>
+      <%= render "relationships/follow_form", :user => user %>
+    </div>
+    
+    <div class="clear"></div>
+  </div>
   
   <div class="clear"></div>
 </div>

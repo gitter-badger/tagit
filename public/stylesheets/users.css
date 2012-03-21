@@ -1,58 +1,19 @@
-/* GENERAL */
 .user_name {
   color: #999; }
 
-/* GENERAL */
-/* USER PROFILE */
-#toggle_profile {
-  margin-top: -20px; }
+.user {
+  margin-bottom: 10px;
+  padding-top: 5px;
+  border-top: 1px solid #e3e3e3; }
+  .user .avatar {
+    float: left;
+    margin-right: 5px; }
+  .user .buttons {
+    float: right; }
 
-.main_bar {
-  float: left;
-  width: 500px; }
-
-.main_bar_expanded {
-  width: 100%; }
-  .main_bar_expanded .new_post .title input, .main_bar_expanded .new_post .tags input, .main_bar_expanded .edit_post .title input, .main_bar_expanded .edit_post .tags input {
-    width: 336px; }
-  .main_bar_expanded .new_post .content textarea, .main_bar_expanded .edit_post .content textarea {
-    width: 679px; }
-
-.info_bar {
-  float: left;
-  width: 200px; }
-  .info_bar .user_info .user_fields, .info_bar .user_info .user_relations {
-    background: #fbfbfb; }
-  .info_bar .user_info .user_fields {
-    padding: 2px 4px 0px 4px;
-    border-top: 1px solid #e3e3e3; }
-  .info_bar .user_info .user_relations {
-    padding: 0px 4px 2px 4px;
-    border-bottom: 1px solid #e3e3e3; }
-
-/* USER PROFILE */
-/* EDIT USER */
 .edit_user .user_data {
   float: left; }
 
-/* EDIT USER */
-/* USER INFO */
-.user_info img.gravatar {
-  margin: 1px 5px 0px 0px; }
-
-/* USER INFO */
-/* USERS INDEX */
-.search input[type=text] {
+.index_users .search input[type=text] {
   margin: 5px 0px;
   width: 196px; }
-
-.users .user {
-  border-top: 1px solid #ccc;
-  padding-top: 5px;
-  margin-bottom: 15px; }
-.users .user_info .user_base img.gravatar {
-  float: left; }
-.users .buttons {
-  float: right; }
-
-/* USERS INDEX */

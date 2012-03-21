@@ -1,8 +1,4 @@
-<% if !@collapse_posts.nil? && !@stream.nil? %>
-  var stream = $('#stream')
-  stream.html('<%= escape_javascript(render "posts/stream", :stream => @stream, :path => root_path) %>');
-  stream.children('#filtered_stream').hide().animate({ height: 'toggle' }, ANIMATION_DURATION)
-<% elsif !@collapse_post.nil? && !@post.nil? %>
+<% if !@collapse_post.nil? && !@post.nil? %>
   var post_content = $('#post_<%= @post.id %>').find('.content');
   post_content.html('<%= format_post(@post.content, @collapse_post) %>');
   post_content.children().hide().animate({ height: 'toggle' }, ANIMATION_DURATION);

@@ -3,7 +3,7 @@
   
   <div class="menu">
     <% if signed_in? %>
-    <span><%= link_to t(:home), root_path %></span>
+    <span><%= link_to t(:stream), root_path %></span>
     <% end %>
     
     <span><%= link_to t(:tag).pluralize, tags_path %></span>
