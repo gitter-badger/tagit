@@ -90,11 +90,11 @@ class User < ActiveRecord::Base
   end
   
   def tags_from_posts
-    post_tags.map{ |post_tag| post_tag.tag }.uniq.sort_by{ |tag| tag.name }
+    post_tags.map{ |post_tag| post_tag.tag }.uniq.sort_by{ |tag| tag.name.downcase }
   end
   
   def tags_from_followed_users
-    stream.map{ |post| post.post_tags.where(:user_id => following).map{ |post_tag| post_tag.tag } }.flatten.uniq.sort_by{ |tag| tag.name }
+    stream.map{ |post| post.post_tags.where(:user_id => following).map{ |post_tag| post_tag.tag } }.flatten.uniq.sort_by{ |tag| tag.name.downcase }
   end
   
   private
