@@ -1,22 +1,6 @@
-/*html
-{
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-}*/
 body {
   background: #eee;
   font-family: Segoe UI; }
-
-header img {
-  padding: 10px;
-  background: #fff; }
-header .menu {
-  float: right; }
 
 #container {
   width: 740px;
