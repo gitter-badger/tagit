@@ -28,7 +28,7 @@ GEM
       activemodel (= 3.0.9)
       activesupport (= 3.0.9)
     activesupport (3.0.9)
-    admin_data (1.1.16)
+    admin_data (1.1.14)
       will_paginate (>= 3.0.0)
     annotate (2.4.0)
     arel (2.0.10)
@@ -120,7 +120,7 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
-  admin_data (= 1.1.16)
+  admin_data (= 1.1.14)
   annotate (= 2.4.0)
   factory_girl_rails (= 1.4.0)
   faker (= 0.3.1)
