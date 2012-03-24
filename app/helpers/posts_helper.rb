@@ -6,8 +6,8 @@ module PostsHelper
   WHITESPACE_REGEX = /\s+/
   URL_REGEX = /(http|ftp|https):\/\/(\S*)/i
   IMAGE_URL_REGEX = />((http|ftp|https):\/\/(\S*)\.(jpg|jpeg|gif|png|svg|bmp)(\?[^\\\/\s]+)?)<\/a>/i
-  YOUTUBE_REGEX = /<a class="_blank" href="(http:\/\/(www\.)?(youtube\.com\/watch\?(?=.*v=([\w-]+))(?:\S+)?))">\1<\/a>/i
-  VIMEO_REGEX = /<a class="_blank" href="(http:\/\/(www\.)?(vimeo\.com)\/(\d+))">\1<\/a>/i
+  YOUTUBE_REGEX = /<a class="_blank" href="(https?:\/\/(www\.)?(youtube\.com\/watch\?(?=.*v=([\w-]+))(?:\S+)?))">\1<\/a>/i
+  VIMEO_REGEX = /<a class="_blank" href="(https?:\/\/(www\.)?(vimeo\.com)\/(\d+))">\1<\/a>/i
   
   def format_post(content, collapsed = false)
     content.gsub!(NEWLINE_REGEX, "<br>") # insert newlines
