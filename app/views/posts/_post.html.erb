@@ -30,23 +30,23 @@
     
     <div class="title_and_tags">
       <% unless post.title.blank? %>
-      <div class="title"><%= post.title %></div>
+        <div class="title"><%= post.title %></div>
       <% end %>
       
       <div class="right">
         <% if signed_in? %>
-        <div class="add_tags">
-          <div class="tag_list left">
-            <input id="post_<%= post.id %>_tag_list_text_box" class="left" type="text" autocomplete="off" onkeyup="tagListTextBoxKeyUp(event, '<%= tags_path %>', <%= post.id %>);" placeholder="<%= t(:tag_list_placeholder_short) %>" />
+          <div class="add_tags">
+            <div class="tag_list left">
+              <input id="post_<%= post.id %>_tag_list_text_box" class="left" type="text" autocomplete="off" onkeyup="tagListTextBoxKeyUp(event, '<%= tags_path %>', <%= post.id %>);" placeholder="<%= t(:tag_list_placeholder_short) %>" />
+            </div>
+            
+            <div class="add_button left">
+              <span id="post_<%= post.id %>_show_add_tags" onclick="addTags(this, <%= post.id %>, true);">+</span>
+              <%= link_to "+", post_tags_path(:post_id => post.id, :add_tags => true), :method => :post, :remote => true, :id => "post_#{post.id}_add_tags", :style => "display: none", :onclick => "addTags(this, #{post.id}, false);" %>
+            </div>
+            
+            <div class="clear"></div>
           </div>
-          
-          <div class="add_button left">
-            <span id="post_<%= post.id %>_show_add_tags" onclick="addTags(this, <%= post.id %>, true);">+</span>
-            <%= link_to "+", post_tags_path(:post_id => post.id, :add_tags => true), :method => :post, :remote => true, :id => "post_#{post.id}_add_tags", :style => "display: none", :onclick => "addTags(this, #{post.id}, false);" %>
-          </div>
-          
-          <div class="clear"></div>
-        </div>
         <% end %>
         
         <div id="post_<%= post.id %>_tags" class="tags">
@@ -55,6 +55,7 @@
           <% else %>
             <%= render :partial => "post_tags/post_tag", :collection => post.tags_for_author %>
           <% end %>
+          &#8203;
         </div>
         <div class="clear"></div>
       </div>
