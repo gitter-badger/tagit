@@ -17,6 +17,7 @@ module PostsHelper
     
     if !collapsed
       content.gsub!(IMAGE_URL_REGEX, '><img src="\\1" /></a>') # insert images
+      #What about https? Should I modify the src attribute to include the whole url to be embedded? Doing this on the server might also be more secure
       content.gsub!(YOUTUBE_REGEX, '<div class="youtube video" src="\\4"><img src="http://img.youtube.com/vi/\\4/0.jpg" /><div class="play_video"></div></div>') # embed youtube
       content.scan(VIMEO_REGEX).each do |match, www, domain, video_id|
         content.sub!(VIMEO_REGEX, '<div class="vimeo video" src="\\4"><img src="' + JSON.parse(open('http://vimeo.com/api/v2/video/' + video_id + '.json').read).first['thumbnail_large'] + '" /><div class="play_video"></div></div>') rescue nil # embed vimeo
