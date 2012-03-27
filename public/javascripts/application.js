@@ -14,7 +14,7 @@ $(function() {
   $(document).on('click.submit', 'input.submit', function() { $(this).closest('form').submit(); });
   
   //Attach autocompleting of tags
-  $('.tag_list').on('click.autocomplete', '.tag', function() {
+  $(document).on('click.autocomplete', '.tag_list .tag', function() {
     var tagListTextBox = $(this).closest('.tag_list').children('input[type=text]');
     var lastIndexOfDelimiter = tagListTextBox.val().lastIndexOf(',');
     var separator = (lastIndexOfDelimiter != -1 ? ' ' : '');
