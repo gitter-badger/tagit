@@ -86,7 +86,7 @@ function getAutocompleteTags(sender, path, name, post_id) {
     context: sender,
     success: function(data) {
       $('#autocomplete_tags').remove();
-      if (data.length > 0) {
+      if ($.trim(data).length > 0) {
         $(sender).after('<div id="autocomplete_tags"></div>');
         $('#autocomplete_tags').html(data);
         $('#autocomplete_tags').append('<div class="clear"></div>');
