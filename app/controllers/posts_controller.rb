@@ -39,10 +39,9 @@ class PostsController < ApplicationController
               .where('
                 LOWER("posts".title) LIKE LOWER(?) AND
                 LOWER("posts".content) LIKE LOWER(?) AND
-                (SELECT COUNT(*)
+                (SELECT COUNT(DISTINCT "post_tags".tag_id)
                 FROM "post_tags"
-                WHERE "post_tags".post_id = "posts".id AND "post_tags".tag_id IN (?)
-                GROUP BY "post_tags".user_id) = ?', title, content, tag_ids, tag_ids.length)
+                WHERE "post_tags".post_id = "posts".id AND "post_tags".tag_id IN (?)) = ?', title, content, tag_ids, tag_ids.length)
               .paginate(:page => params[:page])
           end
         end
