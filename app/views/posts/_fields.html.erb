@@ -19,11 +19,17 @@
     <div class="left margin-right">
       <%= f.submit t(:post_verb), :disable_with => t(:post_verb) %>
     </div>
+    
     <% if local_assigns[:show_cancel] %>
-    <div class="left">
+    <div class="left margin-right">
       <%= submit_tag t(:cancel), :type => "button", :onclick => "$('#post_" + @post.id.to_s + "').replaceWith('" + escape_javascript(render "posts/post", :post => @post) + "');" %>
     </div>
+    <% else %>
+    <div class="left margin-right">
+      <%= f.submit t(:search_verb), :disable_with => t(:search_verb) %>
+    </div>
     <% end %>
+    
     <div class="clear"></div>
   </div>
   

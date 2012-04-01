@@ -60,7 +60,7 @@ en:
   tag_list_placeholder_short: "Tags"
   text: "Text"
   stream: "Stream"
-  search: "Search"
+  search_verb: "Search"
   post_untag_failed_message: "The tag '%{tag}' could not be removed from your post. Please try again."
   record_not_found_message: "The record could not be found."
   my_tags: "My tags"
@@ -69,3 +69,4 @@ en:
   collapse_all: "Collapse all"
   post_failed_message: "There was an error while trying to save your post. Please try again."
   cancel: "Cancel"
+  no_results_found_message: "Sorry, couldn't find anything."
