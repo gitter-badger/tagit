@@ -22,6 +22,8 @@ $(function() {
     tagListTextBox.val(previousTags + separator + $(this).html() + ', ');
     tagListTextBox.focus();
   });
+  
+  $('.timeago').timeago();
 });
 
 $(document).ajaxComplete(function(event, request) {
