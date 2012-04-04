@@ -35,6 +35,8 @@ $(document).ajaxComplete(function(event, request) {
   
   var notice = request.getResponseHeader('Flash-Notice-Message');
   if (notice) addFlash(notice, 'notice');
+  
+  $('.timeago').timeago();
 });
 
 function addFlash(message, type) {
