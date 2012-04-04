@@ -22,10 +22,10 @@ function embedVideo() {
     
     var embed_domain;
     if ($(this).hasClass('youtube')) {
-      embed_domain = 'http://youtube.com/embed/';
+      embed_domain = 'https://youtube.com/embed/';
     }
     else if ($(this).hasClass('vimeo')) {
-      embed_domain = 'http://player.vimeo.com/video/';
+      embed_domain = 'https://player.vimeo.com/video/';
     }
     if (embed_domain) {
       $(this).append('<iframe width="480" height="360" src="' + embed_domain + $(this).attr('src') + '?autoplay=1" frameborder="0"></iframe>');

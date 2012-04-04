@@ -11,9 +11,6 @@
   .user .buttons {
     float: right; }
 
-.edit_user .user_data {
-  float: left; }
-
 .index_users .search input[type=text] {
   margin: 5px 0px;
   width: 196px; }

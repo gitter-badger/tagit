@@ -1,7 +1,7 @@
-<div class="edit_user">
-  <a href="http://gravatar.com/emails" target="_blank"><%= gravatar_for @user %></a>
+<div class="user">
+  <a class="avatar" href="https://gravatar.com/emails" target="_blank"><%= gravatar_for @user %></a>
 
-  <div class="user_data">
+  <div class="left">
     <%= form_for(@user) do |f| %>
       <%= render 'users/fields', :f => f %>
       
