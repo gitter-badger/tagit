@@ -89,6 +89,8 @@ function getAutocompleteTags(sender, path, name, post_id) {
     url: path + '?name=' + encodeURIComponent(name) + (post_id != undefined ? '&post_id=' + post_id : ''),
     context: sender,
     success: function(data) {
+      if ($('#post_' + post_id + '_tag_list_text_box').is(':hidden')) return; //The textbox has already been closed
+      
       $('#autocomplete_tags').remove();
       if ($.trim(data).length > 0) {
         $(sender).after('<div id="autocomplete_tags">' + data + '</div>');
