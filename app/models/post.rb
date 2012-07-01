@@ -83,4 +83,17 @@ class Post < ActiveRecord::Base
       .joins('LEFT JOIN "user_tags" ON "post_tags".tag_id = "user_tags".tag_id')
       .where('("posts".user_id = ? OR "relationships".follower_id = ? OR "post_tags".user_id = ?) AND "user_tags".tag_id IS NULL', user.id, user.id, user.id)
   end
+  
+  def self.from_twitter_stream(user)
+    Twitter.home_timeline.map { |tweet| transform_tweet_to_post(tweet, user.id) }
+  end
+  
+  def self.transform_tweet_to_post(tweet, user_id)
+    post = Post.new
+    post.id = 0
+    post.user_id = user_id
+    post.content = tweet.text
+    post.created_at = tweet.created_at
+    return post
+  end
 end

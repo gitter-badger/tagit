@@ -89,12 +89,16 @@ class User < ActiveRecord::Base
     Post.from_user_stream(self)
   end
   
+  def twitter_stream
+    Post.from_twitter_stream(self)
+  end
+  
   def tags_from_posts
-    post_tags.map{ |post_tag| post_tag.tag }.uniq.sort_by{ |tag| tag.name.downcase }
+    post_tags.map(&:tag).uniq.sort_by{ |tag| tag.name.downcase }
   end
   
   def tags_from_followed_users
-    stream.map{ |post| post.post_tags.where(:user_id => following).map{ |post_tag| post_tag.tag } }.flatten.uniq.sort_by{ |tag| tag.name.downcase }
+    stream.map{ |post| post.post_tags.where(:user_id => following).map(&:tag) }.flatten.uniq.sort_by{ |tag| tag.name.downcase }
   end
   
   private
