@@ -51,7 +51,11 @@ class User < ActiveRecord::Base
     user = find_by_id(id)
     (user && user.salt == stored_salt) ? user : nil
   end
-
+  
+  def self.authenticate_with_twitter(token, secret)
+    find_by_twitter_token_and_twitter_secret(token, secret)
+  end
+  
   # Return true if the user's password matches the submitted password.
   def has_password?(submitted_password)
     encrypted_password == encrypt(submitted_password)
