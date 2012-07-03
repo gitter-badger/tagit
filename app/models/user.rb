@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   friendly_id :username
   
   attr_accessor :password
-	attr_accessible :name, :username, :email, :password, :password_confirmation
+	attr_accessible :name, :username, :email, :password, :password_confirmation, :twitter_token, :twitter_secret
   
   has_settings
   
@@ -37,9 +37,14 @@ class User < ActiveRecord::Base
     :presence => true,
     :confirmation => true,
     :length => { :within => 6..40 }
+  validates :twitter_token, :uniqueness => true, :allow_nil => true
   
   def self.per_page
     10
+  end
+  
+  def disconnect_from_twitter
+    twitter_token = twitter_secret = nil
   end
   
   def self.authenticate(email, submitted_password)

@@ -49,8 +49,20 @@ class UsersController < ApplicationController
   end
   
   def update
+    case session[:oauth_provider]
+    when "twitter"
+      params[:user][:twitter_token] = session[:twitter_token]
+      params[:user][:twitter_secret] = session[:twitter_secret]
+      clear_oauth_twitter_session = true
+    end
+    
+    if params[:user][:disconnect_from_twitter]
+      params[:user][:twitter_token] = params[:user][:twitter_secret] = nil
+    end
+    
     if @user.update_attributes(params[:user])
       flash[:notice] = t(:profile_updated_message)
+      session[:oauth_provider] = session[:twitter_token] = session[:twitter_secret] = nil if clear_oauth_twitter_session
       redirect_to @user
     else
       @title = t(:edit_profile)

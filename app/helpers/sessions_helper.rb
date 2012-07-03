@@ -4,10 +4,6 @@ module SessionsHelper
     self.current_user = user
   end
   
-  def sign_in_button(provider)
-    link_to(provider.capitalize, "/auth/#{provider}/", :class => "#{provider}_sign_in_button")
-  end
-  
   def current_user=(user)
     @current_user = user
   end

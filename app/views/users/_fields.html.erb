@@ -29,3 +29,13 @@
   <br />
   <%= f.password_field :password_confirmation %>
 </div>
+
+<div class="field">
+  <% if current_user.twitter_token.blank? || current_user.twitter_secret.blank? %>
+    <%= t(:connect_alternate_account_message) %>
+    &nbsp;
+    <%= connect_button("twitter") %>
+  <% else %>
+    <label><%= f.check_box :disconnect_from_twitter %><%= t(:disconnect_alternate_account_message) %> Twitter</label>
+  <% end %>
+</div>
