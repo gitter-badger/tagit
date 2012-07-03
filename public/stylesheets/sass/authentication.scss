@@ -1,32 +1,18 @@
 .alternate_sign_in_message
 {
-  padding: 0px 15px;
-}
-
-.sign_in_button
-{
-  width: 220px;
-  
-  &:hover
-  {
-    color: #666;
-  }
+  padding: 0px 10px;
 }
 
 .twitter_sign_in_button
 {
-  @extend .alternate_sign_in_button;
-  
-  .logo
+  $logo_size: 22px;
+  padding-left: $logo_size + 3px;
+  background-size: $logo_size;
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  background-image: url(/images/bird_blue_48.png);
+  &:hover
   {
-    width: 22px;
-    height: 22px;
-    background-size: 22px;
-    background: url(/images/bird_blue_48.png) no-repeat;
-    
-    &:hover /* TODO: Hover over the whole button should change the logo; positioning is needed */
-    {
-      background: url(/images/bird_black_48.png) no-repeat;
-    }
+    background-image: url(/images/bird_black_48.png);
   }
 }

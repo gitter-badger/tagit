@@ -5,7 +5,7 @@ module SessionsHelper
   end
   
   def sign_in_button(provider)
-    raw("<div class=\"#{provider}_sign_in_button\"><div class=\"left logo\"></div><a class=\"left\" href=\"/auth/#{provider}/\">#{t(:alternate_sign_in_button_text)} #{provider.capitalize}</a><div class=\"clear\"></div></div>")
+    link_to(provider.capitalize, "/auth/#{provider}/", :class => "#{provider}_sign_in_button")
   end
   
   def current_user=(user)

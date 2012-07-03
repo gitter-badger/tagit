@@ -70,5 +70,4 @@ en:
   post_failed_message: "There was an error while trying to save your post. Please try again."
   cancel: "Cancel"
   no_results_found_message: "Sorry, couldn't find anything."
-  alternate_sign_in_message: "or"
-  alternate_sign_in_button_text: "Sign in with"
+  alternate_sign_in_message: "or use"
