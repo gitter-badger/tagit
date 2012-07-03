@@ -1,0 +1,15 @@
+.alternate_sign_in_message {
+  padding: 0px 15px; }
+
+.sign_in_button {
+  width: 220px; }
+  .sign_in_button:hover {
+    color: #666; }
+
+.twitter_sign_in_button .logo {
+  width: 22px;
+  height: 22px;
+  background-size: 22px;
+  background: url(/images/bird_blue_48.png) no-repeat; }
+  .twitter_sign_in_button .logo:hover {
+    background: url(/images/bird_black_48.png) no-repeat; }

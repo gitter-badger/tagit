@@ -88,12 +88,13 @@ class Post < ActiveRecord::Base
     Twitter.home_timeline.map { |tweet| transform_tweet_to_post(tweet, user.id) }
   end
   
-  def self.transform_tweet_to_post(tweet, user_id)
-    post = Post.new
-    post.id = 0
-    post.user_id = user_id
-    post.content = tweet.text
-    post.created_at = tweet.created_at
-    return post
-  end
+  private # TODO: Test if it works this way
+    def self.transform_tweet_to_post(tweet, user_id)
+      post = Post.new
+      post.id = 0
+      post.user_id = user_id
+      post.content = tweet.text
+      post.created_at = tweet.created_at
+      return post
+    end
 end

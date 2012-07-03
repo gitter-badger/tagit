@@ -4,6 +4,10 @@ module SessionsHelper
     self.current_user = user
   end
   
+  def sign_in_button(provider)
+    raw("<div class=\"#{provider}_sign_in_button\"><div class=\"left logo\"></div><a class=\"left\" href=\"/auth/#{provider}/\">#{t(:alternate_sign_in_button_text)} #{provider.capitalize}</a><div class=\"clear\"></div></div>")
+  end
+  
   def current_user=(user)
     @current_user = user
   end
