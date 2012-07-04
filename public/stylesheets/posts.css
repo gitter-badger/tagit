@@ -74,7 +74,8 @@
   .new_post .content textarea, .edit_post .content textarea {
     width: 694px;
     height: 4em;
-    font-family: Segoe UI; }
+    font-family: Segoe UI;
+    resize: vertical; }
   .new_post .actions input, .edit_post .actions input {
     margin: -2px -1px;
     min-width: 52px; }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111222155800) do
+ActiveRecord::Schema.define(:version => 20120703012900) do
 
   create_table "post_tags", :force => true do |t|
     t.integer "post_id"
@@ -85,6 +85,8 @@ ActiveRecord::Schema.define(:version => 20111222155800) do
     t.string   "salt"
     t.boolean  "admin",              :default => false
     t.string   "username"
+    t.string   "twitter_token"
+    t.string   "twitter_secret"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

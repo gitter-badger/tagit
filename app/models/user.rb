@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   friendly_id :username
   
   attr_accessor :password
-	attr_accessible :name, :username, :email, :password, :password_confirmation
+	attr_accessible :name, :username, :email, :password, :password_confirmation, :twitter_token, :twitter_secret
   
   has_settings
   
@@ -37,9 +37,19 @@ class User < ActiveRecord::Base
     :presence => true,
     :confirmation => true,
     :length => { :within => 6..40 }
+  validates :twitter_token, :uniqueness => true, :allow_nil => true
   
   def self.per_page
     10
+  end
+  
+  def connected_to?(provider)
+    case provider
+    when "twitter"
+      return twitter_token.present? && twitter_secret.present?
+    else
+      return false
+    end
   end
   
   def self.authenticate(email, submitted_password)
@@ -51,7 +61,11 @@ class User < ActiveRecord::Base
     user = find_by_id(id)
     (user && user.salt == stored_salt) ? user : nil
   end
-
+  
+  def self.authenticate_with_twitter(token, secret)
+    find_by_twitter_token_and_twitter_secret(token, secret)
+  end
+  
   # Return true if the user's password matches the submitted password.
   def has_password?(submitted_password)
     encrypted_password == encrypt(submitted_password)
@@ -89,12 +103,16 @@ class User < ActiveRecord::Base
     Post.from_user_stream(self)
   end
   
+  def twitter_stream
+    Post.from_twitter_stream(self)
+  end
+  
   def tags_from_posts
-    post_tags.map{ |post_tag| post_tag.tag }.uniq.sort_by{ |tag| tag.name.downcase }
+    post_tags.map(&:tag).uniq.sort_by{ |tag| tag.name.downcase }
   end
   
   def tags_from_followed_users
-    stream.map{ |post| post.post_tags.where(:user_id => following).map{ |post_tag| post_tag.tag } }.flatten.uniq.sort_by{ |tag| tag.name.downcase }
+    stream.map{ |post| post.post_tags.where(:user_id => following).map(&:tag) }.flatten.uniq.sort_by{ |tag| tag.name.downcase }
   end
   
   private

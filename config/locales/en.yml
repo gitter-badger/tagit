@@ -5,6 +5,17 @@
 # The _verb suffix represents an English word that is a verb, but at the same time a noun. This is usually not the case in other languages.
 
 en:
+  activerecord:
+    attributes:
+      user:
+        twitter_token: "This Twitter account"
+  #  errors:
+  #    models:
+  #      user:
+  #        attributes:
+  #          email:
+  #            blank: "is required"
+
   base_title: "Tag It"
   home: "Home"
   profile: "Profile"
@@ -61,7 +72,6 @@ en:
   text: "Text"
   stream: "Stream"
   search_verb: "Search"
-  post_untag_failed_message: "The tag '%{tag}' could not be removed from your post. Please try again."
   record_not_found_message: "The record could not be found."
   my_tags: "My tags"
   other_tags: "Other tags"
@@ -70,3 +80,7 @@ en:
   post_failed_message: "There was an error while trying to save your post. Please try again."
   cancel: "Cancel"
   no_results_found_message: "Sorry, couldn't find anything."
+  alternate_sign_in_message: "or use"
+  connect_alternate_account_message: "Connect to"
+  connect_alternate_account_success_message: "%{provider} credentials were successfully received. Press 'Update' to save the changes."
+  disconnect_alternate_account_message: "Disconnect from"

@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @title = @user.name
-    tagged_or_posted_post_ids = (@user.posts.map{ |post| post.id } + @user.post_tags.map{ |post_tag| post_tag.post_id }).uniq
+    tagged_or_posted_post_ids = (@user.posts.map(&:id) + @user.post_tags.map(&:post_id)).uniq
     @posts = Post.where(:id => tagged_or_posted_post_ids).paginate(:page => params[:page])
     if request.xhr?
       render :partial => "posts/post", :collection => @posts
@@ -49,8 +49,20 @@ class UsersController < ApplicationController
   end
   
   def update
+    case session[:oauth_provider]
+    when "twitter"
+      params[:user][:twitter_token] = session[:twitter_token]
+      params[:user][:twitter_secret] = session[:twitter_secret]
+      clear_oauth_twitter_session = true
+    end
+    
+    if params[:disconnect_from_twitter]
+      params[:user][:twitter_token] = params[:user][:twitter_secret] = nil
+    end
+    
     if @user.update_attributes(params[:user])
       flash[:notice] = t(:profile_updated_message)
+      session[:oauth_provider] = session[:twitter_token] = session[:twitter_secret] = nil if clear_oauth_twitter_session
       redirect_to @user
     else
       @title = t(:edit_profile)

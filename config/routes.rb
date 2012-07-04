@@ -1,5 +1,5 @@
 TagIt::Application.routes.draw do
-  get 'sessions/new'
+  get "sessions/new"
 
 	resources :users do
     member do
@@ -16,14 +16,16 @@ TagIt::Application.routes.draw do
   resources :post_tags, :only => [:create, :destroy]
   resources :user_tags, :only => [:create, :destroy]
   
-	root :to => 'pages#home'
+	root :to => "pages#home"
   
-	match '/signup' => 'users#new'
-  match '/signin' => 'sessions#new'
-  match '/signout' => 'sessions#destroy'
+  match "/auth/:provider/callback", to: "sessions#create"
+  
+	match "/signup" => "users#new"
+  match "/signin" => "sessions#new"
+  match "/signout" => "sessions#destroy"
 
-	match '/contact' => 'pages#contact'
-	match '/about' => 'pages#about'
-	match '/help' => 'pages#help'
-  match '/news' => 'pages#news'
+	match "/contact" => "pages#contact"
+	match "/about" => "pages#about"
+	match "/help" => "pages#help"
+  match "/news" => "pages#news"
 end

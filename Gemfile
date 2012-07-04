@@ -1,5 +1,8 @@
 source "http://rubygems.org"
 
+gem "omniauth"
+gem "omniauth-twitter"
+#gem "twitter"
 gem "rails", "3.0.9"
 gem "sqlite3", "1.3.3"
 gem "gravatar_image_tag", "1.0.0"

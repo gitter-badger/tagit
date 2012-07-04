@@ -1,0 +1,11 @@
+.alternate_sign_in_message {
+  padding: 0px 10px; }
+
+.twitter_connect_button {
+  padding-left: 25px;
+  background-size: 22px;
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  background-image: url(/images/bird_blue_48.png); }
+  .twitter_connect_button:hover {
+    background-image: url(/images/bird_black_48.png); }

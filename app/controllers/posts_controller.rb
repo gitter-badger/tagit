@@ -30,7 +30,7 @@ class PostsController < ApplicationController
     else
       title = "%#{params[:post][:title]}%";
       content = "%#{params[:post][:content]}%";
-      tag_names = params[:post][:tag_list].split(/,\s*/).map{|name| name.downcase}
+      tag_names = params[:post][:tag_list].split(/,\s*/).map(&:downcase)
       if tag_names.blank?
         @stream = current_user.stream
           .where('LOWER("posts".title) LIKE LOWER(?) AND LOWER("posts".content) LIKE LOWER(?)', title, content)
