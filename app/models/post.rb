@@ -10,7 +10,7 @@ class Post < ActiveRecord::Base
   
   validates :content,
     :presence => true,
-    :length => { :maximum => 1000 }
+    :length => { :maximum => 10000 }
   validates :user_id,
     :presence => true
   
