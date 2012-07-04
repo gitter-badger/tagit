@@ -101,7 +101,7 @@ class User < ActiveRecord::Base
   
   def stream
     stream = Post.from_user_stream(self) + Post.from_twitter_stream(self)
-    stream.sort_by{ |post| post.created_at }.reverse
+    stream.sort_by(&:created_at).reverse
   end
   
   def tags_from_posts
