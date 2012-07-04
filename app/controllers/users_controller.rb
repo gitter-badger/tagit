@@ -56,7 +56,7 @@ class UsersController < ApplicationController
       clear_oauth_twitter_session = true
     end
     
-    if params[:user][:disconnect_from_twitter]
+    if params[:disconnect_from_twitter]
       params[:user][:twitter_token] = params[:user][:twitter_secret] = nil
     end
     

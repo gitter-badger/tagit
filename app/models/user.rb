@@ -43,8 +43,13 @@ class User < ActiveRecord::Base
     10
   end
   
-  def disconnect_from_twitter
-    twitter_token = twitter_secret = nil
+  def connected_to?(provider)
+    case provider
+    when "twitter"
+      return twitter_token.present? && twitter_secret.present?
+    else
+      return false
+    end
   end
   
   def self.authenticate(email, submitted_password)
