@@ -32,12 +32,12 @@
 
 <% if signed_in? %>
 <div class="field">
-  <% if current_user.twitter_token.blank? || current_user.twitter_secret.blank? %>
+  <% if current_user.connected_to?("twitter") %>
+  <label><%= check_box :disconnect_from_twitter, "" %><%= t(:disconnect_alternate_account_message) %> Twitter</label>
+  <% else %>
   <%= t(:connect_alternate_account_message) %>
   &nbsp;
   <%= connect_button("twitter") %>
-  <% else %>
-  <label><%= check_box :disconnect_from_twitter, "" %><%= t(:disconnect_alternate_account_message) %> Twitter</label>
   <% end %>
 </div>
 <% end %>
