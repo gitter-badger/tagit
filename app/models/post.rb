@@ -85,16 +85,86 @@ class Post < ActiveRecord::Base
   end
   
   def self.from_twitter_stream(user)
-    Twitter.home_timeline.map { |tweet| transform_tweet_to_post(tweet, user.id) }
+    return [] if !user.connected_to?("twitter")
+    
+    client = Twitter::Client.new(
+      :consumer_key => ENV["CONSUMER_KEY"],
+      :consumer_secret => ENV["CONSUMER_SECRET"],
+      :oauth_token => user.twitter_token,
+      :oauth_token_secret => user.twitter_secret)
+    client.home_timeline.map { |tweet| transform_tweet_to_post(tweet, user.id) }
   end
   
-  private # TODO: Test if it works this way
+  private
     def self.transform_tweet_to_post(tweet, user_id)
       post = Post.new
-      post.id = 0
+      post.id = tweet.id # HACK: Tweet IDs are in the order of 11 digits; TagIt IDs haven't even passed 4 digits yet, but this will have to be rewritten one day
       post.user_id = user_id
+      post.title = "#{tweet.user.name} - @#{tweet.user.screen_name}"
       post.content = tweet.text
       post.created_at = tweet.created_at
       return post
     end
+    
+    # Tweet fields:
+    # :created_at => "Wed Jul 04 20:20:06 +0000 2012",
+    # :id => 220612973583020034,
+    # :id_str => "220612973583020034",
+    # :text => "#recipeoftheday always loved Asian flavours, beef with pak choi, mushrooms and noodles\nhttp://t.co/EUaAO8M6",
+    # source => "<a href=\"http://www.hootsuite.com\" rel=\"nofollow\">HootSuite</a>",
+    # truncated => false,
+    # in_reply_to_status_id => nil,
+    # in_reply_to_status_id_str => nil,
+    # in_reply_to_user_id => nil,
+    # in_reply_to_user_id_str => nil,
+    # in_reply_to_screen_name => nil,
+    # user =>
+    # {
+    #   :id => 18676177,
+    #   id_str => "18676177",
+    #   name => "Jamie Oliver",
+    #   screen_name => "jamieoliver",
+    #   location => "London and Essex",
+    #   description => "The Official Jamie Oliver twitter page",
+    #   url => "http://www.jamieoliver.com",
+    #   protected => false,
+    #   followers_count => 2363694,
+    #   friends_count => 5096,
+    #   listed_count => 29455,
+    #   created_at => "Tue Jan 06 14:21:45 +0000 2009",
+    #   favourites_count => 29,
+    #   utc_offset => 0,
+    #   time_zone => "London",
+    #   geo_enabled => false,
+    #   verified => true,
+    #   statuses_count => 8706,
+    #   lang => "en",
+    #   contributors_enabled => false,
+    #   is_translator => false,
+    #   profile_background_color => "E5CDB3",
+    #   profile_background_image_url => "http://a0.twimg.com/profile_background_images/561167329/IMG_2727.jpg",
+    #   profile_background_image_url_https => "https://si0.twimg.com/profile_background_images/561167329/IMG_2727.jpg",
+    #   profile_background_tile => true,
+    #   profile_image_url => "http://a0.twimg.com/profile_images/1717719456/IMG_5896_normal.JPG",
+    #   profile_image_url_https => "https://si0.twimg.com/profile_images/1717719456/IMG_5896_normal.JPG",
+    #   profile_link_color => "DF3936",
+    #   profile_sidebar_border_color => "00B893",
+    #   profile_sidebar_fill_color => "EFEFEF",
+    #   profile_text_color => "333333",
+    #   profile_use_background_image => true,
+    #   show_all_inline_media => true,
+    #   default_profile => false,
+    #   default_profile_image => false,
+    #   following => true,
+    #   follow_request_sent => nil,
+    #   notifications => nil
+    # },
+    # geo => nil,
+    # coordinates => nil,
+    # place => nil,
+    # contributors => nil,
+    # retweet_count => 65,
+    # favorited => false,
+    # retweeted => false,
+    # possibly_sensitive => false
 end
