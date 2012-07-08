@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120703012900) do
+ActiveRecord::Schema.define(:version => 20120708230600) do
 
   create_table "post_tags", :force => true do |t|
     t.integer "post_id"
@@ -24,14 +24,17 @@ ActiveRecord::Schema.define(:version => 20120703012900) do
   add_index "post_tags", ["user_id"], :name => "index_post_tags_on_user_id"
 
   create_table "posts", :force => true do |t|
-    t.text     "content",    :limit => 255
+    t.text     "content",       :limit => 255
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "title"
+    t.integer  "external_id"
+    t.integer  "external_type"
   end
 
   add_index "posts", ["created_at"], :name => "index_posts_on_created_at"
+  add_index "posts", ["user_id", "external_id", "external_type"], :name => "index_posts_on_user_id_and_external_id_and_external_type", :unique => true
   add_index "posts", ["user_id"], :name => "index_posts_on_user_id"
 
   create_table "relationships", :force => true do |t|

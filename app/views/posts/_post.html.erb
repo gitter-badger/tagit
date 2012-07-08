@@ -26,7 +26,7 @@
         <span class="user_username"><%= post.user.username %></span>
       </a>
     </span>
-    <% link_to(post, :title => post.created_at.to_s(:short), :class => "timestamp") do %>
+    <%= link_to(post, :title => post.created_at.to_s(:short), :class => "timestamp") do %>
       <time class="timeago" datetime="<%= post.created_at.iso8601 %>">
         <%= t(:posted_message) % { :time => time_ago_in_words(post.created_at) } %>
       </time>

@@ -11,6 +11,7 @@ gem "admin_data", "1.1.14"
 gem "friendly_id", "4.0.0.beta14"
 gem "jquery-rails", "1.0.19"
 gem "ledermann-rails-settings", :require => "rails-settings"
+#gem "squeel"
 
 group :development do
   gem "rspec-rails", "2.7.0"
